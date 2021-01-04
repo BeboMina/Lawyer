@@ -1,0 +1,76 @@
+﻿<Window x:Class="Lawyer.Case.AddSession"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lawyer.Case"
+        mc:Ignorable="d"
+        Title="AddSession" FontSize="18" Height="450" Width="950" Foreground="White"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        FlowDirection="RightToLeft" WindowStyle="None">
+
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Lawyer;component/Css/MyStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+
+    <Grid>
+        <GroupBox Style="{StaticResource MicrosoftGroupBox}">
+            <GroupBox.Header>
+                <Grid>
+                    <TextBlock x:Name="GboxHeader" Text="اضافة جلسة" 
+                               FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Button x:Name="CloseBtn" Content="X" 
+                            Style="{StaticResource btnColored}" Width="40"
+                            HorizontalAlignment="Right" Click="CloseBtn_Click"/>
+                </Grid>
+            </GroupBox.Header>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="10">
+                    <TextBlock Text="رقم القضية" FontSize="12"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBlock Text="تاريخ الجلسة" FontSize="12" Margin="0 10 0 0"/>
+                    <DatePicker Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBlock Text="تاريخ الجلسة القادم" FontSize="12" Margin="0 10 0 0"/>
+                    <DatePicker Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBlock Text="المحكمة" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBlock Text="المحامين" FontSize="12" Margin="0 10 0 0"/>
+                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                </StackPanel>
+
+                <StackPanel Margin="10" Grid.Column="1">
+                    <TextBlock Text="اسم العميل" FontSize="12"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBlock Text="الموبايل" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left"/>
+                    <TextBlock Text="ملفات الجلسة" FontSize="12" Margin="0 15 0 0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <Button Content="اضافة ملف" Height="40" Width="100"
+                            Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}"/>
+                            <Button Content="حذف ملف" Height="40" Width="100"
+                            Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}"/>
+                        </StackPanel>
+                        <DataGrid Style="{StaticResource CustomDataGrid}" 
+                                  Width="340" Height="170"/>
+                    </StackPanel>
+                    <Button Height="40" Width="120"
+                            Margin="15" HorizontalAlignment="Right" 
+                            Style="{StaticResource NewGameButtonStyle}">
+                        <TextBlock Text="حفظ" TextAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
