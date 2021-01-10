@@ -37,7 +37,7 @@
 
                 <StackPanel Margin="10">
                     <TextBlock Text="رقم القضية" FontSize="12"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left"/>
                     <TextBlock Text="الميعاد" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
                     <TextBlock Text="تاريخ الجلسة" FontSize="12" Margin="0 10 0 0"/>
@@ -52,9 +52,9 @@
 
                 <StackPanel Margin="10" Grid.Column="1">
                     <TextBlock Text="اسم العميل" FontSize="12"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left"/>
                     <TextBlock Text="الموبايل" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left"/>
+                    <TextBox Width="200"  Height="35" IsReadOnly="True" HorizontalAlignment="Left"/>
                     <TextBlock Text="ملفات الجلسة" FontSize="12" Margin="0 15 0 0"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>

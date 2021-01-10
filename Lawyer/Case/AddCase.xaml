@@ -45,13 +45,23 @@
                         <RadioButton GroupName="announce" Foreground="White" Margin="0 0 70 0" VerticalContentAlignment="Center">تم</RadioButton>
                         <RadioButton GroupName="announce" Foreground="White" VerticalContentAlignment="Center">لم يتم</RadioButton>
                     </StackPanel>
+                    <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />
+                    <RichTextBox Height="70" Width="300" 
+                                 HorizontalAlignment="Left" 
+                                 VerticalScrollBarVisibility="Auto">
+                        <RichTextBox.Resources >
+                            <Style TargetType="{x:Type Paragraph}">
+                                <Setter Property="Margin" Value="0 0 0 5" />
+                            </Style>
+                        </RichTextBox.Resources>
+                    </RichTextBox>
                     <Button Content="اضافة جلسة" Height="40" Width="120"
-                            Margin="30" Style="{StaticResource btnColored}"/>
+                            Margin="20" Style="{StaticResource btnColored}"/>
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Column="1">
                     <TextBlock Text="اسم العميل" FontSize="12"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left"/>
                     <TextBlock Text="التنفيذ" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
                     <TextBlock Text="التاريخ" FontSize="12" Margin="0 10 0 0"/>

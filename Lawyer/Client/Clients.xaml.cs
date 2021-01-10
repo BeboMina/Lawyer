@@ -68,6 +68,13 @@ namespace Lawyer
                 return;
 
             Client.DisplayClient displayClient = new Client.DisplayClient();
+            displayClient.ID_Client.Text = client.ID;
+            displayClient.Name_Client.Text = client.Name;
+            displayClient.Phone_Client.Text = client.Phone;
+            displayClient.PersonalId_Client.Text = client.PersonalID;
+            displayClient.Address_Client.Text = client.Address;
+            displayClient.Email_Client.Text = client.Email;
+            new TextRange(displayClient.Notes_Client.Document.ContentStart, displayClient.Notes_Client.Document.ContentEnd).Text = client.Notes;
             displayClient.ShowDialog();
         }
         private void SearchTxt_TextChanged(object sender, TextChangedEventArgs e)
