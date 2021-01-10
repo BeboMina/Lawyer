@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Lawyer.Models;
 namespace Lawyer.Case
 {
     /// <summary>
@@ -20,9 +20,13 @@ namespace Lawyer.Case
     /// </summary>
     public partial class Cases : Page
     {
+        testEntities1 Context = new testEntities1();
+        List<Models.Case> cases;
         public Cases()
         {
             InitializeComponent();
+            cases = Context.Cases.ToList();
+            DataGrid_Cases.ItemsSource = cases;
         }
 
         private void AddCaseBtn_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lawyer.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -24,33 +25,24 @@ namespace Lawyer
     
     public partial class Clients : Page
     {
-        string connetionString = null;
-        SqlCommand command;
-        SqlConnection cnn;
-        SqlDataReader dataReader = null;
-        SqlDataAdapter dataAdapter;
+        testEntities1 Context = new testEntities1();
         public Clients()
         {
+            
             InitializeComponent();
-            try 
+            try
             {
-                connetionString = "Data Source=DESKTOP-AQLH556\\SQLEXPRESS;Initial Catalog=test;Integrated Security=SSPI;";
-                cnn = new SqlConnection(connetionString);
-                string query = "SELECT * from Client";
-                cnn.Open();
-                command = new SqlCommand(query, cnn);
-                dataAdapter = new SqlDataAdapter(command);
-                DataTable dt = new DataTable("Client");
-                dataAdapter.Fill(dt);
-                GridView_Client.ItemsSource = dt.DefaultView;
+
+                List<Models.Client> clients = Context.Clients.ToList();
+
+                GridView_Client.ItemsSource = clients;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             finally
             {
-                cnn.Close();
             }
         }
 
@@ -78,6 +70,31 @@ namespace Lawyer
 
             Client.DisplayClient displayClient = new Client.DisplayClient();
             displayClient.ShowDialog();
+        }
+        private void SearchTxt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                List<Models.Client> clients;
+                if (SearchTxt.Text == "")
+                {
+                    clients = Context.Clients.ToList();
+
+                }
+                else
+                {
+                    clients = Context.Clients.Where(C => C.Name.Contains(SearchTxt.Text)).ToList();
+                }
+                GridView_Client.ItemsSource = clients;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+            }
         }
     }
 }

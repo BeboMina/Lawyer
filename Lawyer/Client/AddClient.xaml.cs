@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
-
+using Lawyer.Models;
 
 namespace Lawyer
 {
@@ -23,44 +23,45 @@ namespace Lawyer
     /// </summary>
     public partial class AddClient : Window
     {
-        String ID, Name, PersonalID, Email, Phone, Notes;
-        string connetionString = null;
-        SqlCommand command;
-        SqlConnection cnn;
-        SqlDataReader dataReader=null;
-        int invNo = 10;
+        Models.Client client = new Models.Client();
+        int invNo ;
+        List<string> NamesClient;
+        testEntities1 Context = new testEntities1();
+        List<Models.Client> clients;
         public AddClient()
         {
             InitializeComponent();
             
             try 
             {
-
-                connetionString = "Data Source=.;Initial Catalog=test;Integrated Security=SSPI;";
-                cnn = new SqlConnection(connetionString);
-                string query = "SELECT MAX (IDmax) from Client";
-                cnn.Open();
-                command = new SqlCommand(query, cnn);
-                if (Convert.IsDBNull(command.ExecuteScalar()))
+                clients = Context.Clients.ToList();
+                if ( GboxHeader.Text== "اضافة عميل")
                 {
-                    invNo = 2004;
+                    MessageBox.Show(GboxHeader.Text);
+                    MessageBox.Show("asdasd");
+                    invNo = Convert.ToInt32(Context.Clients.Max(C => C.IDmax));
+                    if (invNo == 0)
+                    {
+                        invNo = 2004;
+                    }
+                    invNo++;
+                    string NewID = (invNo).ToString();
+                    NewID = "FA" + NewID;
+                    client.ID = NewID;
+                    ID_Client.Text = NewID;
+                    ID_Client.IsReadOnly = true;
                 }
                 else
                 {
-                    invNo = Convert.ToInt32(command.ExecuteScalar());
-                    
+                    MessageBox.Show(GboxHeader.Text);
+                    MessageBox.Show("asdasd");
+                    NamesClient = Context.Clients.Select(C => C.Name).ToList();
+                    Name_client_combo.ItemsSource = NamesClient;
+                    Name_client_combo.SelectedIndex = 0;
                 }
-                invNo++;
-                string NewID = (invNo).ToString();
-                NewID = "FA" + NewID;
-                ID = NewID;
-                ID_Client.Text = NewID;
-                ID_Client.IsReadOnly = true;
-                cnn.Close();
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                cnn.Close();
             }
             
         }
@@ -86,40 +87,28 @@ namespace Lawyer
         {
             try
             {
-                
+
                 string message = "تاكيد حفظ بيانات العميل";
                 string title = "حفظ";
                 MessageBoxButton buttons = MessageBoxButton.YesNo;
                 MessageBoxResult result = MessageBox.Show(message, title, buttons);
                 if (result == MessageBoxResult.Yes)
                 {
-                    Name = Name_Client.Text;
-                    PersonalID = PersonalId_Client.Text;
-                    Email = Email_Client.Text;
-                    Phone = Phone_Client.Text;
-                    Notes = new TextRange(Notes_Client.Document.ContentStart, Notes_Client.Document.ContentEnd).Text;
-                    string saveStaff = "Insert into Client (ID,IDmax,Name,Email,Phone,PersonalID,Address,IDProcuration,Notes) " +
-                           " values (@ID,@IDmax,@Name,@Email,@Phone,@PersonalID,@Address,@IDProcuration,@Notes);";
-                    SqlCommand command = new SqlCommand(saveStaff, cnn);
-                    command.Parameters.AddWithValue("@ID", ID);
-                    command.Parameters.AddWithValue("@IDmax", invNo);
-                    command.Parameters.AddWithValue("@Name", Name);
-                    command.Parameters.AddWithValue("@Email", Email);
-                    command.Parameters.AddWithValue("@Phone", Phone);
-                    command.Parameters.AddWithValue("@PersonalID", PersonalID);
-                    command.Parameters.AddWithValue("@Address", DBNull.Value);
-                    command.Parameters.AddWithValue("@IDProcuration", 11);
-                    command.Parameters.AddWithValue("@Notes", Notes);
-                    cnn.Open();
-                    command.ExecuteNonQuery();
-                    cnn.Close();
+                    client.Name = Name_Client.Text;
+                    client.IDmax = invNo;
+                    client.PersonalID = PersonalId_Client.Text;
+                    client.Email = Email_Client.Text;
+                    client.Phone = Phone_Client.Text;
+                    client.Notes = new TextRange(Notes_Client.Document.ContentStart, Notes_Client.Document.ContentEnd).Text;
+                    client.Address = address.Text;
+                    Context.Clients.Add(client);
+                    Context.SaveChanges();
                     Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                cnn.Close();
             }
 
         }
@@ -127,6 +116,20 @@ namespace Lawyer
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void Name_client_combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GboxHeader.Text != "اضافة عميل")
+            {
+                int index = Name_client_combo.SelectedIndex;
+                ID_Client.Text = clients[index].ID;
+                PersonalId_Client.Text = clients[index].PersonalID;
+                Email_Client.Text = clients[index].Email;
+                Phone_Client.Text = clients[index].Phone;
+                invNo = Convert.ToInt32(clients[index].IDmax);
+                new TextRange(Notes_Client.Document.ContentStart, Notes_Client.Document.ContentEnd).Text = clients[index].Notes;
+            }
         }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b2503bb774bf48229e2dc93139a0752d" Name="Diagram1">
+      <Diagram DiagramId="0de80ccaed9542d5bfed37aded2f38a6" Name="Diagram1">
         <EntityTypeShape EntityType="testModel.Case" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Client" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Client_Case" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
@@ -15,6 +15,7 @@
         <EntityTypeShape EntityType="testModel.Lawery_Session" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Procuration" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Session" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.sysdiagram" Width="1.5" PointX="7.75" PointY="9.125" IsExpanded="true" />
         <AssociationConnector Association="testModel.FK_Client_Case_Cases" ManuallyRouted="false" />
         <AssociationConnector Association="testModel.FK_Sessions_Cases" ManuallyRouted="false" />
         <AssociationConnector Association="testModel.FK_Client_Case_Client1" ManuallyRouted="false" />

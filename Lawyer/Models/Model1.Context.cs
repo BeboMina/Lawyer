@@ -13,10 +13,10 @@ namespace Lawyer.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class testEntities : DbContext
+    public partial class testEntities1 : DbContext
     {
-        public testEntities()
-            : base("name=testEntities")
+        public testEntities1()
+            : base("name=testEntities1")
         {
         }
     
@@ -35,5 +35,6 @@ namespace Lawyer.Models
         public virtual DbSet<Lawery_Session> Lawery_Session { get; set; }
         public virtual DbSet<Procuration> Procurations { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
