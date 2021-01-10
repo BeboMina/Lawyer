@@ -1,0 +1,108 @@
+﻿<Window x:Class="Lawyer.Case.DisplayCase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lawyer.Case"
+        mc:Ignorable="d"
+        Title="DisplayCase" FontSize="18" Height="500" Width="800" Foreground="White"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        FlowDirection="RightToLeft" WindowStyle="None">
+
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Lawyer;component/Css/MyStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+
+    <Grid>
+        <GroupBox Style="{StaticResource MicrosoftGroupBox}">
+            <GroupBox.Header>
+                <Grid>
+                    <TextBlock x:Name="GboxHeader" Text="بيانات الدعوى" 
+                               FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Button x:Name="CloseBtn" Content="X" 
+                            Style="{StaticResource btnColored}" Width="40"
+                            HorizontalAlignment="Right" Click="CloseBtn_Click"/>
+                </Grid>
+            </GroupBox.Header>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="10">
+                    <TextBlock Text="رقم الدعوى" FontSize="12"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <TextBlock Text="نوع الدعوى" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <TextBlock Text="الاعلان" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <TextBlock Text="التاريخ" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <TextBlock Text="الدايرة" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="استئناف" Height="40" Width="120"
+                            Margin="20" Style="{StaticResource btnColored}"/>
+                        <Button Content="نقض" Height="40" Width="120"
+                            Margin="20" Style="{StaticResource btnColored}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Margin="10" Grid.Column="1">
+                    <TextBlock Text="اسم العميل" FontSize="12"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <TextBlock Text="التنفيذ" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <TextBlock Text="الجلسات" FontSize="12" Margin="0 10 0 0"/>
+                    <DataGrid IsReadOnly="True" Margin="0 5 10 0" Height="250" Style="{StaticResource CustomDataGrid}"
+                        Foreground="White" FontSize="16" ColumnWidth="*" ColumnHeaderHeight="30">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="تاريخ الجلسة" Binding="{Binding Code}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="الميعاد" Binding="{Binding Model}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="المحكمة" Binding="{Binding Factory}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="المحامين" Binding="{Binding Factory}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="التاريخ القادم" Binding="{Binding Factory}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

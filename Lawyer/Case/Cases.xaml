@@ -52,22 +52,10 @@
                     VerticalAlignment="Top" Width="150" Height="45"
                     Click="AddProxyBtn_Click"  Margin="0 10"
                     Style="{StaticResource OrangeButton}"/>
-
-            <Button x:Name="NaqdBtn" Content="نقض" 
-                    HorizontalAlignment="Center" FontSize="16"
-                    VerticalAlignment="Top" Width="150" Height="45"
-                    Click="AddProxyBtn_Click"  Margin="0 10"
-                    Style="{StaticResource OrangeButton}"/>
-
-            <Button x:Name="ResumeBtn" Content="استئناف" 
-                    HorizontalAlignment="Center" FontSize="16"
-                    VerticalAlignment="Top" Width="150" Height="45"
-                    Click="AddProxyBtn_Click"  Margin="0 10"
-                    Style="{StaticResource OrangeButton}"/>
         </StackPanel>
 
-        <DataGrid Grid.Column="1" Style="{StaticResource CustomDataGrid}" 
-                  Margin="40" IsReadOnly="True" 
+        <DataGrid x:Name="DataGrid_Cases" Grid.Column="1" Style="{StaticResource CustomDataGrid}" 
+                  Margin="40" IsReadOnly="True" MouseDoubleClick="DataGrid_Cases_MouseDoubleClick"
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30">
 
             <DataGrid.Columns>

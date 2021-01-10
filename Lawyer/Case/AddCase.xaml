@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lawyer.Case"
         mc:Ignorable="d"
-        Title="AddCase" FontSize="18" Height="350" Width="700" Foreground="White"
+        Title="AddCase" FontSize="18" Height="420" Width="700" Foreground="White"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         FlowDirection="RightToLeft" WindowStyle="None">
 
@@ -59,7 +59,7 @@
                     <TextBlock Text="الدايرة" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200"  Height="35" HorizontalAlignment="Left"/>
                     <Button Height="40" Width="120"
-                            Margin="30 150" HorizontalAlignment="Right" 
+                            Margin="30 50" HorizontalAlignment="Right" 
                             Style="{StaticResource NewGameButtonStyle}">
                         <TextBlock Text="حفظ" TextAlignment="Center"/>
                     </Button>

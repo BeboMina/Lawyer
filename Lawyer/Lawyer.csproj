@@ -76,6 +76,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Case\DisplayCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Client\AddClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +108,9 @@
     </Compile>
     <Compile Include="Case\Cases.xaml.cs">
       <DependentUpon>Cases.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Case\DisplayCase.xaml.cs">
+      <DependentUpon>DisplayCase.xaml</DependentUpon>
     </Compile>
     <Compile Include="Client\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
