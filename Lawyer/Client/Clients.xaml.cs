@@ -48,13 +48,13 @@ namespace Lawyer
 
         private void AddClientBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddClient addClient = new AddClient();
+            AddClient addClient = new AddClient("اضافة");
             addClient.ShowDialog();
         }
 
         private void UpdateClientBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddClient addClient = new AddClient();
+            AddClient addClient = new AddClient("تعديل");
             addClient.GboxHeader.Text = "تعديل عميل";
             addClient.Name_Client.Visibility = Visibility.Collapsed;
             addClient.Name_client_combo.Visibility = Visibility.Visible;
@@ -63,10 +63,9 @@ namespace Lawyer
 
         private void GridView_Client_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            // bebo, you should adapt this to work cause I don't know for sure how to use mvc 
-            //Models.Client client = (Models.Client)GridView_Client.SelectedItem;
-            //if (client == null)
-            //    return;
+            Models.Client client = (Models.Client)GridView_Client.SelectedItem;
+            if (client == null)
+                return;
 
             Client.DisplayClient displayClient = new Client.DisplayClient();
             displayClient.ShowDialog();

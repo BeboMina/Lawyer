@@ -1747,11 +1747,12 @@
         <Setter Property="RowStyle">
             <Setter.Value>
                 <Style TargetType="DataGridRow">
-                    <Setter Property="Background" Value="SandyBrown"/>
+                    <Setter Property="Background" Value="#d35400"/>
                     <Style.Triggers>
                         <!-- Highlight a grid row as the mouse passes over -->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#d35400" />
+                            <Setter Property="Background" Value="SandyBrown" />
+                            <Setter Property="Foreground" Value="Black"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>

@@ -28,17 +28,17 @@ namespace Lawyer
         List<string> NamesClient;
         testEntities1 Context = new testEntities1();
         List<Models.Client> clients;
-        public AddClient()
+        string action;
+        public AddClient(string act)
         {
             InitializeComponent();
+            action = act;
             
             try 
             {
                 clients = Context.Clients.ToList();
-                if ( GboxHeader.Text== "اضافة عميل")
+                if ( action == "اضافة")
                 {
-                    MessageBox.Show(GboxHeader.Text);
-                    MessageBox.Show("asdasd");
                     invNo = Convert.ToInt32(Context.Clients.Max(C => C.IDmax));
                     if (invNo == 0)
                     {
@@ -53,8 +53,6 @@ namespace Lawyer
                 }
                 else
                 {
-                    MessageBox.Show(GboxHeader.Text);
-                    MessageBox.Show("asdasd");
                     NamesClient = Context.Clients.Select(C => C.Name).ToList();
                     Name_client_combo.ItemsSource = NamesClient;
                     Name_client_combo.SelectedIndex = 0;
@@ -74,7 +72,6 @@ namespace Lawyer
         private void AddCasebtn_Click(object sender, RoutedEventArgs e)
         {
             AddCase addCase = new AddCase();
-            addCase.Topmost = true;
             addCase.ShowDialog();
         }
 
@@ -104,6 +101,8 @@ namespace Lawyer
                     Context.Clients.Add(client);
                     Context.SaveChanges();
                     Close();
+                    MainWindow parent = (MainWindow)App.Current.MainWindow;
+                    parent.main.Navigate(new Clients());
                 }
             }
             catch (Exception ex)
@@ -120,7 +119,7 @@ namespace Lawyer
 
         private void Name_client_combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (GboxHeader.Text != "اضافة عميل")
+            if (action == "تعديل")
             {
                 int index = Name_client_combo.SelectedIndex;
                 ID_Client.Text = clients[index].ID;

@@ -54,7 +54,8 @@
                     Style="{StaticResource OrangeButton}"/>
         </StackPanel>
 
-        <DataGrid x:Name="DataGrid_Cases" Grid.Column="1" Style="{StaticResource CustomDataGrid}" 
+        <DataGrid x:Name="DataGrid_Cases" Grid.Column="1" Style="{StaticResource CustomDataGrid}"
+                  ItemsSource="{Binding}" AutoGenerateColumns="False"
                   Margin="40" IsReadOnly="True" MouseDoubleClick="DataGrid_Cases_MouseDoubleClick"
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30">
 

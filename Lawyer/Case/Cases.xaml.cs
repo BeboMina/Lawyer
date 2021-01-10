@@ -43,9 +43,9 @@ namespace Lawyer.Case
 
         private void DataGrid_Cases_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            /*Models.Case @case = (Models.Case)DataGrid_Cases.SelectedItem;
+            Models.Case @case = (Models.Case)DataGrid_Cases.SelectedItem;
             if (@case == null)
-                return;*/
+                return;
 
             Case.DisplayCase displayCase = new DisplayCase();
             displayCase.ShowDialog();

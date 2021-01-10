@@ -57,11 +57,12 @@
         </StackPanel>
 
         <DataGrid Grid.Column="1" Style="{StaticResource CustomDataGrid}" 
+                  ItemsSource="{Binding}" AutoGenerateColumns="False"
                   Margin="40" IsReadOnly="True" MouseDoubleClick="GridView_Client_MouseDoubleClick"
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Client">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Code}">
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -75,35 +76,35 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="تحقيق الشخصية" Binding="{Binding Model}">
+                <DataGridTextColumn Header="الهوية" Binding="{Binding PersonalID}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="تاريخ الميلاد" Binding="{Binding Factory}">
+                <DataGridTextColumn Header="العنوان" Binding="{Binding Address}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="الموبايل" Binding="{Binding Factory}">
+                <DataGridTextColumn Header="الموبايل" Binding="{Binding Phone}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="الايميل" Binding="{Binding Factory}">
+                <DataGridTextColumn Header="الايميل" Binding="{Binding Email}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="ملاحظات" Width="auto" Binding="{Binding Factory}">
+                <DataGridTextColumn Header="ملاحظات" Width="auto" Binding="{Binding Notes}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
