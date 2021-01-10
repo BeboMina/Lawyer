@@ -34,7 +34,7 @@ namespace Lawyer
             InitializeComponent();
             try 
             {
-                connetionString = "Data Source=.;Initial Catalog=test;Integrated Security=SSPI;";
+                connetionString = "Data Source=DESKTOP-AQLH556\\SQLEXPRESS;Initial Catalog=test;Integrated Security=SSPI;";
                 cnn = new SqlConnection(connetionString);
                 string query = "SELECT * from Client";
                 cnn.Open();
@@ -64,7 +64,20 @@ namespace Lawyer
         {
             AddClient addClient = new AddClient();
             addClient.GboxHeader.Text = "تعديل عميل";
+            addClient.Name_Client.Visibility = Visibility.Collapsed;
+            addClient.Name_client_combo.Visibility = Visibility.Visible;
             addClient.ShowDialog();
+        }
+
+        private void GridView_Client_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // bebo, you should adapt this to work cause I don't know for sure how to use mvc 
+            //Models.Client client = (Models.Client)GridView_Client.SelectedItem;
+            //if (client == null)
+            //    return;
+
+            Client.DisplayClient displayClient = new Client.DisplayClient();
+            displayClient.ShowDialog();
         }
     }
 }

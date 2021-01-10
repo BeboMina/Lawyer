@@ -354,7 +354,7 @@
     <!--Control colors.-->
     <Color x:Key="WindowColor">#FFE8EDF9</Color>
     <!-- <Color x:Key="ContentAreaColorLight">#FFC5CBF9</Color> -->
-    <Color x:Key="ContentAreaColorLight">#ff0000</Color>
+    <Color x:Key="ContentAreaColorLight">#c44569</Color>
     <!-- <Color x:Key="ContentAreaColorDark">#FF7381F9</Color> -->
     <Color x:Key="ContentAreaColorDark">#4d0000</Color>
 
@@ -1751,7 +1751,7 @@
                     <Style.Triggers>
                         <!-- Highlight a grid row as the mouse passes over -->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="LightCyan" />
+                            <Setter Property="Background" Value="#d35400" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>

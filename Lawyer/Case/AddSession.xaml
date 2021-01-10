@@ -38,6 +38,8 @@
                 <StackPanel Margin="10">
                     <TextBlock Text="رقم القضية" FontSize="12"/>
                     <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBlock Text="الميعاد" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
                     <TextBlock Text="تاريخ الجلسة" FontSize="12" Margin="0 10 0 0"/>
                     <DatePicker Width="200" Height="35" HorizontalAlignment="Left"/>
                     <TextBlock Text="تاريخ الجلسة القادم" FontSize="12" Margin="0 10 0 0"/>

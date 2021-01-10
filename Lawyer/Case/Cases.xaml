@@ -27,7 +27,7 @@
                 <TextBox x:Name="SearchTxt"  FontSize="18" Margin="0 50"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center" Width="200" Height="35"/>
-                <TextBlock IsHitTestVisible="False" Text="رقم القضية ..." VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,100,0" Foreground="DarkGray">
+                <TextBlock IsHitTestVisible="False" Text="رقم الدعوى ..." VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,100,0" Foreground="DarkGray">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -41,7 +41,7 @@
                 </TextBlock>
             </Grid>
 
-            <Button x:Name="AddCaseBtn" Content="اضافة قضية" 
+            <Button x:Name="AddCaseBtn" Content="اضافة دعوى" 
                     HorizontalAlignment="Center" FontSize="16" Margin="0 10"
                     VerticalAlignment="Top" Width="150" Height="45"
                     Click="AddCaseBtn_Click"
@@ -71,7 +71,7 @@
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="رقم القضية" Binding="{Binding Code}">
+                <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding Code}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -85,7 +85,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="نوع القضية" Binding="{Binding Model}">
+                <DataGridTextColumn Header="نوع الدعوى" Binding="{Binding Model}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />

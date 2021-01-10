@@ -84,7 +84,7 @@ namespace Lawyer
 
                 case "ItemCases":
                     main.Navigate(new Case.Cases());
-                    TitleTxt.Text = "القضايا";
+                    TitleTxt.Text = "الدعاوي";
                     break;
 
                 case "ItemLawyers":
@@ -106,7 +106,10 @@ namespace Lawyer
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            this.Left = SystemParameters.WorkArea.Left;
+            this.Top = SystemParameters.WorkArea.Top;
+            this.Height = SystemParameters.WorkArea.Height;
+            this.Width = SystemParameters.WorkArea.Width;
         }
     }
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b2503bb774bf48229e2dc93139a0752d" Name="Diagram1">
+        <EntityTypeShape EntityType="testModel.Case" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Client" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Client_Case" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Fee" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.FilesCas" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.FilesProcuration" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Lawery" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Lawery_Session" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Procuration" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Session" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="testModel.FK_Client_Case_Cases" ManuallyRouted="false" />
+        <AssociationConnector Association="testModel.FK_Sessions_Cases" ManuallyRouted="false" />
+        <AssociationConnector Association="testModel.FK_Client_Case_Client1" ManuallyRouted="false" />
+        <AssociationConnector Association="testModel.FK_FilesCases_Sessions" ManuallyRouted="false" />
+        <AssociationConnector Association="testModel.FK_FilesProcuration_Procuration" ManuallyRouted="false" />
+        <AssociationConnector Association="testModel.FK_Lawery_Session_Lawery" ManuallyRouted="false" />
+        <AssociationConnector Association="testModel.FK_Procuration_Lawery" ManuallyRouted="false" />
+        <AssociationConnector Association="testModel.FK_Lawery_Session_Lawery_Session" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

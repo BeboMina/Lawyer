@@ -55,7 +55,7 @@
         </StackPanel>
 
         <DataGrid Grid.Column="1" Style="{StaticResource CustomDataGrid}" 
-                  Margin="40" IsReadOnly="True" 
+                  Margin="40" IsReadOnly="True" MouseDoubleClick="GridView_Client_MouseDoubleClick"
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Client">
 
             <DataGrid.Columns>

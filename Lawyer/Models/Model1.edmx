@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cases">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Number" Type="bigint" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDmax" Type="bigint" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="PersonalID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="IDProcuration" Type="bigint" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Client_Case">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="IDClient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDCase" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Quantity" Type="bigint" />
+          <Property Name="Date" Type="date" />
+          <Property Name="IDClient" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FilesCases">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Extantion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDSessios" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FilesProcuration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Date" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Extantion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDProcuration" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lawery">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonalID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salery" Type="float" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parthday" Type="date" />
+        </EntityType>
+        <EntityType Name="Lawery_Session">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="IDLawery" Type="bigint" Nullable="false" />
+          <Property Name="IDSessios" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Procuration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="StardDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="certified" Type="bit" Nullable="false" />
+          <Property Name="IDLawery" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="IDCase" Type="bigint" Nullable="false" />
+          <Property Name="date" Type="date" />
+          <Property Name="NextDate" Type="date" />
+          <Property Name="Jadge" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Client_Case_Cases">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1" />
+          <End Role="Client_Case" Type="Self.Client_Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client_Case">
+              <PropertyRef Name="IDCase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Case_Client1">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client_Case" Type="Self.Client_Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client_Case">
+              <PropertyRef Name="IDClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FilesCases_Sessions">
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="1" />
+          <End Role="FilesCases" Type="Self.FilesCases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FilesCases">
+              <PropertyRef Name="IDSessios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FilesProcuration_Procuration">
+          <End Role="Procuration" Type="Self.Procuration" Multiplicity="1" />
+          <End Role="FilesProcuration" Type="Self.FilesProcuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Procuration">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FilesProcuration">
+              <PropertyRef Name="IDProcuration" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lawery_Session_Lawery">
+          <End Role="Lawery" Type="Self.Lawery" Multiplicity="1" />
+          <End Role="Lawery_Session" Type="Self.Lawery_Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lawery">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lawery_Session">
+              <PropertyRef Name="IDLawery" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lawery_Session_Lawery_Session">
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="1" />
+          <End Role="Lawery_Session" Type="Self.Lawery_Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lawery_Session">
+              <PropertyRef Name="IDSessios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Procuration_Lawery">
+          <End Role="Lawery" Type="Self.Lawery" Multiplicity="1" />
+          <End Role="Procuration" Type="Self.Procuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lawery">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Procuration">
+              <PropertyRef Name="IDLawery" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessions_Cases">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1" />
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="IDCase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testModelStoreContainer">
+          <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client_Case" EntityType="Self.Client_Case" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fees" EntityType="Self.Fees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FilesCases" EntityType="Self.FilesCases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FilesProcuration" EntityType="Self.FilesProcuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lawery" EntityType="Self.Lawery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lawery_Session" EntityType="Self.Lawery_Session" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Procuration" EntityType="Self.Procuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Client_Case_Cases" Association="Self.FK_Client_Case_Cases">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Client_Case" EntitySet="Client_Case" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Case_Client1" Association="Self.FK_Client_Case_Client1">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Client_Case" EntitySet="Client_Case" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FilesCases_Sessions" Association="Self.FK_FilesCases_Sessions">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="FilesCases" EntitySet="FilesCases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FilesProcuration_Procuration" Association="Self.FK_FilesProcuration_Procuration">
+            <End Role="Procuration" EntitySet="Procuration" />
+            <End Role="FilesProcuration" EntitySet="FilesProcuration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lawery_Session_Lawery" Association="Self.FK_Lawery_Session_Lawery">
+            <End Role="Lawery" EntitySet="Lawery" />
+            <End Role="Lawery_Session" EntitySet="Lawery_Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lawery_Session_Lawery_Session" Association="Self.FK_Lawery_Session_Lawery_Session">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="Lawery_Session" EntitySet="Lawery_Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Procuration_Lawery" Association="Self.FK_Procuration_Lawery">
+            <End Role="Lawery" EntitySet="Lawery" />
+            <End Role="Procuration" EntitySet="Procuration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_Cases" Association="Self.FK_Sessions_Cases">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Number" Type="Int64" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client_Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Cases" ToRole="Client_Case" />
+          <NavigationProperty Name="Sessions" Relationship="Self.FK_Sessions_Cases" FromRole="Cases" ToRole="Sessions" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDmax" Type="Int64" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDProcuration" Type="Int64" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client_Case" Relationship="Self.FK_Client_Case_Client1" FromRole="Client" ToRole="Client_Case" />
+        </EntityType>
+        <EntityType Name="Client_Case">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="IDClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDCase" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Client_Case" ToRole="Cases" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Case_Client1" FromRole="Client_Case" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Fee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Quantity" Type="Int64" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="IDClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FilesCas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Extantion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDSessios" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Session" Relationship="Self.FK_FilesCases_Sessions" FromRole="FilesCases" ToRole="Sessions" />
+        </EntityType>
+        <EntityType Name="FilesProcuration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Date" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Extantion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDProcuration" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Procuration" Relationship="Self.FK_FilesProcuration_Procuration" FromRole="FilesProcuration" ToRole="Procuration" />
+        </EntityType>
+        <EntityType Name="Lawery">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PersonalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salery" Type="Double" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parthday" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Lawery_Session" Relationship="Self.FK_Lawery_Session_Lawery" FromRole="Lawery" ToRole="Lawery_Session" />
+          <NavigationProperty Name="Procurations" Relationship="Self.FK_Procuration_Lawery" FromRole="Lawery" ToRole="Procuration" />
+        </EntityType>
+        <EntityType Name="Lawery_Session">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="IDLawery" Type="Int64" Nullable="false" />
+          <Property Name="IDSessios" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Lawery" Relationship="Self.FK_Lawery_Session_Lawery" FromRole="Lawery_Session" ToRole="Lawery" />
+          <NavigationProperty Name="Session" Relationship="Self.FK_Lawery_Session_Lawery_Session" FromRole="Lawery_Session" ToRole="Sessions" />
+        </EntityType>
+        <EntityType Name="Procuration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="StardDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="certified" Type="Boolean" Nullable="false" />
+          <Property Name="IDLawery" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="FilesProcurations" Relationship="Self.FK_FilesProcuration_Procuration" FromRole="Procuration" ToRole="FilesProcuration" />
+          <NavigationProperty Name="Lawery" Relationship="Self.FK_Procuration_Lawery" FromRole="Procuration" ToRole="Lawery" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="IDCase" Type="Int64" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="NextDate" Type="DateTime" Precision="0" />
+          <Property Name="Jadge" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Case" Relationship="Self.FK_Sessions_Cases" FromRole="Sessions" ToRole="Cases" />
+          <NavigationProperty Name="FilesCases" Relationship="Self.FK_FilesCases_Sessions" FromRole="Sessions" ToRole="FilesCases" />
+          <NavigationProperty Name="Lawery_Session" Relationship="Self.FK_Lawery_Session_Lawery_Session" FromRole="Sessions" ToRole="Lawery_Session" />
+        </EntityType>
+        <Association Name="FK_Client_Case_Cases">
+          <End Role="Cases" Type="Self.Case" Multiplicity="1" />
+          <End Role="Client_Case" Type="Self.Client_Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client_Case">
+              <PropertyRef Name="IDCase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessions_Cases">
+          <End Role="Cases" Type="Self.Case" Multiplicity="1" />
+          <End Role="Sessions" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="IDCase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Case_Client1">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client_Case" Type="Self.Client_Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client_Case">
+              <PropertyRef Name="IDClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FilesCases_Sessions">
+          <End Role="Sessions" Type="Self.Session" Multiplicity="1" />
+          <End Role="FilesCases" Type="Self.FilesCas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FilesCases">
+              <PropertyRef Name="IDSessios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FilesProcuration_Procuration">
+          <End Role="Procuration" Type="Self.Procuration" Multiplicity="1" />
+          <End Role="FilesProcuration" Type="Self.FilesProcuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Procuration">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FilesProcuration">
+              <PropertyRef Name="IDProcuration" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lawery_Session_Lawery">
+          <End Role="Lawery" Type="Self.Lawery" Multiplicity="1" />
+          <End Role="Lawery_Session" Type="Self.Lawery_Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lawery">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lawery_Session">
+              <PropertyRef Name="IDLawery" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Procuration_Lawery">
+          <End Role="Lawery" Type="Self.Lawery" Multiplicity="1" />
+          <End Role="Procuration" Type="Self.Procuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lawery">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Procuration">
+              <PropertyRef Name="IDLawery" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lawery_Session_Lawery_Session">
+          <End Role="Sessions" Type="Self.Session" Multiplicity="1" />
+          <End Role="Lawery_Session" Type="Self.Lawery_Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lawery_Session">
+              <PropertyRef Name="IDSessios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cases" EntityType="Self.Case" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Client_Case" EntityType="Self.Client_Case" />
+          <EntitySet Name="Fees" EntityType="Self.Fee" />
+          <EntitySet Name="FilesCases" EntityType="Self.FilesCas" />
+          <EntitySet Name="FilesProcurations" EntityType="Self.FilesProcuration" />
+          <EntitySet Name="Laweries" EntityType="Self.Lawery" />
+          <EntitySet Name="Lawery_Session" EntityType="Self.Lawery_Session" />
+          <EntitySet Name="Procurations" EntityType="Self.Procuration" />
+          <EntitySet Name="Sessions" EntityType="Self.Session" />
+          <AssociationSet Name="FK_Client_Case_Cases" Association="Self.FK_Client_Case_Cases">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Client_Case" EntitySet="Client_Case" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_Cases" Association="Self.FK_Sessions_Cases">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Case_Client1" Association="Self.FK_Client_Case_Client1">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Client_Case" EntitySet="Client_Case" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FilesCases_Sessions" Association="Self.FK_FilesCases_Sessions">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="FilesCases" EntitySet="FilesCases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FilesProcuration_Procuration" Association="Self.FK_FilesProcuration_Procuration">
+            <End Role="Procuration" EntitySet="Procurations" />
+            <End Role="FilesProcuration" EntitySet="FilesProcurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lawery_Session_Lawery" Association="Self.FK_Lawery_Session_Lawery">
+            <End Role="Lawery" EntitySet="Laweries" />
+            <End Role="Lawery_Session" EntitySet="Lawery_Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Procuration_Lawery" Association="Self.FK_Procuration_Lawery">
+            <End Role="Lawery" EntitySet="Laweries" />
+            <End Role="Procuration" EntitySet="Procurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lawery_Session_Lawery_Session" Association="Self.FK_Lawery_Session_Lawery_Session">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="Lawery_Session" EntitySet="Lawery_Session" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="testModelStoreContainer" CdmEntityContainer="testEntities">
+          <EntitySetMapping Name="Cases">
+            <EntityTypeMapping TypeName="testModel.Case">
+              <MappingFragment StoreEntitySet="Cases">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="testModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDmax" ColumnName="IDmax" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="PersonalID" ColumnName="PersonalID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="IDProcuration" ColumnName="IDProcuration" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client_Case">
+            <EntityTypeMapping TypeName="testModel.Client_Case">
+              <MappingFragment StoreEntitySet="Client_Case">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="IDCase" ColumnName="IDCase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fees">
+            <EntityTypeMapping TypeName="testModel.Fee">
+              <MappingFragment StoreEntitySet="Fees">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FilesCases">
+            <EntityTypeMapping TypeName="testModel.FilesCas">
+              <MappingFragment StoreEntitySet="FilesCases">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Extantion" ColumnName="Extantion" />
+                <ScalarProperty Name="IDSessios" ColumnName="IDSessios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FilesProcurations">
+            <EntityTypeMapping TypeName="testModel.FilesProcuration">
+              <MappingFragment StoreEntitySet="FilesProcuration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Extantion" ColumnName="Extantion" />
+                <ScalarProperty Name="IDProcuration" ColumnName="IDProcuration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Laweries">
+            <EntityTypeMapping TypeName="testModel.Lawery">
+              <MappingFragment StoreEntitySet="Lawery">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PersonalID" ColumnName="PersonalID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Salery" ColumnName="Salery" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Parthday" ColumnName="Parthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lawery_Session">
+            <EntityTypeMapping TypeName="testModel.Lawery_Session">
+              <MappingFragment StoreEntitySet="Lawery_Session">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDLawery" ColumnName="IDLawery" />
+                <ScalarProperty Name="IDSessios" ColumnName="IDSessios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Procurations">
+            <EntityTypeMapping TypeName="testModel.Procuration">
+              <MappingFragment StoreEntitySet="Procuration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StardDate" ColumnName="StardDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="certified" ColumnName="certified" />
+                <ScalarProperty Name="IDLawery" ColumnName="IDLawery" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="testModel.Session">
+              <MappingFragment StoreEntitySet="Sessions">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDCase" ColumnName="IDCase" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="NextDate" ColumnName="NextDate" />
+                <ScalarProperty Name="Jadge" ColumnName="Jadge" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
