@@ -64,6 +64,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Proxy\AddProxy.xaml.cs">
+      <DependentUpon>AddProxy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Proxy\Proxies.xaml.cs">
+      <DependentUpon>Proxies.xaml</DependentUpon>
+    </Compile>
     <Page Include="Case\AddCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,6 +135,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Proxy\AddProxy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Proxy\Proxies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Case.cs">
