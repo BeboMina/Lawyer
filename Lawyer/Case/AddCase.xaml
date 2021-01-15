@@ -37,18 +37,19 @@
 
                 <StackPanel Margin="10">
                     <TextBlock Text="رقم الدعوى" FontSize="12"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="Number_Case"/>
                     <TextBlock Text="نوع الدعوى" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left"/>
+                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left" Name="Tybe_case"/>
                     <TextBlock Text="الاعلان" FontSize="12" Margin="0 10 0 0"/>
                     <StackPanel Width="200" Orientation="Horizontal" Height="35" HorizontalAlignment="Left">
-                        <RadioButton GroupName="announce" Foreground="White" Margin="0 0 70 0" VerticalContentAlignment="Center">تم</RadioButton>
-                        <RadioButton GroupName="announce" Foreground="White" VerticalContentAlignment="Center">لم يتم</RadioButton>
+                        <RadioButton GroupName="announce" Foreground="White" Margin="0 0 70 0" VerticalContentAlignment="Center" Name="Done">تم</RadioButton>
+                        <RadioButton GroupName="announce" Foreground="White" VerticalContentAlignment="Center" Name="Dont_Done">لم يتم</RadioButton>
                     </StackPanel>
                     <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />
                     <RichTextBox Height="70" Width="300" 
                                  HorizontalAlignment="Left" 
-                                 VerticalScrollBarVisibility="Auto">
+                                 VerticalScrollBarVisibility="Auto"
+                                 Name="Notes">
                         <RichTextBox.Resources >
                             <Style TargetType="{x:Type Paragraph}">
                                 <Setter Property="Margin" Value="0 0 0 5" />
@@ -61,16 +62,22 @@
 
                 <StackPanel Margin="10" Grid.Column="1">
                     <TextBlock Text="اسم العميل" FontSize="12"/>
-                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Name="Client_Name" Foreground="Black" SelectionChanged="Client_Name_SelectionChanged">
+                        <ComboBox.Resources>
+                            <Style TargetType="{x:Type ComboBoxItem}">
+                                <Setter Property="Foreground" Value="Black" />
+                            </Style>
+                        </ComboBox.Resources>
+                    </ComboBox>
                     <TextBlock Text="التنفيذ" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="JadgNots"/>
                     <TextBlock Text="التاريخ" FontSize="12" Margin="0 10 0 0"/>
-                    <DatePicker Width="200"  Height="35" HorizontalAlignment="Left"/>
+                    <DatePicker Width="200"  Height="35" HorizontalAlignment="Left" Name="data_Case"/>
                     <TextBlock Text="الدايرة" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left"/>
+                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left" Name="circle"/>
                     <Button Height="40" Width="120"
                             Margin="30 50" HorizontalAlignment="Right" 
-                            Style="{StaticResource NewGameButtonStyle}">
+                            Style="{StaticResource NewGameButtonStyle}" Click="Save_Click">
                         <TextBlock Text="حفظ" TextAlignment="Center"/>
                     </Button>
                 </StackPanel>

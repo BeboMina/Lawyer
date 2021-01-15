@@ -12,26 +12,20 @@ namespace Lawyer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Case
+    public partial class veto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Case()
+        public veto()
         {
-            this.Client_Case = new HashSet<Client_Case>();
-            this.Jadges = new HashSet<Jadge>();
             this.Sessions = new HashSet<Session>();
         }
     
-        public long ID { get; set; }
-        public string Type { get; set; }
+        public long ID_veto { get; set; }
+        public string Tybe { get; set; }
         public string Notes { get; set; }
-        public Nullable<long> Number_of_Session { get; set; }
+        public Nullable<long> Number_Of_Sessin { get; set; }
         public string Circle { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Client_Case> Client_Case { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Jadge> Jadges { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Session> Sessions { get; set; }
     }

@@ -60,7 +60,7 @@
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding Number}">
+                <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding ID}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -81,7 +81,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="عدد الجلسات" Binding="{Binding SessionsCount}">
+                <DataGridTextColumn Header="عدد الجلسات" Binding="{Binding Number_of_Session}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />

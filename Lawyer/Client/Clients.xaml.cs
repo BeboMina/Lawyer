@@ -25,7 +25,7 @@ namespace Lawyer
     
     public partial class Clients : Page
     {
-        testEntities1 Context = new testEntities1();
+        testEntities Context = new testEntities();
         public Clients()
         {
             

@@ -20,7 +20,7 @@ namespace Lawyer.Case
     /// </summary>
     public partial class Cases : Page
     {
-        testEntities1 Context = new testEntities1();
+        testEntities Context = new testEntities();
         List<Models.Case> cases;
         public Cases()
         {

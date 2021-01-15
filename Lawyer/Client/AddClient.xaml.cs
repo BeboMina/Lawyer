@@ -26,7 +26,7 @@ namespace Lawyer
         Models.Client client = new Models.Client();
         int invNo ;
         List<string> NamesClient;
-        testEntities1 Context = new testEntities1();
+        testEntities Context = new testEntities();
         List<Models.Client> clients;
         string action;
         public AddClient(string act)
@@ -37,6 +37,7 @@ namespace Lawyer
             try 
             {
                 clients = Context.Clients.ToList();
+                
                 if ( action == "اضافة")
                 {
                     invNo = Convert.ToInt32(Context.Clients.Max(C => C.IDmax));
@@ -49,15 +50,20 @@ namespace Lawyer
                     NewID = "FA" + NewID;
                     client.ID = NewID;
                     ID_Client.Text = NewID;
-                    ID_Client.IsReadOnly = true;
+                    
                 }
                 else
                 {
                     NamesClient = Context.Clients.Select(C => C.Name).ToList();
                     Name_client_combo.ItemsSource = NamesClient;
                     Name_client_combo.SelectedIndex = 0;
+                    int index = 0;
+                    change_data(index);
+                    
                 }
-            }catch(Exception ex)
+                ID_Client.IsReadOnly = true;
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -91,13 +97,23 @@ namespace Lawyer
                 MessageBoxResult result = MessageBox.Show(message, title, buttons);
                 if (result == MessageBoxResult.Yes)
                 {
-                    client.Name = Name_Client.Text;
+                    if(action == "اضافة")
+                    {
+                        client.Name = Name_Client.Text;
+                    }
                     client.IDmax = invNo;
                     client.PersonalID = PersonalId_Client.Text;
                     client.Email = Email_Client.Text;
                     client.Phone = Phone_Client.Text;
                     client.Notes = new TextRange(Notes_Client.Document.ContentStart, Notes_Client.Document.ContentEnd).Text;
                     client.Address = address.Text;
+                    if(action!= "اضافة")
+                    {
+                        MessageBox.Show(client.ID);
+                        Models.Client cl = Context.Clients.FirstOrDefault(C => C.ID == client.ID);
+                        Context.Clients.Remove(cl);
+                        Context.SaveChanges();
+                    }
                     Context.Clients.Add(client);
                     Context.SaveChanges();
                     Close();
@@ -121,14 +137,21 @@ namespace Lawyer
         {
             if (action == "تعديل")
             {
+                
                 int index = Name_client_combo.SelectedIndex;
-                ID_Client.Text = clients[index].ID;
-                PersonalId_Client.Text = clients[index].PersonalID;
-                Email_Client.Text = clients[index].Email;
-                Phone_Client.Text = clients[index].Phone;
-                invNo = Convert.ToInt32(clients[index].IDmax);
-                new TextRange(Notes_Client.Document.ContentStart, Notes_Client.Document.ContentEnd).Text = clients[index].Notes;
+                change_data(index);
             }
+        }
+        private void change_data(int index)
+        {
+            client.ID = clients[index].ID;
+            client.Name = clients[index].Name;
+            ID_Client.Text = clients[index].ID;
+            PersonalId_Client.Text = clients[index].PersonalID;
+            Email_Client.Text = clients[index].Email;
+            Phone_Client.Text = clients[index].Phone;
+            invNo = Convert.ToInt32(clients[index].IDmax);
+            new TextRange(Notes_Client.Document.ContentStart, Notes_Client.Document.ContentEnd).Text = clients[index].Notes;
         }
     }
 }
