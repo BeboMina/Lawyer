@@ -94,8 +94,7 @@ namespace Lawyer
                     break;
 
                 case "ItemProxies":
-                    //usc = new Clients();
-                    //gridMain.Children.Add(usc);
+                    main.Navigate(new Proxy.Proxies());
                     TitleTxt.Text = "التوكيلات";
                     break;
 

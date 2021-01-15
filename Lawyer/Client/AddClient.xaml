@@ -55,13 +55,9 @@
                     <TextBlock Text="الاسم" FontSize="12" />
                     <Grid>
                         <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="Name_Client"/>
-                        <ComboBox x:Name="Name_client_combo" HorizontalAlignment="Left" Height="35" Width="200" Visibility="Collapsed" SelectionChanged="Name_client_combo_SelectionChanged" Foreground="Black">
-                            <ComboBox.Resources>
-                                <Style TargetType="{x:Type ComboBoxItem}">
-                                    <Setter Property="Foreground" Value="Black" />
-                                </Style>
-                            </ComboBox.Resources>
-                        </ComboBox>
+                        <ComboBox x:Name="Name_client_combo" HorizontalAlignment="Left" 
+                                  Height="35" Width="200" Visibility="Collapsed" 
+                                  SelectionChanged="Name_client_combo_SelectionChanged" Foreground="Black"/>
                     </Grid>
                     <TextBlock Text="الهوية" FontSize="12" Margin="0 10 0 0"  />
                     <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="PersonalId_Client"/>
