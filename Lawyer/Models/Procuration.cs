@@ -21,10 +21,10 @@ namespace Lawyer.Models
         }
     
         public long ID { get; set; }
-        public System.DateTime StardDate { get; set; }
-        public System.DateTime EndDate { get; set; }
-        public bool certified { get; set; }
-        public long IDLawery { get; set; }
+        public Nullable<System.DateTime> StardDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
+        public Nullable<bool> certified { get; set; }
+        public Nullable<long> IDLawery { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FilesProcuration> FilesProcurations { get; set; }
