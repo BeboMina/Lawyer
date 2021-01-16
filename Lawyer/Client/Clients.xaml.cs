@@ -66,7 +66,7 @@ namespace Lawyer
             Models.Client client = (Models.Client)GridView_Client.SelectedItem;
             if (client == null)
                 return;
-
+            
             Client.DisplayClient displayClient = new Client.DisplayClient();
             displayClient.ID_Client.Text = client.ID;
             displayClient.Name_Client.Text = client.Name;
@@ -75,6 +75,14 @@ namespace Lawyer
             displayClient.Address_Client.Text = client.Address;
             displayClient.Email_Client.Text = client.Email;
             new TextRange(displayClient.Notes_Client.Document.ContentStart, displayClient.Notes_Client.Document.ContentEnd).Text = client.Notes;
+            Models.Procuration procuration = Context.Procurations.FirstOrDefault(p => p.ID == client.IDProcuration);
+            if (procuration!=null)
+            {
+                displayClient.Start_Date.Text = Convert.ToDateTime(procuration.StardDate).ToString("yyyy / MM / dd");
+                displayClient.End_Date.Text = Convert.ToDateTime(procuration.EndDate).ToString("yyyy / MM / dd");
+                displayClient.Certified.Text = procuration.certified.Value ? "موثق" : "غير موثق";
+            }
+           
             displayClient.ShowDialog();
         }
         private void SearchTxt_TextChanged(object sender, TextChangedEventArgs e)

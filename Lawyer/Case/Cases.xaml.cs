@@ -43,7 +43,7 @@ namespace Lawyer.Case
 
         private void DataGrid_Cases_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Models.Case @case = (Models.Case)DataGrid_Cases.SelectedItem;
+            Models.View_1 @case = (Models.View_1)DataGrid_Cases.SelectedItem;
             if (@case == null)
                 return;
 

@@ -21,11 +21,13 @@ namespace Lawyer.Proxy
     /// </summary>
     public partial class Proxies : Page
     {
+        testEntities Context = new testEntities();
+        List<Models.ViewClient_Pro> viewClient_Pros;
         public Proxies()
         {
             InitializeComponent();
             viewClient_Pros= Context.ViewClient_Pro.ToList();
-            DataGrid_Cases.ItemsSource = viewClient_Pros;
+            DataGrid_Proxies.ItemsSource = viewClient_Pros;
         }
 
         private void AddProxyBtn_Click(object sender, RoutedEventArgs e)
