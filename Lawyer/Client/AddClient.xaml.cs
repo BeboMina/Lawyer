@@ -106,7 +106,7 @@ namespace Lawyer
                     client.Email = Email_Client.Text;
                     client.Phone = Phone_Client.Text;
                     client.Notes = new TextRange(Notes_Client.Document.ContentStart, Notes_Client.Document.ContentEnd).Text;
-                    client.Address = address.Text;
+                    client.Address = Address_Client.Text;
                     if(action!= "اضافة")
                     {
                         MessageBox.Show(client.ID);
@@ -150,8 +150,16 @@ namespace Lawyer
             PersonalId_Client.Text = clients[index].PersonalID;
             Email_Client.Text = clients[index].Email;
             Phone_Client.Text = clients[index].Phone;
+            Address_Client.Text = clients[index].Address;
             invNo = Convert.ToInt32(clients[index].IDmax);
             new TextRange(Notes_Client.Document.ContentStart, Notes_Client.Document.ContentEnd).Text = clients[index].Notes;
+        }
+
+        private void AddProxyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Proxy.AddProxy addProxy = new Proxy.AddProxy();
+            addProxy.ShowDialog();
+
         }
     }
 }

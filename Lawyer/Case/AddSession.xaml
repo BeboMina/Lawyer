@@ -37,13 +37,8 @@
 
                 <StackPanel Margin="10">
                     <TextBlock Text="رقم القضية" FontSize="12"/>
-                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Name="Com_Num_Case" SelectionChanged="Com_Num_Case_SelectionChanged"  Foreground="Black">
-                        <ComboBox.Resources>
-                            <Style TargetType="{x:Type ComboBoxItem}">
-                                <Setter Property="Foreground" Value="Black" />
-                            </Style>
-                        </ComboBox.Resources>
-                    </ComboBox>
+                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Name="Com_Num_Case" SelectionChanged="Com_Num_Case_SelectionChanged"  Foreground="Black"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="Num_Case" IsReadOnly="True" Visibility="Collapsed"/>
                     <TextBlock Text="الميعاد" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="Time_Session"/>
                     <TextBlock Text="تاريخ الجلسة" FontSize="12" Margin="0 10 0 0"/>
@@ -52,8 +47,6 @@
                     <DatePicker Width="200" Height="35" HorizontalAlignment="Left" Name="NextData_Session"/>
                     <TextBlock Text="المحكمة" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="jadge"/>
-                    <TextBlock Text="المحامين" FontSize="12" Margin="0 10 0 0"/>
-                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left"/>
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Column="1">

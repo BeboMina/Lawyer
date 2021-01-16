@@ -46,17 +46,11 @@
                     VerticalAlignment="Top" Width="150" Height="45"
                     Click="AddProxyBtn_Click"
                     Style="{StaticResource OrangeButton}"/>
-
-            <Button x:Name="UpdateProxyBtn" Content="تعديل توكيل" 
-                    HorizontalAlignment="Center" FontSize="16"
-                    VerticalAlignment="Top" Width="150" Height="45"
-                    Click="UpdateProxyBtn_Click"  Margin="0 10"
-                    Style="{StaticResource OrangeButton}"/>
         </StackPanel>
 
-        <DataGrid x:Name="DataGrid_Cases" Grid.Column="1" Style="{StaticResource CustomDataGrid}"
+        <DataGrid x:Name="DataGrid_Proxies" Grid.Column="1" Style="{StaticResource CustomDataGrid}"
                   ItemsSource="{Binding}" AutoGenerateColumns="False"
-                  Margin="40" IsReadOnly="True"
+                  Margin="40" IsReadOnly="True" MouseDoubleClick="DataGrid_Proxies_MouseDoubleClick"
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30">
 
             <DataGrid.Columns>

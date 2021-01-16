@@ -1,11 +1,11 @@
-﻿<Window x:Class="Lawyer.Case.AddCase"
+﻿<Window x:Class="Lawyer.Case.Judgement"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lawyer.Case"
         mc:Ignorable="d"
-        Title="AddCase" FontSize="18" Height="320" Width="700" Foreground="White"
+        Title="Judgement" FontSize="18" Height="320" Width="700" Foreground="White"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         FlowDirection="RightToLeft" WindowStyle="None">
 
@@ -21,7 +21,7 @@
         <GroupBox Style="{StaticResource MicrosoftGroupBox}">
             <GroupBox.Header>
                 <Grid>
-                    <TextBlock x:Name="GboxHeader" Text="اضافة دعوى" 
+                    <TextBlock x:Name="GboxHeader" Text="الحكم" 
                                FontWeight="Bold" VerticalAlignment="Center"/>
                     <Button x:Name="CloseBtn" Content="X" 
                             Style="{StaticResource btnColored}" Width="40"
@@ -37,33 +37,22 @@
 
                 <StackPanel Margin="10">
                     <TextBlock Text="رقم الدعوى" FontSize="12"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="Number_Case"/>
-                    <TextBlock Text="نوع الدعوى" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left" Name="Tybe_case"/>
-                    <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />
-                    <RichTextBox Height="70" Width="300" 
-                                 HorizontalAlignment="Left" 
-                                 VerticalScrollBarVisibility="Auto"
-                                 Name="Notes">
-                        <RichTextBox.Resources >
-                            <Style TargetType="{x:Type Paragraph}">
-                                <Setter Property="Margin" Value="0 0 0 5" />
-                            </Style>
-                        </RichTextBox.Resources>
-                    </RichTextBox>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="Number_Case" IsReadOnly="True"/>
+                    <TextBlock Text="الاعلان" FontSize="12" Margin="0 10 0 0"/>
+                    <StackPanel Width="200" Orientation="Horizontal" Height="35" HorizontalAlignment="Left">
+                        <RadioButton GroupName="announce" Foreground="White" Margin="0 0 70 0" VerticalContentAlignment="Center" Name="Done">تم</RadioButton>
+                        <RadioButton GroupName="announce" Foreground="White" VerticalContentAlignment="Center" Name="Dont_Done">لم يتم</RadioButton>
+                    </StackPanel>
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Column="1">
-                    <TextBlock Text="اسم العميل" FontSize="12"/>
-                    <Grid>
-                        <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Name="Client_Name" Foreground="Black" SelectionChanged="Client_Name_SelectionChanged"/>
-                        <TextBox Width="200"  Height="35" HorizontalAlignment="Left" Name="Client_Name_Txt" IsReadOnly="True" Visibility="Collapsed"/>
-                    </Grid>
-                    <TextBlock Text="الدايرة" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left" Name="circle"/>
+                    <TextBlock Text="التنفيذ" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="JadgNots"/>
+                    <TextBlock Text="التاريخ" FontSize="12" Margin="0 10 0 0"/>
+                    <DatePicker Width="200"  Height="35" HorizontalAlignment="Left" Name="data_Case"/>
                     <Button Height="40" Width="120"
                             Margin="30 50" HorizontalAlignment="Right" 
-                            Style="{StaticResource NewGameButtonStyle}" Click="Save_Click">
+                            Style="{StaticResource NewGameButtonStyle}" Click="SaveBtn_Click">
                         <TextBlock Text="حفظ" TextAlignment="Center"/>
                     </Button>
                 </StackPanel>

@@ -19,23 +19,19 @@ namespace Lawyer.Proxy
     /// </summary>
     public partial class AddProxy : Window
     {
-        string action;
-
-        public AddProxy(string act)
+        public AddProxy()
         {
             InitializeComponent();
-
-            action = act;
-
-            if(action == "update")
-            {
-                GboxHeader.Text = "تعديل توكيل";
-            }
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Client_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

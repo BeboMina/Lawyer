@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Lawyer.Case
 {
     /// <summary>
-    /// Interaction logic for DisplayCase.xaml
+    /// Interaction logic for Judgement.xaml
     /// </summary>
-    public partial class DisplayCase : Window
+    public partial class Judgement : Window
     {
-        public DisplayCase()
+        public Judgement()
         {
             InitializeComponent();
         }
@@ -29,10 +29,9 @@ namespace Lawyer.Case
             Close();
         }
 
-        private void JudgementBtn_Click(object sender, RoutedEventArgs e)
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            Case.Judgement judgement = new Judgement();
-            judgement.ShowDialog();
+
         }
     }
 }

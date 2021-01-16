@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Lawyer.Case
+namespace Lawyer.Proxy
 {
     /// <summary>
-    /// Interaction logic for DisplayCase.xaml
+    /// Interaction logic for DisplayProxy.xaml
     /// </summary>
-    public partial class DisplayCase : Window
+    public partial class DisplayProxy : Window
     {
-        public DisplayCase()
+        public DisplayProxy()
         {
             InitializeComponent();
         }
@@ -27,12 +27,6 @@ namespace Lawyer.Case
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void JudgementBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Case.Judgement judgement = new Judgement();
-            judgement.ShowDialog();
         }
     }
 }

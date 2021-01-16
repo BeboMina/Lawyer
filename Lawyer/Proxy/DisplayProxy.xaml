@@ -1,11 +1,11 @@
-﻿<Window x:Class="Lawyer.Proxy.AddProxy"
+﻿<Window x:Class="Lawyer.Proxy.DisplayProxy"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lawyer.Proxy"
         mc:Ignorable="d"
-        Title="AddProxy" FontSize="18" Height="400" Width="950" Foreground="White"
+        Title="DisplayProxy" FontSize="18" Height="400" Width="950" Foreground="White"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         FlowDirection="RightToLeft" WindowStyle="None">
 
@@ -21,7 +21,7 @@
         <GroupBox Style="{StaticResource MicrosoftGroupBox}">
             <GroupBox.Header>
                 <Grid>
-                    <TextBlock x:Name="GboxHeader" Text="اضافة توكيل" 
+                    <TextBlock x:Name="GboxHeader" Text="بيانات التوكيل" 
                                FontWeight="Bold" VerticalAlignment="Center"/>
                     <Button x:Name="CloseBtn" Content="X" 
                             Style="{StaticResource btnColored}" Width="40"
@@ -37,22 +37,18 @@
 
                 <StackPanel Margin="10">
                     <TextBlock Text="رقم التوكيل" FontSize="12"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
                     <TextBlock Text="تاريخ الاصدار" FontSize="12" Margin="0 10 0 0"/>
-                    <DatePicker Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
                     <TextBlock Text="تاريخ الانتهاء" FontSize="12" Margin="0 10 0 0"/>
-                    <DatePicker Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
                     <TextBlock Text="التوثيق" FontSize="12" Margin="0 10 0 0"/>
-                    <StackPanel Orientation="Horizontal" Height="35" HorizontalAlignment="Left">
-                        <RadioButton GroupName="certification" Foreground="White" Margin="0 0 70 0" VerticalContentAlignment="Center">موثق</RadioButton>
-                        <RadioButton GroupName="certification" Foreground="White" VerticalContentAlignment="Center">غير موثق</RadioButton>
-                    </StackPanel>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Column="1">
                     <TextBlock Text="اسم العميل" FontSize="12"/>
-                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Name="Client_Name" Foreground="Black" SelectionChanged="Client_Name_SelectionChanged"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True" Visibility="Collapsed"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
                     <TextBlock Text="ملفات التوكيل" FontSize="12" Margin="0 15 0 0"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
@@ -62,13 +58,8 @@
                             Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}"/>
                         </StackPanel>
                         <DataGrid Style="{StaticResource CustomDataGrid}" 
-                                  Width="340" Height="170"/>
+                                  Width="340" Height="200"/>
                     </StackPanel>
-                    <Button Height="40" Width="120"
-                            Margin="15" HorizontalAlignment="Right" 
-                            Style="{StaticResource NewGameButtonStyle}">
-                        <TextBlock Text="حفظ" TextAlignment="Center"/>
-                    </Button>
                 </StackPanel>
             </Grid>
         </GroupBox>

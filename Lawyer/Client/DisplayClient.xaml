@@ -102,14 +102,13 @@
 
                             <StackPanel>
                                 <TextBlock Text="تاريخ الاصدار" FontSize="12" Margin="0 10 0 0"/>
-                                <DatePicker Width="150" Height="35" HorizontalAlignment="Left"/>
+                                <TextBox Width="150" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
                                 <TextBlock Text="تاريخ الانتهاء" FontSize="12" Margin="0 10 0 0"/>
-                                <DatePicker Width="150" Height="35" HorizontalAlignment="Left"/>
+                                <TextBox Width="150" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
                             </StackPanel>
                             <StackPanel Width="150" Grid.Column="1" HorizontalAlignment="Left">
                                 <TextBlock Text="التوثيق" FontSize="12" Margin="0 10 0 0"/>
-                                <RadioButton GroupName="documenting" Foreground="White" Margin="10" VerticalContentAlignment="Center">موثق</RadioButton>
-                                <RadioButton GroupName="documenting" Foreground="White" Margin="10" VerticalContentAlignment="Center">غير موثق</RadioButton>
+                                <TextBox Width="150" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>

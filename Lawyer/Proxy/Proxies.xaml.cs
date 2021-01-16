@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lawyer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace Lawyer.Proxy
     /// </summary>
     public partial class Proxies : Page
     {
+        testEntities Context = new testEntities();
+
         public Proxies()
         {
             InitializeComponent();
@@ -27,14 +30,14 @@ namespace Lawyer.Proxy
 
         private void AddProxyBtn_Click(object sender, RoutedEventArgs e)
         {
-            Proxy.AddProxy addProxy = new AddProxy("add");
+            Proxy.AddProxy addProxy = new AddProxy();
             addProxy.ShowDialog();
         }
 
-        private void UpdateProxyBtn_Click(object sender, RoutedEventArgs e)
+        private void DataGrid_Proxies_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Proxy.AddProxy addProxy = new AddProxy("update");
-            addProxy.ShowDialog();
+            Proxy.DisplayProxy displayProxy = new DisplayProxy();
+            displayProxy.ShowDialog();
         }
     }
 }
