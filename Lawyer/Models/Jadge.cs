@@ -16,7 +16,7 @@ namespace Lawyer.Models
     {
         public long ID { get; set; }
         public byte[] Done { get; set; }
-        public Nullable<System.DateTime> Data { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public Nullable<long> ID_Case { get; set; }
         public string Notes { get; set; }
     

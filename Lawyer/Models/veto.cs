@@ -14,19 +14,13 @@ namespace Lawyer.Models
     
     public partial class veto
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public veto()
-        {
-            this.Sessions = new HashSet<Session>();
-        }
-    
         public long ID_veto { get; set; }
         public string Tybe { get; set; }
         public string Notes { get; set; }
-        public Nullable<long> Number_Of_Sessin { get; set; }
+        public Nullable<long> Number_Of_Session { get; set; }
         public string Circle { get; set; }
+        public Nullable<long> ID_Case { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Session> Sessions { get; set; }
+        public virtual Case Case { get; set; }
     }
 }

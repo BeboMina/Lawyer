@@ -14,23 +14,13 @@ namespace Lawyer.Models
     
     public partial class Resumption
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Resumption()
-        {
-            this.Sessions = new HashSet<Session>();
-        }
-    
         public long ID_Resumption { get; set; }
         public string Tybe { get; set; }
         public string Notes { get; set; }
         public Nullable<long> Number_Of_Session { get; set; }
         public string Circle { get; set; }
+        public Nullable<long> ID_Case { get; set; }
     
-        public virtual Resumption Resumption1 { get; set; }
-        public virtual Resumption Resumption2 { get; set; }
-        public virtual Resumption Resumption11 { get; set; }
-        public virtual Resumption Resumption3 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Session> Sessions { get; set; }
+        public virtual Case Case { get; set; }
     }
 }

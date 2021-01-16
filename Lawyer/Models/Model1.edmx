@@ -33,7 +33,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDClient" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IDCase" Type="bigint" Nullable="false" />
         </EntityType>
@@ -41,7 +41,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Quantity" Type="bigint" />
           <Property Name="Date" Type="date" />
           <Property Name="IDClient" Type="nvarchar" MaxLength="50" />
@@ -51,7 +51,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Data" Type="varbinary(max)" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Extantion" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -65,15 +65,15 @@
           <Property Name="Date" Type="varbinary(max)" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Extantion" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IDProcuration" Type="bigint" Nullable="false" />
+          <Property Name="IDProcuration" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Jadge">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Done" Type="binary" MaxLength="50" />
-          <Property Name="Data" Type="date" />
+          <Property Name="Date" Type="date" />
           <Property Name="ID_Case" Type="bigint" />
           <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
@@ -101,7 +101,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StardDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="certified" Type="bit" Nullable="false" />
@@ -116,17 +116,19 @@
           <Property Name="Notes" Type="nvarchar(max)" />
           <Property Name="Number_Of_Session" Type="bigint" />
           <Property Name="Circle" Type="nvarchar(max)" />
+          <Property Name="ID_Case" Type="bigint" />
         </EntityType>
         <EntityType Name="Sessions">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDCase" Type="bigint" Nullable="false" />
           <Property Name="date" Type="date" />
-          <Property Name="NextDate" Type="datetime" />
-          <Property Name="Jadge" Type="nvarchar" MaxLength="50" />
+          <Property Name="NextDate" Type="date" />
+          <Property Name="Jadge" Type="nvarchar(max)" />
           <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="Timer" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -145,8 +147,9 @@
           <Property Name="ID_veto" Type="bigint" Nullable="false" />
           <Property Name="Tybe" Type="nvarchar(max)" />
           <Property Name="Notes" Type="nvarchar(max)" />
-          <Property Name="Number_Of_Sessin" Type="bigint" />
+          <Property Name="Number_Of_Session" Type="bigint" />
           <Property Name="Circle" Type="nvarchar(max)" />
+          <Property Name="ID_Case" Type="bigint" />
         </EntityType>
         <Association Name="FK_Client_Case_Cases">
           <End Role="Cases" Type="Self.Cases" Multiplicity="1" />
@@ -245,50 +248,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Resumption_Resumption">
-          <End Role="Resumption" Type="Self.Resumption" Multiplicity="1" />
-          <End Role="Resumption1" Type="Self.Resumption" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Resumption">
-              <PropertyRef Name="ID_Resumption" />
-            </Principal>
-            <Dependent Role="Resumption1">
-              <PropertyRef Name="ID_Resumption" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Resumption_Resumption1">
-          <End Role="Resumption" Type="Self.Resumption" Multiplicity="1" />
-          <End Role="Resumption1" Type="Self.Resumption" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Resumption">
-              <PropertyRef Name="ID_Resumption" />
-            </Principal>
-            <Dependent Role="Resumption1">
-              <PropertyRef Name="ID_Resumption" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sessions_Cases">
-          <End Role="Cases" Type="Self.Cases" Multiplicity="1" />
-          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1" />
+          <End Role="Resumption" Type="Self.Resumption" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cases">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Sessions">
-              <PropertyRef Name="IDCase" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sessions_Resumption">
-          <End Role="Resumption" Type="Self.Resumption" Multiplicity="1" />
-          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Resumption">
-              <PropertyRef Name="ID_Resumption" />
-            </Principal>
-            <Dependent Role="Sessions">
-              <PropertyRef Name="IDCase" />
+            <Dependent Role="Resumption">
+              <PropertyRef Name="ID_Case" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -304,15 +271,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sessions_veto">
-          <End Role="veto" Type="Self.veto" Multiplicity="1" />
-          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+        <Association Name="FK_veto_Cases">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1" />
+          <End Role="veto" Type="Self.veto" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="veto">
-              <PropertyRef Name="ID_veto" />
+            <Principal Role="Cases">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Sessions">
-              <PropertyRef Name="IDCase" />
+            <Dependent Role="veto">
+              <PropertyRef Name="ID_Case" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -364,28 +331,16 @@
             <End Role="Procuration" EntitySet="Procuration" />
           </AssociationSet>
           <AssociationSet Name="FK_Resumption_Resumption" Association="Self.FK_Resumption_Resumption">
-            <End Role="Resumption" EntitySet="Resumption" />
-            <End Role="Resumption1" EntitySet="Resumption" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Resumption_Resumption1" Association="Self.FK_Resumption_Resumption1">
-            <End Role="Resumption" EntitySet="Resumption" />
-            <End Role="Resumption1" EntitySet="Resumption" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sessions_Cases" Association="Self.FK_Sessions_Cases">
             <End Role="Cases" EntitySet="Cases" />
-            <End Role="Sessions" EntitySet="Sessions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sessions_Resumption" Association="Self.FK_Sessions_Resumption">
             <End Role="Resumption" EntitySet="Resumption" />
-            <End Role="Sessions" EntitySet="Sessions" />
           </AssociationSet>
           <AssociationSet Name="FK_Sessions_Sessions" Association="Self.FK_Sessions_Sessions">
             <End Role="Sessions" EntitySet="Sessions" />
             <End Role="Sessions1" EntitySet="Sessions" />
           </AssociationSet>
-          <AssociationSet Name="FK_Sessions_veto" Association="Self.FK_Sessions_veto">
+          <AssociationSet Name="FK_veto_Cases" Association="Self.FK_veto_Cases">
+            <End Role="Cases" EntitySet="Cases" />
             <End Role="veto" EntitySet="veto" />
-            <End Role="Sessions" EntitySet="Sessions" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -404,7 +359,8 @@
           <Property Name="Circle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client_Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Cases" ToRole="Client_Case" />
           <NavigationProperty Name="Jadges" Relationship="Self.FK_Jadge_Cases" FromRole="Cases" ToRole="Jadge" />
-          <NavigationProperty Name="Sessions" Relationship="Self.FK_Sessions_Cases" FromRole="Cases" ToRole="Sessions" />
+          <NavigationProperty Name="Resumptions" Relationship="Self.FK_Resumption_Resumption" FromRole="Cases" ToRole="Resumption" />
+          <NavigationProperty Name="vetoes" Relationship="Self.FK_veto_Cases" FromRole="Cases" ToRole="veto" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -425,7 +381,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IDCase" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Client_Case" ToRole="Cases" />
@@ -435,7 +391,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Quantity" Type="Int64" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="IDClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -445,7 +401,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Extantion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -460,16 +416,16 @@
           <Property Name="Date" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Extantion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IDProcuration" Type="Int64" Nullable="false" />
+          <Property Name="IDProcuration" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Procuration" Relationship="Self.FK_FilesProcuration_Procuration" FromRole="FilesProcuration" ToRole="Procuration" />
         </EntityType>
         <EntityType Name="Jadge">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Done" Type="Binary" MaxLength="50" FixedLength="true" />
-          <Property Name="Data" Type="DateTime" Precision="0" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="ID_Case" Type="Int64" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Case" Relationship="Self.FK_Jadge_Cases" FromRole="Jadge" ToRole="Cases" />
@@ -502,7 +458,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StardDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="certified" Type="Boolean" Nullable="false" />
@@ -519,29 +475,24 @@
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Number_Of_Session" Type="Int64" />
           <Property Name="Circle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Resumption1" Relationship="Self.FK_Resumption_Resumption" FromRole="Resumption" ToRole="Resumption1" />
-          <NavigationProperty Name="Resumption2" Relationship="Self.FK_Resumption_Resumption" FromRole="Resumption1" ToRole="Resumption" />
-          <NavigationProperty Name="Resumption11" Relationship="Self.FK_Resumption_Resumption1" FromRole="Resumption" ToRole="Resumption1" />
-          <NavigationProperty Name="Resumption3" Relationship="Self.FK_Resumption_Resumption1" FromRole="Resumption1" ToRole="Resumption" />
-          <NavigationProperty Name="Sessions" Relationship="Self.FK_Sessions_Resumption" FromRole="Resumption" ToRole="Sessions" />
+          <Property Name="ID_Case" Type="Int64" />
+          <NavigationProperty Name="Case" Relationship="Self.FK_Resumption_Resumption" FromRole="Resumption" ToRole="Cases" />
         </EntityType>
         <EntityType Name="Session">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDCase" Type="Int64" Nullable="false" />
           <Property Name="date" Type="DateTime" Precision="0" />
-          <Property Name="NextDate" Type="DateTime" Precision="3" />
-          <Property Name="Jadge" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NextDate" Type="DateTime" Precision="0" />
+          <Property Name="Jadge" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Case" Relationship="Self.FK_Sessions_Cases" FromRole="Sessions" ToRole="Cases" />
+          <Property Name="Timer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FilesCases" Relationship="Self.FK_FilesCases_Sessions" FromRole="Sessions" ToRole="FilesCases" />
           <NavigationProperty Name="Lawery_Session" Relationship="Self.FK_Lawery_Session_Lawery_Session" FromRole="Sessions" ToRole="Lawery_Session" />
-          <NavigationProperty Name="Resumption" Relationship="Self.FK_Sessions_Resumption" FromRole="Sessions" ToRole="Resumption" />
           <NavigationProperty Name="Sessions1" Relationship="Self.FK_Sessions_Sessions" FromRole="Sessions" ToRole="Sessions1" />
           <NavigationProperty Name="Session1" Relationship="Self.FK_Sessions_Sessions" FromRole="Sessions1" ToRole="Sessions" />
-          <NavigationProperty Name="veto" Relationship="Self.FK_Sessions_veto" FromRole="Sessions" ToRole="veto" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -560,9 +511,10 @@
           <Property Name="ID_veto" Type="Int64" Nullable="false" />
           <Property Name="Tybe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Number_Of_Sessin" Type="Int64" />
+          <Property Name="Number_Of_Session" Type="Int64" />
           <Property Name="Circle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sessions" Relationship="Self.FK_Sessions_veto" FromRole="veto" ToRole="Sessions" />
+          <Property Name="ID_Case" Type="Int64" />
+          <NavigationProperty Name="Case" Relationship="Self.FK_veto_Cases" FromRole="veto" ToRole="Cases" />
         </EntityType>
         <Association Name="FK_Client_Case_Cases">
           <End Role="Cases" Type="Self.Case" Multiplicity="1" />
@@ -588,15 +540,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sessions_Cases">
-          <End Role="Cases" Type="Self.Case" Multiplicity="1" />
-          <End Role="Sessions" Type="Self.Session" Multiplicity="*" />
+        <Association Name="FK_Resumption_Resumption">
+          <End Role="Cases" Type="Self.Case" Multiplicity="0..1" />
+          <End Role="Resumption" Type="Self.Resumption" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cases">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Sessions">
-              <PropertyRef Name="IDCase" />
+            <Dependent Role="Resumption">
+              <PropertyRef Name="ID_Case" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_veto_Cases">
+          <End Role="Cases" Type="Self.Case" Multiplicity="0..1" />
+          <End Role="veto" Type="Self.veto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="veto">
+              <PropertyRef Name="ID_Case" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -672,42 +636,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Resumption_Resumption">
-          <End Role="Resumption" Type="Self.Resumption" Multiplicity="1" />
-          <End Role="Resumption1" Type="Self.Resumption" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Resumption">
-              <PropertyRef Name="ID_Resumption" />
-            </Principal>
-            <Dependent Role="Resumption1">
-              <PropertyRef Name="ID_Resumption" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Resumption_Resumption1">
-          <End Role="Resumption" Type="Self.Resumption" Multiplicity="1" />
-          <End Role="Resumption1" Type="Self.Resumption" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Resumption">
-              <PropertyRef Name="ID_Resumption" />
-            </Principal>
-            <Dependent Role="Resumption1">
-              <PropertyRef Name="ID_Resumption" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sessions_Resumption">
-          <End Role="Resumption" Type="Self.Resumption" Multiplicity="1" />
-          <End Role="Sessions" Type="Self.Session" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Resumption">
-              <PropertyRef Name="ID_Resumption" />
-            </Principal>
-            <Dependent Role="Sessions">
-              <PropertyRef Name="IDCase" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Sessions_Sessions">
           <End Role="Sessions" Type="Self.Session" Multiplicity="1" />
           <End Role="Sessions1" Type="Self.Session" Multiplicity="0..1" />
@@ -717,18 +645,6 @@
             </Principal>
             <Dependent Role="Sessions1">
               <PropertyRef Name="ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sessions_veto">
-          <End Role="veto" Type="Self.veto" Multiplicity="1" />
-          <End Role="Sessions" Type="Self.Session" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="veto">
-              <PropertyRef Name="ID_veto" />
-            </Principal>
-            <Dependent Role="Sessions">
-              <PropertyRef Name="IDCase" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -755,9 +671,13 @@
             <End Role="Cases" EntitySet="Cases" />
             <End Role="Jadge" EntitySet="Jadges" />
           </AssociationSet>
-          <AssociationSet Name="FK_Sessions_Cases" Association="Self.FK_Sessions_Cases">
+          <AssociationSet Name="FK_Resumption_Resumption" Association="Self.FK_Resumption_Resumption">
             <End Role="Cases" EntitySet="Cases" />
-            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="Resumption" EntitySet="Resumptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_veto_Cases" Association="Self.FK_veto_Cases">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="veto" EntitySet="vetoes" />
           </AssociationSet>
           <AssociationSet Name="FK_Client_Case_Client1" Association="Self.FK_Client_Case_Client1">
             <End Role="Client" EntitySet="Clients" />
@@ -783,25 +703,9 @@
             <End Role="Sessions" EntitySet="Sessions" />
             <End Role="Lawery_Session" EntitySet="Lawery_Session" />
           </AssociationSet>
-          <AssociationSet Name="FK_Resumption_Resumption" Association="Self.FK_Resumption_Resumption">
-            <End Role="Resumption" EntitySet="Resumptions" />
-            <End Role="Resumption1" EntitySet="Resumptions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Resumption_Resumption1" Association="Self.FK_Resumption_Resumption1">
-            <End Role="Resumption" EntitySet="Resumptions" />
-            <End Role="Resumption1" EntitySet="Resumptions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sessions_Resumption" Association="Self.FK_Sessions_Resumption">
-            <End Role="Resumption" EntitySet="Resumptions" />
-            <End Role="Sessions" EntitySet="Sessions" />
-          </AssociationSet>
           <AssociationSet Name="FK_Sessions_Sessions" Association="Self.FK_Sessions_Sessions">
             <End Role="Sessions" EntitySet="Sessions" />
             <End Role="Sessions1" EntitySet="Sessions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sessions_veto" Association="Self.FK_Sessions_veto">
-            <End Role="veto" EntitySet="vetoes" />
-            <End Role="Sessions" EntitySet="Sessions" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -883,7 +787,7 @@
               <MappingFragment StoreEntitySet="Jadge">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Done" ColumnName="Done" />
-                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ID_Case" ColumnName="ID_Case" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
               </MappingFragment>
@@ -930,6 +834,7 @@
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="Number_Of_Session" ColumnName="Number_Of_Session" />
                 <ScalarProperty Name="Circle" ColumnName="Circle" />
+                <ScalarProperty Name="ID_Case" ColumnName="ID_Case" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -942,6 +847,7 @@
                 <ScalarProperty Name="NextDate" ColumnName="NextDate" />
                 <ScalarProperty Name="Jadge" ColumnName="Jadge" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Timer" ColumnName="Timer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -962,8 +868,9 @@
                 <ScalarProperty Name="ID_veto" ColumnName="ID_veto" />
                 <ScalarProperty Name="Tybe" ColumnName="Tybe" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="Number_Of_Sessin" ColumnName="Number_Of_Sessin" />
+                <ScalarProperty Name="Number_Of_Session" ColumnName="Number_Of_Session" />
                 <ScalarProperty Name="Circle" ColumnName="Circle" />
+                <ScalarProperty Name="ID_Case" ColumnName="ID_Case" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

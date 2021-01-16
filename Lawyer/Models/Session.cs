@@ -27,15 +27,13 @@ namespace Lawyer.Models
         public Nullable<System.DateTime> NextDate { get; set; }
         public string Jadge { get; set; }
         public string Notes { get; set; }
+        public string Timer { get; set; }
     
-        public virtual Case Case { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FilesCas> FilesCases { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lawery_Session> Lawery_Session { get; set; }
-        public virtual Resumption Resumption { get; set; }
         public virtual Session Sessions1 { get; set; }
         public virtual Session Session1 { get; set; }
-        public virtual veto veto { get; set; }
     }
 }
