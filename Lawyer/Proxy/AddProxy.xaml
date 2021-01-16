@@ -37,36 +37,36 @@
 
                 <StackPanel Margin="10">
                     <TextBlock Text="رقم التوكيل" FontSize="12"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="Code_Proxy"/>
                     <TextBlock Text="تاريخ الاصدار" FontSize="12" Margin="0 10 0 0"/>
-                    <DatePicker Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <DatePicker Width="200" Height="35" HorizontalAlignment="Left" Name="Date_Start"/>
                     <TextBlock Text="تاريخ الانتهاء" FontSize="12" Margin="0 10 0 0"/>
-                    <DatePicker Width="200" Height="35" HorizontalAlignment="Left"/>
+                    <DatePicker Width="200" Height="35" HorizontalAlignment="Left" Name="Date_End"/>
                     <TextBlock Text="التوثيق" FontSize="12" Margin="0 10 0 0"/>
                     <StackPanel Orientation="Horizontal" Height="35" HorizontalAlignment="Left">
-                        <RadioButton GroupName="certification" Foreground="White" Margin="0 0 70 0" VerticalContentAlignment="Center">موثق</RadioButton>
-                        <RadioButton GroupName="certification" Foreground="White" VerticalContentAlignment="Center">غير موثق</RadioButton>
+                        <RadioButton GroupName="certification" Foreground="White" Margin="0 0 70 0" VerticalContentAlignment="Center" Name="Button1">موثق</RadioButton>
+                        <RadioButton GroupName="certification" Foreground="White" VerticalContentAlignment="Center" Name="Button2">غير موثق</RadioButton>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Column="1">
                     <TextBlock Text="اسم العميل" FontSize="12"/>
-                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Name="Client_Name" Foreground="Black" SelectionChanged="Client_Name_SelectionChanged"/>
+                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Name="Com_Name_Client" Foreground="Black" SelectionChanged="Com_Name_Client_SelectionChanged"/>
                     <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True" Visibility="Collapsed"/>
                     <TextBlock Text="ملفات التوكيل" FontSize="12" Margin="0 15 0 0"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
                             <Button Content="اضافة ملف" Height="40" Width="100"
-                            Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}"/>
+                            Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}" Name="Save_File" Click="Save_File_Click"/>
                             <Button Content="حذف ملف" Height="40" Width="100"
                             Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}"/>
                         </StackPanel>
                         <DataGrid Style="{StaticResource CustomDataGrid}" 
-                                  Width="340" Height="170"/>
+                                  Width="340" Height="170" Name="Grid_Files"/>
                     </StackPanel>
                     <Button Height="40" Width="120"
                             Margin="15" HorizontalAlignment="Right" 
-                            Style="{StaticResource NewGameButtonStyle}">
+                            Style="{StaticResource NewGameButtonStyle}" Name="Save_Date" Click="Save_Date_Click">
                         <TextBlock Text="حفظ" TextAlignment="Center"/>
                     </Button>
                 </StackPanel>

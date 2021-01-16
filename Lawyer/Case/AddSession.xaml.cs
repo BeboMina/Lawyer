@@ -28,9 +28,11 @@ namespace Lawyer.Case
         List<long> Num_Cases;
         long ID_Case;
         List<byte[]> data=new List<byte[]>();
-        List<String> NameWithEx=new List<string>();
+        
         List<String> Name=new List<string>();
         List<String> Ex= new List<string>();
+        List<NameEx> names = new List<NameEx>();
+        
         bool add = false;
         
         public AddSession()
@@ -98,20 +100,32 @@ namespace Lawyer.Case
 
         private void Add_File_Click(object sender, RoutedEventArgs e)
         {
-            add = true;
+            
             System.Windows.Forms.OpenFileDialog open = new System.Windows.Forms.OpenFileDialog();
             open.Multiselect = true;
             if(open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                foreach(var f in open.FileNames)
+                add = true;
+                
+                foreach (var f in open.FileNames)
                 {
-                    NameWithEx.Add(System.IO.Path.GetFileName(f));
+                    NameEx NameExt = new NameEx();
+                    NameExt.Name=System.IO.Path.GetFileName(f);
+                    
+                    names.Add(NameExt);
+                    
                     Name.Add(System.IO.Path.GetFileNameWithoutExtension(f));
                     Ex.Add(System.IO.Path.GetExtension(f));
                     data.Add(File.ReadAllBytes(f));
                 }
-                Files_Session.ItemsSource = Name;
+                
+                Files_Session.ItemsSource = names;
+                Files_Session.Items.Refresh();
             }
         }
+    }
+    class NameEx
+    {
+        public String Name { get; set; }
     }
 }

@@ -102,10 +102,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StardDate" Type="date" Nullable="false" />
-          <Property Name="EndDate" Type="date" Nullable="false" />
-          <Property Name="certified" Type="bit" Nullable="false" />
-          <Property Name="IDLawery" Type="bigint" Nullable="false" />
+          <Property Name="StardDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="certified" Type="bit" />
+          <Property Name="IDLawery" Type="bigint" />
         </EntityType>
         <EntityType Name="Resumption">
           <Key>
@@ -236,7 +236,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Procuration_Lawery">
-          <End Role="Lawery" Type="Self.Lawery" Multiplicity="1" />
+          <End Role="Lawery" Type="Self.Lawery" Multiplicity="0..1" />
           <End Role="Procuration" Type="Self.Procuration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lawery">
@@ -459,10 +459,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StardDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="certified" Type="Boolean" Nullable="false" />
-          <Property Name="IDLawery" Type="Int64" Nullable="false" />
+          <Property Name="StardDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="certified" Type="Boolean" />
+          <Property Name="IDLawery" Type="Int64" />
           <NavigationProperty Name="FilesProcurations" Relationship="Self.FK_FilesProcuration_Procuration" FromRole="Procuration" ToRole="FilesProcuration" />
           <NavigationProperty Name="Lawery" Relationship="Self.FK_Procuration_Lawery" FromRole="Procuration" ToRole="Lawery" />
         </EntityType>
@@ -613,7 +613,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Procuration_Lawery">
-          <End Role="Lawery" Type="Self.Lawery" Multiplicity="1" />
+          <End Role="Lawery" Type="Self.Lawery" Multiplicity="0..1" />
           <End Role="Procuration" Type="Self.Procuration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lawery">
