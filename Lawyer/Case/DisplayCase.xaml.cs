@@ -28,5 +28,23 @@ namespace Lawyer.Case
         {
             Close();
         }
+
+        private void JudgementBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Case.Judgement judgement = new Judgement();
+            judgement.ShowDialog();
+        }
+
+        private void ResumeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Case.ResumeCase resumeCase = new ResumeCase("استئناف");
+            resumeCase.ShowDialog();
+        }
+
+        private void VetoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Case.ResumeCase resumeCase = new ResumeCase("نقض");
+            resumeCase.ShowDialog();
+        }
     }
 }

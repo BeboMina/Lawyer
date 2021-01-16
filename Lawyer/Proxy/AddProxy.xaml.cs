@@ -49,7 +49,7 @@ namespace Lawyer.Proxy
             }
         }
 
-        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        private void Client_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Close();
         }
@@ -136,6 +136,11 @@ namespace Lawyer.Proxy
                 Grid_Files.ItemsSource = names;
                 Grid_Files.Items.Refresh();
             }
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
     class NameEx

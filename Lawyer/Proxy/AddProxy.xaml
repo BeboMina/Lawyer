@@ -51,7 +51,8 @@
 
                 <StackPanel Margin="10" Grid.Column="1">
                     <TextBlock Text="اسم العميل" FontSize="12"/>
-                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Foreground="Black" Name="Com_Name_Client" SelectionChanged="Com_Name_Client_SelectionChanged"/>
+                    <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Name="Com_Name_Client" Foreground="Black" SelectionChanged="Com_Name_Client_SelectionChanged"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True" Visibility="Collapsed"/>
                     <TextBlock Text="ملفات التوكيل" FontSize="12" Margin="0 15 0 0"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
@@ -60,8 +61,20 @@
                             <Button Content="حذف ملف" Height="40" Width="100"
                             Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}"/>
                         </StackPanel>
-                        <DataGrid Style="{StaticResource CustomDataGrid}" 
-                                  Width="340" Height="170" Name="Grid_Files"/>
+                        <DataGrid Style="{StaticResource CustomDataGrid}" Foreground="White" ColumnWidth="*"
+                                  IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding}"
+                                  Width="340" Height="170" Name="Grid_Files">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="اسم الملف" Binding="{Binding Name}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </StackPanel>
                     <Button Height="40" Width="120"
                             Margin="15" HorizontalAlignment="Right" 

@@ -65,6 +65,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Case\Judgement.xaml.cs">
+      <DependentUpon>Judgement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Case\ResumeCase.xaml.cs">
+      <DependentUpon>ResumeCase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Case.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -131,6 +137,9 @@
     <Compile Include="Proxy\AddProxy.xaml.cs">
       <DependentUpon>AddProxy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Proxy\DisplayProxy.xaml.cs">
+      <DependentUpon>DisplayProxy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Proxy\Proxies.xaml.cs">
       <DependentUpon>Proxies.xaml</DependentUpon>
     </Compile>
@@ -147,6 +156,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Case\DisplayCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Case\Judgement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Case\ResumeCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -200,6 +217,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Proxy\AddProxy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Proxy\DisplayProxy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
