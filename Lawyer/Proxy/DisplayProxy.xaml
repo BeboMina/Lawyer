@@ -57,8 +57,21 @@
                             <Button Content="حذف ملف" Height="40" Width="100"
                             Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}"/>
                         </StackPanel>
-                        <DataGrid Style="{StaticResource CustomDataGrid}" 
-                                  Width="340" Height="200"/>
+                        <DataGrid Style="{StaticResource CustomDataGrid}"
+                                  ItemsSource="{Binding}" AutoGenerateColumns="False" 
+                                  IsReadOnly="True" Foreground="White"
+                                  Width="340" Height="200">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="اسم الملف" Binding="{Binding Name}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </StackPanel>
                 </StackPanel>
             </Grid>

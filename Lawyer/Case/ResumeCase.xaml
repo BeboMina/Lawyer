@@ -1,11 +1,11 @@
-﻿<Window x:Class="Lawyer.Case.DisplayCase"
+﻿<Window x:Class="Lawyer.Case.ResumeCase"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lawyer.Case"
         mc:Ignorable="d"
-        Title="DisplayCase" FontSize="18" Height="500" Width="800" Foreground="White"
+        Title="ResumeCase" FontSize="18" Height="450" Width="800" Foreground="White"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         FlowDirection="RightToLeft" WindowStyle="None">
 
@@ -21,7 +21,7 @@
         <GroupBox Style="{StaticResource MicrosoftGroupBox}">
             <GroupBox.Header>
                 <Grid>
-                    <TextBlock x:Name="GboxHeader" Text="بيانات الدعوى" 
+                    <TextBlock x:Name="GboxHeader" Text="استئناف" 
                                FontWeight="Bold" VerticalAlignment="Center"/>
                     <Button x:Name="CloseBtn" Content="X" 
                             Style="{StaticResource btnColored}" Width="40"
@@ -38,14 +38,14 @@
                 <StackPanel Margin="10">
                     <TextBlock Text="رقم الدعوى" FontSize="12"/>
                     <TextBox x:Name="Case_Number" Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
-                    <TextBlock Text="نوع الدعوى" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox x:Name="Case_Type" Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
-                    <!--<TextBlock Text="الاعلان" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox x:Name="Case_Announce" Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
-                    <TextBlock Text="التاريخ" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>-->
-                    <TextBlock Text="الدايرة" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <TextBlock x:Name="Veto_Number_TxtBlock" Text="رقم الاستئناف" FontSize="12" Margin="0 10 0 0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox x:Name="Res_Num" Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
+                        <Button Content="اضافة" Height="40" Width="120" x:Name="Add_Veto" Click="Add_Veto_Click"
+                                Margin="10 0" Style="{StaticResource btnColored}"/>
+                    </StackPanel>
+                    <!--<TextBlock Text="اسم العميل" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>-->
                     <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />
                     <RichTextBox Height="70" Width="300" 
                                  HorizontalAlignment="Left" 
@@ -57,25 +57,11 @@
                             </Style>
                         </RichTextBox.Resources>
                     </RichTextBox>
-                    <StackPanel>
-                        <Button Content="الحكم" Height="40" Width="120" x:Name="JudgementBtn"
-                                Margin="20" Style="{StaticResource btnColored}" Click="JudgementBtn_Click"/>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="استئناف" Height="40" Width="120"
-                                x:Name="ResumeBtn" Click="ResumeBtn_Click"
-                                Margin="20" Style="{StaticResource btnColored}"/>
-                            <Button Content="نقض" Height="40" Width="120"
-                                x:Name="VetoBtn" Click="VetoBtn_Click"
-                                Margin="20" Style="{StaticResource btnColored}"/>
-                        </StackPanel>
-                    </StackPanel>
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Column="1">
-                    <TextBlock Text="اسم العميل" FontSize="12"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
-                    <!--<TextBlock Text="التنفيذ" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>-->
+                    <Button Content="اضافة جلسة" Height="40" Width="120"
+                                Margin="10" Style="{StaticResource btnColored}"/>
                     <TextBlock Text="الجلسات" FontSize="12" Margin="0 10 0 0"/>
                     <DataGrid IsReadOnly="True" Margin="0 5 10 0" Height="250" Style="{StaticResource CustomDataGrid}"
                         Foreground="White" FontSize="16" ColumnWidth="*" ColumnHeaderHeight="30">
