@@ -137,6 +137,11 @@ namespace Lawyer.Proxy
                 Grid_Files.Items.Refresh();
             }
         }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
     class NameEx
     {

@@ -30,7 +30,7 @@ namespace Lawyer.Proxy
 
         private void AddProxyBtn_Click(object sender, RoutedEventArgs e)
         {
-            Proxy.AddProxy addProxy = new AddProxy();
+            Proxy.AddProxy addProxy = new AddProxy("proxy");
             addProxy.ShowDialog();
         }
 

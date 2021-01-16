@@ -157,7 +157,7 @@ namespace Lawyer
 
         private void AddProxyBtn_Click(object sender, RoutedEventArgs e)
         {
-            Proxy.AddProxy addProxy = new Proxy.AddProxy();
+            Proxy.AddProxy addProxy = new Proxy.AddProxy("client");
             addProxy.ShowDialog();
 
         }
