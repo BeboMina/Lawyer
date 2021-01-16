@@ -151,6 +151,28 @@
           <Property Name="Circle" Type="nvarchar(max)" />
           <Property Name="ID_Case" Type="bigint" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'test.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewClient_Pro">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="StardDate" Type="date" />
+          <Property Name="certified" Type="bit" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
         <Association Name="FK_Client_Case_Cases">
           <End Role="Cases" Type="Self.Cases" Multiplicity="1" />
           <End Role="Client_Case" Type="Self.Client_Case" Multiplicity="*" />
@@ -298,6 +320,22 @@
           <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="veto" EntityType="Self.veto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_1].[ID] AS [ID], 
+    [View_1].[Type] AS [Type], 
+    [View_1].[Name] AS [Name]
+    FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewClient_Pro" EntityType="Self.ViewClient_Pro" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewClient_Pro].[ID] AS [ID], 
+    [ViewClient_Pro].[Name] AS [Name], 
+    [ViewClient_Pro].[StardDate] AS [StardDate], 
+    [ViewClient_Pro].[certified] AS [certified], 
+    [ViewClient_Pro].[EndDate] AS [EndDate]
+    FROM [dbo].[ViewClient_Pro] AS [ViewClient_Pro]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Client_Case_Cases" Association="Self.FK_Client_Case_Cases">
             <End Role="Cases" EntitySet="Cases" />
             <End Role="Client_Case" EntitySet="Client_Case" />
@@ -516,6 +554,24 @@
           <Property Name="ID_Case" Type="Int64" />
           <NavigationProperty Name="Case" Relationship="Self.FK_veto_Cases" FromRole="veto" ToRole="Cases" />
         </EntityType>
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ViewClient_Pro">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StardDate" Type="DateTime" Precision="0" />
+          <Property Name="certified" Type="Boolean" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+        </EntityType>
         <Association Name="FK_Client_Case_Cases">
           <End Role="Cases" Type="Self.Case" Multiplicity="1" />
           <End Role="Client_Case" Type="Self.Client_Case" Multiplicity="*" />
@@ -663,6 +719,8 @@
           <EntitySet Name="Sessions" EntityType="Self.Session" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="vetoes" EntityType="Self.veto" />
+          <EntitySet Name="View_1" EntityType="Self.View_1" />
+          <EntitySet Name="ViewClient_Pro" EntityType="Self.ViewClient_Pro" />
           <AssociationSet Name="FK_Client_Case_Cases" Association="Self.FK_Client_Case_Cases">
             <End Role="Cases" EntitySet="Cases" />
             <End Role="Client_Case" EntitySet="Client_Case" />
@@ -871,6 +929,26 @@
                 <ScalarProperty Name="Number_Of_Session" ColumnName="Number_Of_Session" />
                 <ScalarProperty Name="Circle" ColumnName="Circle" />
                 <ScalarProperty Name="ID_Case" ColumnName="ID_Case" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_1">
+            <EntityTypeMapping TypeName="testModel.View_1">
+              <MappingFragment StoreEntitySet="View_1">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewClient_Pro">
+            <EntityTypeMapping TypeName="testModel.ViewClient_Pro">
+              <MappingFragment StoreEntitySet="ViewClient_Pro">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StardDate" ColumnName="StardDate" />
+                <ScalarProperty Name="certified" ColumnName="certified" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

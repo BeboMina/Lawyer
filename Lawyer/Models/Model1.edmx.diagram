@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d3b8bd170dc94d8c866e9411a23aa6fa" Name="Diagram1">
+      <Diagram DiagramId="1e8bcade2c324dd59add2623d0037324" Name="Diagram1">
         <EntityTypeShape EntityType="testModel.Case" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Client" Width="1.5" PointX="8.75" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Client_Case" Width="1.5" PointX="11" PointY="7.125" IsExpanded="true" />
@@ -19,6 +19,8 @@
         <EntityTypeShape EntityType="testModel.Session" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.sysdiagram" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.veto" Width="1.5" PointX="8" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.View_1" Width="1.5" PointX="10.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.ViewClient_Pro" Width="1.5" PointX="10.75" PointY="10" IsExpanded="true" />
         <AssociationConnector Association="testModel.FK_Client_Case_Cases" ManuallyRouted="false" />
         <AssociationConnector Association="testModel.FK_Jadge_Cases" ManuallyRouted="false" />
         <AssociationConnector Association="testModel.FK_Resumption_Resumption" ManuallyRouted="false" />

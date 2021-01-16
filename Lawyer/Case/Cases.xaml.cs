@@ -21,12 +21,12 @@ namespace Lawyer.Case
     public partial class Cases : Page
     {
         testEntities Context = new testEntities();
-        List<Models.Case> cases;
+        List<Models.View_1> view_1s;
         public Cases()
         {
             InitializeComponent();
-            cases = Context.Cases.ToList();
-            DataGrid_Cases.ItemsSource = cases;
+            view_1s = Context.View_1.ToList();
+            DataGrid_Cases.ItemsSource = view_1s;
         }
 
         private void AddCaseBtn_Click(object sender, RoutedEventArgs e)

@@ -122,6 +122,12 @@
     <Compile Include="Models\veto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewClient_Pro.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_1.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Proxy\AddProxy.xaml.cs">
       <DependentUpon>AddProxy.xaml</DependentUpon>
     </Compile>
