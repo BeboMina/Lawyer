@@ -362,6 +362,37 @@
                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                SelectionChanged="LV_SelectionChanged">
 
+                        <!--// Notifications //-->
+
+                        <ListViewItem HorizontalAlignment="Left" x:Name="ItemNotifications"
+                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                      >
+
+                            <StackPanel Orientation="Horizontal"
+                                        Width="230">
+
+                                <Image Source="Assets/notifications.png"
+                                       Stretch="None"
+                                       Margin="12,0,0,0"/>
+
+                                <TextBlock Text="التنبيهات"
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                            </StackPanel>
+
+                            <!--// Tooltip //-->
+
+                            <ListViewItem.ToolTip>
+
+                                <ToolTip x:Name="tt_Notifications"
+                                         Content="التنبيهات"
+                                         Style="{StaticResource tt_style}"/>
+
+                            </ListViewItem.ToolTip>
+
+                        </ListViewItem>
+
                         <!--// Clients //-->
 
                         <ListViewItem HorizontalAlignment="Left" x:Name="ItemClients"
@@ -418,37 +449,6 @@
 
                                 <ToolTip x:Name="tt_Cases"
                                          Content="الدعاوي"
-                                         Style="{StaticResource tt_style}"/>
-
-                            </ListViewItem.ToolTip>
-
-                        </ListViewItem>
-
-                        <!--// Lawyers //-->
-
-                        <ListViewItem HorizontalAlignment="Left" x:Name="ItemLawyers"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
-
-                            <StackPanel Orientation="Horizontal"
-                                        Width="230">
-
-                                <Image Source="Assets/lawyers.png"
-                                       Stretch="None"
-                                       Margin="12,0,0,0"/>
-
-                                <TextBlock Text="المحامين"
-                                           Margin="25,0,0,0"
-                                           Style="{StaticResource font_style}"/>
-
-                            </StackPanel>
-
-                            <!--// Tooltip //-->
-
-                            <ListViewItem.ToolTip>
-
-                                <ToolTip x:Name="tt_Lawyers"
-                                         Content="المحامين"
                                          Style="{StaticResource tt_style}"/>
 
                             </ListViewItem.ToolTip>

@@ -93,7 +93,8 @@ namespace Lawyer
                     addCase.Client_Name_Txt.Text = Name_Client.Text;
                     addCase.IDcl = ID_Client.Text;
                     addCase.ShowDialog();
-                    cases.Add(addCase.cases);
+                    if(addCase.cases!=null)
+                        cases.Add(addCase.cases);
                 }
             }
             else

@@ -40,17 +40,17 @@
                     <TextBox x:Name="Case_Number" Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
                     <TextBlock x:Name="Veto_Number_TxtBlock" Text="رقم الاستئناف" FontSize="12" Margin="0 10 0 0"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="Res_Num" Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
+                        <TextBox x:Name="Res_Num" Width="200"  Height="35" HorizontalAlignment="Left"/>
                         <Button Content="اضافة استئناف" Height="40" Width="120" x:Name="Add_Veto" Click="Add_Veto_Click"
                                 Margin="10 0" Style="{StaticResource btnColored}"/>
                     </StackPanel>
                     <TextBlock Text="الدايرة" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox x:Name="Veto_Re_Circle" Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <TextBox x:Name="Veto_Re_Circle" Width="200" Height="35" HorizontalAlignment="Left"/>
                     <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />
                     <RichTextBox Height="70" Width="300" 
                                  HorizontalAlignment="Left" 
                                  VerticalScrollBarVisibility="Auto"
-                                 Name="Notes" IsReadOnly="True" Background="#FFC5CBF9">
+                                 Name="Notes">
                         <RichTextBox.Resources >
                             <Style TargetType="{x:Type Paragraph}">
                                 <Setter Property="Margin" Value="0 0 0 5" />
@@ -60,7 +60,7 @@
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Column="1">
-                    <Button Content="اضافة جلسة" Height="40" Width="120"
+                    <Button x:Name="Add_SessionBtn" Content="اضافة جلسة" Height="40" Width="120" Visibility="Hidden"
                                 Margin="10" Style="{StaticResource btnColored}"/>
                     <TextBlock Text="الجلسات" FontSize="12" Margin="0 10 0 0"/>
                     <DataGrid IsReadOnly="True" Margin="0 5 10 0" Height="250" Style="{StaticResource CustomDataGrid}"

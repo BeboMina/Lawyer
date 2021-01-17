@@ -33,7 +33,7 @@ namespace Lawyer
             {
                 tt_Clients.Visibility = Visibility.Collapsed;
                 tt_Cases.Visibility = Visibility.Collapsed;
-                tt_Lawyers.Visibility = Visibility.Collapsed;
+                tt_Notifications.Visibility = Visibility.Collapsed;
                 tt_proxies.Visibility = Visibility.Collapsed;
                 tt_settings.Visibility = Visibility.Collapsed;
                 tt_signout.Visibility = Visibility.Collapsed;
@@ -42,7 +42,7 @@ namespace Lawyer
             {
                 tt_Clients.Visibility = Visibility.Visible;
                 tt_Cases.Visibility = Visibility.Visible;
-                tt_Lawyers.Visibility = Visibility.Visible;
+                tt_Notifications.Visibility = Visibility.Visible;
                 tt_proxies.Visibility = Visibility.Visible;
                 tt_settings.Visibility = Visibility.Visible;
                 tt_signout.Visibility = Visibility.Visible;

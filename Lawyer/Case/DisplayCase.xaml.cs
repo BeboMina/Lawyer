@@ -37,13 +37,13 @@ namespace Lawyer.Case
 
         private void ResumeBtn_Click(object sender, RoutedEventArgs e)
         {
-            Case.ResumeCase resumeCase = new ResumeCase("استئناف");
+            Case.ResumeCase resumeCase = new ResumeCase("استئناف", Case_Number.Text);
             resumeCase.ShowDialog();
         }
 
         private void VetoBtn_Click(object sender, RoutedEventArgs e)
         {
-            Case.ResumeCase resumeCase = new ResumeCase("نقض");
+            Case.ResumeCase resumeCase = new ResumeCase("نقض", Case_Number.Text);
             resumeCase.ShowDialog();
         }
     }
