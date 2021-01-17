@@ -27,9 +27,13 @@ namespace Lawyer.Case
         Models.Case Case = new Models.Case();
         Models.Client_Case Client_Case = new Client_Case();
         int index = 0;
-        public AddCase()
+        string Action;
+        public Models.Case cases { get; set; }
+        public String IDcl { get; set; }
+        public AddCase(string act)
         {
             InitializeComponent();
+            Action = act;
             try
             {
                 clients = Context.Clients.ToList();
@@ -59,18 +63,46 @@ namespace Lawyer.Case
                 MessageBoxResult result = MessageBox.Show(message, title, buttons);
                 if (result == MessageBoxResult.Yes)
                 {
-                    Case.ID =Convert.ToInt64(Number_Case.Text);
-                    Case.Circle = circle.Text;
-                    Case.Notes= new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
-                    Client_Case.IDCase = Case.ID;
-                    Client_Case.IDClient = clients[index].ID;
-                    Case.Type = Tybe_case.Text;
-                    Case.Client_Case.Add(Client_Case);
-                    Context.Cases.Add(Case);
-                    Context.SaveChanges();
-                    Close();
-                    MainWindow parent = (MainWindow)App.Current.MainWindow;
-                    parent.main.Navigate(new Cases());
+                    if (Action == "Client_Add")
+                    {
+                        Case.ID = Convert.ToInt64(Number_Case.Text);
+                        Case.Circle = circle.Text;
+                        Case.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
+                        Client_Case.IDCase = Case.ID;
+                        Client_Case.IDClient = IDcl;
+                        Case.Type = Tybe_case.Text;
+                        cases = Case;
+                        Close();
+                    }
+                    else if (Action=="Case")
+                    {
+                        Case.ID = Convert.ToInt64(Number_Case.Text);
+                        Case.Circle = circle.Text;
+                        Case.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
+                        Client_Case.IDCase = Case.ID;
+                        Client_Case.IDClient = clients[index].ID;
+                        Case.Type = Tybe_case.Text;
+                        Case.Client_Case.Add(Client_Case);
+                        Context.Cases.Add(Case);
+                        Context.SaveChanges();
+                        Close();
+                        MainWindow parent = (MainWindow)App.Current.MainWindow;
+                        parent.main.Navigate(new Cases());
+                    }
+                    else if(Action== "Client_Edit")
+                    {
+                        Case.ID = Convert.ToInt64(Number_Case.Text);
+                        Case.Circle = circle.Text;
+                        Case.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
+                        Client_Case.IDCase = Case.ID;
+                        Client_Case.IDClient = IDcl;
+                        Case.Type = Tybe_case.Text;
+                        Case.Client_Case.Add(Client_Case);
+                        Context.Cases.Add(Case);
+                        Context.SaveChanges();
+                        Close();
+                    }
+                    
                 }
             }
             catch (Exception ex)

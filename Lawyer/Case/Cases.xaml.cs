@@ -31,7 +31,7 @@ namespace Lawyer.Case
 
         private void AddCaseBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddCase addCase = new AddCase();
+            AddCase addCase = new AddCase("Case");
             addCase.ShowDialog();
         }
 
@@ -52,6 +52,11 @@ namespace Lawyer.Case
             displayCase.Case_Number.Text = @case.ID.ToString();
             displayCase.Case_Type.Text= @case.Type;
             displayCase.C_Case.Text = case1.Circle;
+            List<Models.Session> sessions = Context.Sessions.Where(S => S.IDCase == @case.ID).ToList();
+            if(sessions.Count!=0)
+            {
+                displayCase.GridView_Session.ItemsSource = sessions;
+            }
             displayCase.ShowDialog();
         }
     }

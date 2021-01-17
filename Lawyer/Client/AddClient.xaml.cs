@@ -29,6 +29,7 @@ namespace Lawyer
         testEntities Context = new testEntities();
         List<Models.Client> clients;
         string action;
+        List<Models.Case> cases = new List<Models.Case>();
         public AddClient(string act)
         {
             InitializeComponent();
@@ -77,8 +78,34 @@ namespace Lawyer
 
         private void AddCasebtn_Click(object sender, RoutedEventArgs e)
         {
-            AddCase addCase = new AddCase();
-            addCase.ShowDialog();
+
+            if (action == "اضافة")
+            {
+                if (Name_Client.Text.TrimEnd() == "" || Name_Client.Text == null)
+                {
+                    MessageBox.Show("ادخل اسم العميل فى البداية");
+                }
+                else
+                {
+                    AddCase addCase = new AddCase("Client_Add");
+                    addCase.Client_Name.Visibility = Visibility.Collapsed;
+                    addCase.Client_Name_Txt.Visibility = Visibility.Visible;
+                    addCase.Client_Name_Txt.Text = Name_Client.Text;
+                    addCase.IDcl = ID_Client.Text;
+                    addCase.ShowDialog();
+                    cases.Add(addCase.cases);
+                }
+            }
+            else
+            {
+                AddCase addCase = new AddCase("Client_Edit");
+                addCase.Client_Name.Visibility = Visibility.Collapsed;
+                addCase.Client_Name_Txt.Visibility = Visibility.Visible;
+                addCase.Client_Name_Txt.Text = client.Name;
+                addCase.IDcl = ID_Client.Text;
+                addCase.ShowDialog();
+            }
+            
         }
 
         private void ID_Client_TextChanged(object sender, TextChangedEventArgs e)
@@ -97,10 +124,7 @@ namespace Lawyer
                 MessageBoxResult result = MessageBox.Show(message, title, buttons);
                 if (result == MessageBoxResult.Yes)
                 {
-                    if(action == "اضافة")
-                    {
-                        client.Name = Name_Client.Text;
-                    }
+                    
                     client.IDmax = invNo;
                     client.PersonalID = PersonalId_Client.Text;
                     client.Email = Email_Client.Text;
@@ -109,12 +133,32 @@ namespace Lawyer
                     client.Address = Address_Client.Text;
                     if(action!= "اضافة")
                     {
-                        MessageBox.Show(client.ID);
                         Models.Client cl = Context.Clients.FirstOrDefault(C => C.ID == client.ID);
-                        Context.Clients.Remove(cl);
+                        cl.Notes = client.Notes;
+                        cl.PersonalID = client.PersonalID;
+                        cl.Email = client.Email;
+                        cl.Address = client.Address;
+                        cl.Phone = client.Phone;
                         Context.SaveChanges();
                     }
-                    Context.Clients.Add(client);
+                    if (action == "اضافة")
+                    {
+                        client.Name = Name_Client.Text;
+                        Context.Clients.Add(client);
+                    }
+                    
+                    if(cases.Count!=0)
+                    {
+                        foreach(var item in cases)
+                        {
+                            Models.Client_Case client_Case = new Client_Case();
+                            client_Case.IDCase = item.ID;
+                            client_Case.IDClient = client.ID;
+                            item.Client_Case.Add(client_Case);
+                            Context.Cases.Add(item);
+                        }
+                        
+                    }
                     Context.SaveChanges();
                     Close();
                     MainWindow parent = (MainWindow)App.Current.MainWindow;
