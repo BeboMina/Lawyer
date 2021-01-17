@@ -41,11 +41,11 @@
                     <TextBlock x:Name="Veto_Number_TxtBlock" Text="رقم الاستئناف" FontSize="12" Margin="0 10 0 0"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBox x:Name="Res_Num" Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
-                        <Button Content="اضافة" Height="40" Width="120" x:Name="Add_Veto" Click="Add_Veto_Click"
+                        <Button Content="اضافة استئناف" Height="40" Width="120" x:Name="Add_Veto" Click="Add_Veto_Click"
                                 Margin="10 0" Style="{StaticResource btnColored}"/>
                     </StackPanel>
-                    <!--<TextBlock Text="اسم العميل" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>-->
+                    <TextBlock Text="الدايرة" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox x:Name="Veto_Re_Circle" Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
                     <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />
                     <RichTextBox Height="70" Width="300" 
                                  HorizontalAlignment="Left" 
@@ -82,13 +82,6 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="المحكمة" Binding="{Binding Jadge}">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn Header="المحامين" Binding="{Binding Factory}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />

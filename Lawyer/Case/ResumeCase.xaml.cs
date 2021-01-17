@@ -31,6 +31,7 @@ namespace Lawyer.Case
             {
                 GboxHeader.Text = "نقض";
                 Veto_Number_TxtBlock.Text = "رقم النقض";
+                Add_Veto.Content = "اضافة نقض";
             }
         }
 
