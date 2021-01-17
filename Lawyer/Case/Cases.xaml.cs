@@ -46,8 +46,12 @@ namespace Lawyer.Case
             Models.View_1 @case = (Models.View_1)DataGrid_Cases.SelectedItem;
             if (@case == null)
                 return;
-
             Case.DisplayCase displayCase = new DisplayCase();
+            Models.Case case1 = Context.Cases.FirstOrDefault(C => C.ID == @case.ID);
+            displayCase.CLient_Name.Text = @case.Name;
+            displayCase.Case_Number.Text = @case.ID.ToString();
+            displayCase.Case_Type.Text= @case.Type;
+            displayCase.C_Case.Text = case1.Circle;
             displayCase.ShowDialog();
         }
     }

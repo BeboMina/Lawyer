@@ -76,6 +76,18 @@ namespace Lawyer
             displayClient.Email_Client.Text = client.Email;
             new TextRange(displayClient.Notes_Client.Document.ContentStart, displayClient.Notes_Client.Document.ContentEnd).Text = client.Notes;
             Models.Procuration procuration = Context.Procurations.FirstOrDefault(p => p.ID == client.IDProcuration);
+            List<Models.Client_Case> client_Cases = Context.Client_Case.Where(C=>C.IDClient==client.ID).ToList();
+            List<Models.Case> cases = new List<Models.Case>();
+            if(client_Cases.Count!=0)
+            {
+                foreach(var item in client_Cases)
+                {
+                    Models.Case case1= new Models.Case();
+                    case1 = Context.Cases.FirstOrDefault(C => C.ID == item.IDCase);
+                    cases.Add(case1);
+                }
+                displayClient.DataGrid_Case.ItemsSource = cases;
+            }
             if (procuration!=null)
             {
                 displayClient.Start_Date.Text = Convert.ToDateTime(procuration.StardDate).ToString("yyyy / MM / dd");
