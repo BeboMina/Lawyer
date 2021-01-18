@@ -102,13 +102,6 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="المحامين" Binding="{Binding Factory}">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                            </DataGridTextColumn>
                             <DataGridTextColumn Header="التاريخ القادم" Binding="{Binding NextDate}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
