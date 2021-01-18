@@ -24,24 +24,30 @@ namespace Lawyer.Proxy
         testEntities Context = new testEntities();
         List<String> NameClient;
         List<String> IDClient;
-        Models.Procuration procuration=new Models.Procuration();
+        Models.Procuration procuration = new Models.Procuration();
         Models.Client client = new Models.Client();
-        List<byte[]> data = new List<byte[]>();
-        List<NameEx> names = new List<NameEx>();
-        List<String> Name = new List<string>();
-        List<String> Ex = new List<string>();
+        byte[] data;
+        string Name;
+        string Ex;
         int index;
         bool add = false;
         string action;
-
+        public string NameFile { get; set; }
+        public Models.Procuration procuration1{ get; set; }
+        public byte[] data1 { get; set; }
+        public string name1 { get; set; }
+        public string ex1 { get; set; }
+        string EX;
+        NameEx NameExt = new NameEx();
         public AddProxy(string act)
         {
             InitializeComponent();
+            action = act;
             NameClient = Context.Clients.Select(C => C.Name).ToList();
             IDClient = Context.Clients.Select(C => C.ID).ToList();
             Com_Name_Client.ItemsSource = NameClient;
             bool add = false;
-            action = act;
+            
 
             if(action == "update")
             {
@@ -80,25 +86,43 @@ namespace Lawyer.Proxy
                         MessageBox.Show("التوكيل موثق ام غير موثق");
                         return;
                     }
-                    
-                    Context.Procurations.Add(procuration);
-                    Context.SaveChanges();
-                    String x = IDClient[index];
-                    client = Context.Clients.FirstOrDefault(C => C.ID == x);
-                    client.IDProcuration = procuration.ID;
-                    Context.SaveChanges();
-                    if(add)
+                    if (action != "client_Add")
                     {
-                        Models.FilesProcuration filesProcuration = new Models.FilesProcuration();
-                        for (int i = 0; i < Name.Count; i++)
+                        Context.Procurations.Add(procuration);
+                        Context.SaveChanges();
+                        String x = IDClient[index];
+                        client = Context.Clients.FirstOrDefault(C => C.ID == x);
+                        client.IDProcuration = procuration.ID;
+                        Context.SaveChanges();
+                        if (add)
                         {
-                            filesProcuration.Date = data[i];
-                            filesProcuration.Title = Name[i];
-                            filesProcuration.Extantion = Ex[i];
+                            Models.FilesProcuration filesProcuration = new Models.FilesProcuration();
+                            filesProcuration.Date = data;
+                            filesProcuration.Title = Name;
+                            filesProcuration.Extantion = Ex;
                             filesProcuration.IDProcuration = procuration.ID;
                             Context.FilesProcurations.Add(filesProcuration);
                             Context.SaveChanges();
                         }
+                        Close();
+                        MainWindow parent = (MainWindow)App.Current.MainWindow;
+                        parent.main.Navigate(new Proxies());
+                    }
+                    else
+                    {
+                        procuration1 = procuration;
+                        if(add)
+                        {
+                            NameFile = NameExt.Name;
+                            data1 = data;
+                            name1 = Name;
+                            ex1 = Ex;
+                        }
+                        else
+                        {
+                            NameFile = "";
+                        }
+                        
                     }
                     Close();
                 }
@@ -118,23 +142,15 @@ namespace Lawyer.Proxy
         {
             
             System.Windows.Forms.OpenFileDialog open = new System.Windows.Forms.OpenFileDialog();
-            open.Multiselect = true;
             if (open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                
                 add = true;
-                
-                
-                foreach (var f in open.FileNames)
-                {
-                    NameEx NameExt = new NameEx();
-                    NameExt.Name = System.IO.Path.GetFileName(f);
-                    names.Add(NameExt);
-                    Name.Add(System.IO.Path.GetFileNameWithoutExtension(f));
-                    Ex.Add(System.IO.Path.GetExtension(f));
-                    data.Add(File.ReadAllBytes(f));
-                }
-                Grid_Files.ItemsSource = names;
-                Grid_Files.Items.Refresh();
+                NameExt.Name = System.IO.Path.GetFileName(open.FileName);
+                Name = System.IO.Path.GetFileNameWithoutExtension(open.FileName);
+                Ex = System.IO.Path.GetExtension(open.FileName);
+                data = File.ReadAllBytes(open.FileName);
+                //Grid_Files;
             }
         }
 

@@ -52,7 +52,7 @@
                 <StackPanel Margin="10" Grid.Column="1">
                     <TextBlock Text="اسم العميل" FontSize="12"/>
                     <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Name="Com_Name_Client" Foreground="Black" SelectionChanged="Com_Name_Client_SelectionChanged"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True" Visibility="Collapsed"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True" Visibility="Collapsed" Name="Text_Name_Client"/>
                     <TextBlock Text="ملفات التوكيل" FontSize="12" Margin="0 15 0 0"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>

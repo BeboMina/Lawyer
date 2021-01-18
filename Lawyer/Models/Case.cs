@@ -18,7 +18,6 @@ namespace Lawyer.Models
         public Case()
         {
             this.Client_Case = new HashSet<Client_Case>();
-            this.Jadges = new HashSet<Jadge>();
             this.Resumptions = new HashSet<Resumption>();
             this.vetoes = new HashSet<veto>();
         }
@@ -28,11 +27,10 @@ namespace Lawyer.Models
         public string Notes { get; set; }
         public Nullable<long> Number_of_Session { get; set; }
         public string Circle { get; set; }
+        public Nullable<long> ID_jadge { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client_Case> Client_Case { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Jadge> Jadges { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Resumption> Resumptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

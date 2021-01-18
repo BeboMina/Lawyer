@@ -37,7 +37,6 @@ namespace Lawyer.Models
         public virtual DbSet<Procuration> Procurations { get; set; }
         public virtual DbSet<Resumption> Resumptions { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<veto> vetoes { get; set; }
         public virtual DbSet<View_1> View_1 { get; set; }
         public virtual DbSet<ViewClient_Pro> ViewClient_Pro { get; set; }
