@@ -52,14 +52,14 @@
                 <StackPanel Margin="10" Grid.Column="1">
                     <TextBlock Text="اسم العميل" FontSize="12"/>
                     <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Name="Com_Name_Client" Foreground="Black" SelectionChanged="Com_Name_Client_SelectionChanged"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True" Visibility="Collapsed"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True" Visibility="Collapsed" Name="Text_Name_Client"/>
                     <TextBlock Text="ملفات التوكيل" FontSize="12" Margin="0 15 0 0"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
                             <Button Content="اضافة ملف" Height="40" Width="100"
                             Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}" Name="Save_File" Click="Save_File_Click"/>
                             <Button Content="حذف ملف" Height="40" Width="100"
-                            Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}"/>
+                            Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}" Name="Dlelet_Files" Click="Dlelet_Files_Click"/>
                         </StackPanel>
                         <DataGrid Style="{StaticResource CustomDataGrid}" Foreground="White" ColumnWidth="*"
                                   IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding}"

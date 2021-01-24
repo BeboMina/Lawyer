@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using Lawyer.Models;
+using System.IO;
 
 namespace Lawyer
 {
@@ -30,6 +31,11 @@ namespace Lawyer
         List<Models.Client> clients;
         string action;
         List<Models.Case> cases = new List<Models.Case>();
+        string NameFile="";
+        string Name1;
+        string Ex;
+        byte[] data;
+        Models.Procuration procuration;
         public AddClient(string act)
         {
             InitializeComponent();
@@ -144,8 +150,25 @@ namespace Lawyer
                     }
                     if (action == "اضافة")
                     {
+                        if (procuration != null)
+                        {
+                            Context.Procurations.Add(procuration);
+                            Context.SaveChanges();
+                            client.IDProcuration = procuration.ID;
+                        }
+                        if(NameFile!="")
+                        {
+                            Models.FilesProcuration filesProcuration = new Models.FilesProcuration();
+                            filesProcuration.Date=data;
+                            filesProcuration.Title = Name1;
+                            filesProcuration.Extantion = Ex;
+                            filesProcuration.IDProcuration = procuration.ID;
+                            Context.FilesProcurations.Add(filesProcuration);
+                            
+                        }
                         client.Name = Name_Client.Text;
                         Context.Clients.Add(client);
+                        
                     }
                     
                     if(cases.Count!=0)
@@ -202,9 +225,37 @@ namespace Lawyer
 
         private void AddProxyBtn_Click(object sender, RoutedEventArgs e)
         {
-            Proxy.AddProxy addProxy = new Proxy.AddProxy("client");
-            addProxy.ShowDialog();
-
+            if (action == "اضافة")
+            {
+                if (Name_Client.Text.TrimEnd() == "" || Name_Client.Text == null)
+                {
+                    MessageBox.Show("ادخل اسم العميل فى البداية");
+                }
+                else
+                {
+                    Proxy.AddProxy addProxy = new Proxy.AddProxy("client_Add");
+                    addProxy.Com_Name_Client.Visibility = Visibility.Collapsed;
+                    addProxy.Text_Name_Client.Visibility = Visibility.Visible;
+                    addProxy.Text_Name_Client.Text = Name_Client.Text;
+                    addProxy.ShowDialog();
+                    NameFile = addProxy.NameFile;
+                    procuration = addProxy.procuration1;
+                    if(NameFile!="")
+                    {
+                        Ex = addProxy.ex1;
+                        data = addProxy.data1;
+                        Name1 = addProxy.name1;
+                    }
+                }
+            }
+            else
+            {
+                Proxy.AddProxy addProxy = new Proxy.AddProxy("client_Edit");
+                addProxy.Com_Name_Client.Visibility = Visibility.Collapsed;
+                addProxy.Text_Name_Client.Visibility = Visibility.Visible;
+                addProxy.Text_Name_Client.Text = Name_Client.Text;
+                addProxy.ShowDialog();
+            }
         }
     }
 }

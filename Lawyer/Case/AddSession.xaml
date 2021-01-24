@@ -60,7 +60,7 @@
                             <Button Content="اضافة ملف" Height="40" Width="100"
                             Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}" Name="Add_File" Click="Add_File_Click"/>
                             <Button Content="حذف ملف" Height="40" Width="100"
-                            Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}"/>
+                            Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}" Name="Deleat_Files" Click="Deleat_Files_Click"/>
                         </StackPanel>
                         <DataGrid Style="{StaticResource CustomDataGrid}" Foreground="White" 
                                   AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*"

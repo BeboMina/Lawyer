@@ -14,6 +14,7 @@
           <Property Name="Notes" Type="nvarchar(max)" />
           <Property Name="Number_of_Session" Type="bigint" />
           <Property Name="Circle" Type="nvarchar(max)" />
+          <Property Name="ID_jadge" Type="bigint" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -61,20 +62,19 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="varbinary(max)" Nullable="false" />
-          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Extantion" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IDProcuration" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="varbinary(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Extantion" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDProcuration" Type="bigint" />
         </EntityType>
         <EntityType Name="Jadge">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Done" Type="binary" MaxLength="50" />
+          <Property Name="Done" Type="bit" />
           <Property Name="Date" Type="date" />
-          <Property Name="ID_Case" Type="bigint" />
           <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Lawery">
@@ -117,6 +117,7 @@
           <Property Name="Number_Of_Session" Type="bigint" />
           <Property Name="Circle" Type="nvarchar(max)" />
           <Property Name="ID_Case" Type="bigint" />
+          <Property Name="ID_Jadge" Type="bigint" />
         </EntityType>
         <EntityType Name="Sessions">
           <Key>
@@ -130,16 +131,6 @@
           <Property Name="Notes" Type="nvarchar(max)" />
           <Property Name="Timer" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="veto">
           <Key>
             <PropertyRef Name="ID_veto" />
@@ -150,6 +141,7 @@
           <Property Name="Number_Of_Session" Type="bigint" />
           <Property Name="Circle" Type="nvarchar(max)" />
           <Property Name="ID_Case" Type="bigint" />
+          <Property Name="ID_Jadge" Type="bigint" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'test.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -210,7 +202,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FilesProcuration_Procuration">
-          <End Role="Procuration" Type="Self.Procuration" Multiplicity="1" />
+          <End Role="Procuration" Type="Self.Procuration" Multiplicity="0..1" />
           <End Role="FilesProcuration" Type="Self.FilesProcuration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Procuration">
@@ -218,18 +210,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             </Principal>
             <Dependent Role="FilesProcuration">
               <PropertyRef Name="IDProcuration" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Jadge_Cases">
-          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1" />
-          <End Role="Jadge" Type="Self.Jadge" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cases">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Jadge">
-              <PropertyRef Name="ID_Case" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -318,7 +298,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Procuration" EntityType="Self.Procuration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Resumption" EntityType="Self.Resumption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="veto" EntityType="Self.veto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -351,10 +330,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <AssociationSet Name="FK_FilesProcuration_Procuration" Association="Self.FK_FilesProcuration_Procuration">
             <End Role="Procuration" EntitySet="Procuration" />
             <End Role="FilesProcuration" EntitySet="FilesProcuration" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Jadge_Cases" Association="Self.FK_Jadge_Cases">
-            <End Role="Cases" EntitySet="Cases" />
-            <End Role="Jadge" EntitySet="Jadge" />
           </AssociationSet>
           <AssociationSet Name="FK_Lawery_Session_Lawery" Association="Self.FK_Lawery_Session_Lawery">
             <End Role="Lawery" EntitySet="Lawery" />
@@ -395,8 +370,8 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Number_of_Session" Type="Int64" />
           <Property Name="Circle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_jadge" Type="Int64" />
           <NavigationProperty Name="Client_Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Cases" ToRole="Client_Case" />
-          <NavigationProperty Name="Jadges" Relationship="Self.FK_Jadge_Cases" FromRole="Cases" ToRole="Jadge" />
           <NavigationProperty Name="Resumptions" Relationship="Self.FK_Resumption_Resumption" FromRole="Cases" ToRole="Resumption" />
           <NavigationProperty Name="vetoes" Relationship="Self.FK_veto_Cases" FromRole="Cases" ToRole="veto" />
         </EntityType>
@@ -450,11 +425,11 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
-          <Property Name="Date" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Extantion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IDProcuration" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Extantion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDProcuration" Type="Int64" />
           <NavigationProperty Name="Procuration" Relationship="Self.FK_FilesProcuration_Procuration" FromRole="FilesProcuration" ToRole="Procuration" />
         </EntityType>
         <EntityType Name="Jadge">
@@ -462,11 +437,9 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Done" Type="Binary" MaxLength="50" FixedLength="true" />
+          <Property Name="Done" Type="Boolean" />
           <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="ID_Case" Type="Int64" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Case" Relationship="Self.FK_Jadge_Cases" FromRole="Jadge" ToRole="Cases" />
         </EntityType>
         <EntityType Name="Lawery">
           <Key>
@@ -514,6 +487,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="Number_Of_Session" Type="Int64" />
           <Property Name="Circle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID_Case" Type="Int64" />
+          <Property Name="ID_Jadge" Type="Int64" />
           <NavigationProperty Name="Case" Relationship="Self.FK_Resumption_Resumption" FromRole="Resumption" ToRole="Cases" />
         </EntityType>
         <EntityType Name="Session">
@@ -532,16 +506,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <NavigationProperty Name="Sessions1" Relationship="Self.FK_Sessions_Sessions" FromRole="Sessions" ToRole="Sessions1" />
           <NavigationProperty Name="Session1" Relationship="Self.FK_Sessions_Sessions" FromRole="Sessions1" ToRole="Sessions" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="veto">
           <Key>
             <PropertyRef Name="ID_veto" />
@@ -552,6 +516,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="Number_Of_Session" Type="Int64" />
           <Property Name="Circle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID_Case" Type="Int64" />
+          <Property Name="ID_Jadge" Type="Int64" />
           <NavigationProperty Name="Case" Relationship="Self.FK_veto_Cases" FromRole="veto" ToRole="Cases" />
         </EntityType>
         <EntityType Name="View_1">
@@ -581,18 +546,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             </Principal>
             <Dependent Role="Client_Case">
               <PropertyRef Name="IDCase" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Jadge_Cases">
-          <End Role="Cases" Type="Self.Case" Multiplicity="0..1" />
-          <End Role="Jadge" Type="Self.Jadge" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cases">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Jadge">
-              <PropertyRef Name="ID_Case" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -645,7 +598,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FilesProcuration_Procuration">
-          <End Role="Procuration" Type="Self.Procuration" Multiplicity="1" />
+          <End Role="Procuration" Type="Self.Procuration" Multiplicity="0..1" />
           <End Role="FilesProcuration" Type="Self.FilesProcuration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Procuration">
@@ -717,17 +670,12 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Procurations" EntityType="Self.Procuration" />
           <EntitySet Name="Resumptions" EntityType="Self.Resumption" />
           <EntitySet Name="Sessions" EntityType="Self.Session" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="vetoes" EntityType="Self.veto" />
           <EntitySet Name="View_1" EntityType="Self.View_1" />
           <EntitySet Name="ViewClient_Pro" EntityType="Self.ViewClient_Pro" />
           <AssociationSet Name="FK_Client_Case_Cases" Association="Self.FK_Client_Case_Cases">
             <End Role="Cases" EntitySet="Cases" />
             <End Role="Client_Case" EntitySet="Client_Case" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Jadge_Cases" Association="Self.FK_Jadge_Cases">
-            <End Role="Cases" EntitySet="Cases" />
-            <End Role="Jadge" EntitySet="Jadges" />
           </AssociationSet>
           <AssociationSet Name="FK_Resumption_Resumption" Association="Self.FK_Resumption_Resumption">
             <End Role="Cases" EntitySet="Cases" />
@@ -780,6 +728,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="Number_of_Session" ColumnName="Number_of_Session" />
                 <ScalarProperty Name="Circle" ColumnName="Circle" />
+                <ScalarProperty Name="ID_jadge" ColumnName="ID_jadge" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -846,7 +795,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Done" ColumnName="Done" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="ID_Case" ColumnName="ID_Case" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -893,6 +841,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Number_Of_Session" ColumnName="Number_Of_Session" />
                 <ScalarProperty Name="Circle" ColumnName="Circle" />
                 <ScalarProperty Name="ID_Case" ColumnName="ID_Case" />
+                <ScalarProperty Name="ID_Jadge" ColumnName="ID_Jadge" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -909,17 +858,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="testModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vetoes">
             <EntityTypeMapping TypeName="testModel.veto">
               <MappingFragment StoreEntitySet="veto">
@@ -929,6 +867,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Number_Of_Session" ColumnName="Number_Of_Session" />
                 <ScalarProperty Name="Circle" ColumnName="Circle" />
                 <ScalarProperty Name="ID_Case" ColumnName="ID_Case" />
+                <ScalarProperty Name="ID_Jadge" ColumnName="ID_Jadge" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

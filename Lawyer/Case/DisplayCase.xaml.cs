@@ -31,7 +31,7 @@ namespace Lawyer.Case
 
         private void JudgementBtn_Click(object sender, RoutedEventArgs e)
         {
-            Case.Judgement judgement = new Judgement();
+            Case.Judgement judgement = new Judgement(Case_Number.Text);
             judgement.ShowDialog();
         }
 

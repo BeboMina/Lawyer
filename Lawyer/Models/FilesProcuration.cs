@@ -18,7 +18,7 @@ namespace Lawyer.Models
         public byte[] Date { get; set; }
         public string Title { get; set; }
         public string Extantion { get; set; }
-        public long IDProcuration { get; set; }
+        public Nullable<long> IDProcuration { get; set; }
     
         public virtual Procuration Procuration { get; set; }
     }
