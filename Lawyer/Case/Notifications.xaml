@@ -1,0 +1,162 @@
+﻿<Window x:Class="Lawyer.Case.Notifications"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lawyer.Case"
+        mc:Ignorable="d"
+        Title="Notifications" FontSize="18" Height="450" Width="900" Foreground="White"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        FlowDirection="RightToLeft" WindowStyle="None">
+
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Lawyer;component/Css/MyStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+
+    <Grid>
+        <GroupBox Style="{StaticResource MicrosoftGroupBox}">
+            <GroupBox.Header>
+                <Grid>
+                    <TextBlock x:Name="GboxHeader" Text="اشعارات" 
+                               FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Button x:Name="CloseBtn" Content="X" 
+                            Style="{StaticResource btnColored}" Width="40"
+                            HorizontalAlignment="Right" Click="CloseBtn_Click"/>
+                </Grid>
+            </GroupBox.Header>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <GroupBox x:Name="SessionsGrbox" Style="{StaticResource GroupBoxWithCenteredHeader}" Grid.Column="0">
+                    <GroupBox.Header>
+                        <TextBlock Text="مواعيد الجلسات" FontWeight="Bold"/>
+                    </GroupBox.Header>
+                    <ListView x:Name="SessionsList" ItemsSource="{Binding}" Background="Transparent">
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <!--<EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>-->
+                            </Style>
+                        </ListView.Resources>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="1" Width="440" Height="100" Grid.Column="1">
+                                    <Grid.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                            <GradientStop Color="#FFFFD190" Offset="0.2"/>
+                                            <GradientStop Color="Orange" Offset="0.85"/>
+                                            <GradientStop Color="#FFFFD190" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Grid.Background>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0" Margin="5 10 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="اسم العميل:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="ClientTxt" Text="{Binding Client_Name}"  Margin="0 0 0 10"/>
+                                            <TextBlock Text="رقم القضية:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="CaseNumTxt" Text="{Binding Case_Number}" Margin="0 0 0 10"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="التاريخ:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="NextDateTxt" Text="{Binding Next_Date, StringFormat= 'MM/dd/yyyy'}" Margin="0 0 0 10"/>
+                                            <TextBlock Text="الدايرة:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="CircleTxt" Text="{Binding Circle}" Margin="0 0 0 10"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Text="الميعاد:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="TimeTxt" Text="{Binding Time}" Margin="0 0 0 10"/>
+                                            <TextBlock Text="المحكمة:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="CourtTxt" Text="{Binding Court}" Margin="0 0 0 10"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </GroupBox>
+
+                <GroupBox x:Name="AnnouncesGrbox" Style="{StaticResource GroupBoxWithCenteredHeader}" Grid.Column="1">
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="مواعيد التنفيذات" FontWeight="Bold"/>
+                            <Button x:Name="AllAnnouncesBtn" Click="AllAnnouncesBtn_Click" Style="{StaticResource CircleButton}" Content="All" Width="80" Height="20" FontSize="16"/>
+                        </StackPanel>
+                    </GroupBox.Header>
+                    <ListView x:Name="AnnouncesList" ItemsSource="{Binding}" Background="Transparent">
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <!--<EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>-->
+                            </Style>
+                        </ListView.Resources>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="1" Width="440" Height="100" Grid.Column="1">
+                                    <Grid.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                            <GradientStop Color="#FFFFD190" Offset="0.2"/>
+                                            <GradientStop Color="Orange" Offset="0.85"/>
+                                            <GradientStop Color="#FFFFD190" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Grid.Background>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0" Margin="5 10 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="اسم العميل:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="ClientTxt" Text="{Binding Client_Name}"  Margin="0 0 0 10"/>
+                                            <TextBlock Text="رقم القضية:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="CaseNumTxt" Text="{Binding Case_Number}" Margin="0 0 0 10"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="التاريخ:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="DateTxt" Text="{Binding Date, StringFormat= 'MM/dd/yyyy'}" Margin="0 0 0 10"/>
+                                            <TextBlock Text="الايام المتبقية:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="RemainDaysTxt" Text="{Binding Remain_Days}" Margin="0 0 0 10"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Text="الحكم:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="JudgementTxt" Text="{Binding Judgement}" Margin="0 0 0 10"/>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Text="الاعلان:" FontSize="10" Foreground="LightSlateGray"/>
+                                        <CheckBox Tag="{Binding Judgement_ID}" IsChecked="{Binding Is_Done}"
+                                            Foreground="White" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked" 
+                                            FontSize="12px"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

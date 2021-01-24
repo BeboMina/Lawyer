@@ -77,6 +77,11 @@ namespace Lawyer
 
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
+                case "ItemNotifications":
+                    Case.Notifications notifications = new Case.Notifications();
+                    notifications.ShowDialog();
+                    break;
+
                 case "ItemClients":
                     main.Navigate(new Clients());
                     TitleTxt.Text = "العملاء";
