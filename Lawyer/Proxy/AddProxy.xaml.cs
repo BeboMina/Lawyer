@@ -38,7 +38,7 @@ namespace Lawyer.Proxy
         public string name1 { get; set; }
         public string ex1 { get; set; }
         string EX;
-        NameEx NameExt = new NameEx();
+        List<NameEx>NameExt = new List<NameEx>();
         public AddProxy(string act)
         {
             InitializeComponent();
@@ -113,7 +113,7 @@ namespace Lawyer.Proxy
                         procuration1 = procuration;
                         if(add)
                         {
-                            NameFile = NameExt.Name;
+                            NameFile = NameExt[0].Name;
                             data1 = data;
                             name1 = Name;
                             ex1 = Ex;
@@ -146,17 +146,43 @@ namespace Lawyer.Proxy
             {
                 
                 add = true;
-                NameExt.Name = System.IO.Path.GetFileName(open.FileName);
+                NameExt.Clear();
+                NameEx nameEx = new NameEx();
+                nameEx.Name= System.IO.Path.GetFileName(open.FileName);
+                NameExt.Add(nameEx);
                 Name = System.IO.Path.GetFileNameWithoutExtension(open.FileName);
                 Ex = System.IO.Path.GetExtension(open.FileName);
                 data = File.ReadAllBytes(open.FileName);
-                //Grid_Files;
+                Grid_Files.ItemsSource = NameExt;
+                Grid_Files.Items.Refresh();
             }
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Dlelet_Files_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int ind = -1;
+                ind = Grid_Files.SelectedIndex;
+                if (ind > -1)
+                {
+
+                    NameExt.RemoveAt(ind);
+                    Ex="";
+                    Name = "";
+                    Grid_Files.Items.Refresh();
+                    add = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
     }
     class NameEx

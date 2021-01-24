@@ -73,7 +73,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Done" Type="binary" MaxLength="50" />
+          <Property Name="Done" Type="bit" />
           <Property Name="Date" Type="date" />
           <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
@@ -437,7 +437,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Done" Type="Binary" MaxLength="50" FixedLength="true" />
+          <Property Name="Done" Type="Boolean" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>

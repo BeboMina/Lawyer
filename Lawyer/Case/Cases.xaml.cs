@@ -59,5 +59,28 @@ namespace Lawyer.Case
             }
             displayCase.ShowDialog();
         }
+
+        private void SearchTxt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (SearchTxt.Text == "")
+                {
+                    view_1s = Context.View_1.ToList();
+
+                }
+                else
+                {
+                    long id = Convert.ToInt64(SearchTxt.Text);
+                    view_1s = Context.View_1.Where(V => V.ID==id).ToList();
+                }
+                DataGrid_Cases.ItemsSource = view_1s;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

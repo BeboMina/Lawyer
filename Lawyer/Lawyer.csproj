@@ -302,6 +302,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\notifications.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

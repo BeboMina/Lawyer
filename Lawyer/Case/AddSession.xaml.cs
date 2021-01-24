@@ -123,6 +123,27 @@ namespace Lawyer.Case
                 Files_Session.Items.Refresh();
             }
         }
+
+        private void Deleat_Files_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int ind = -1;
+                ind = Files_Session.SelectedIndex;
+                if (Name.Count > 0&&ind>-1)
+                {
+                    
+                    Name.RemoveAt(ind);
+                    Ex.RemoveAt(ind);
+                    data.RemoveAt(ind);
+                    names.RemoveAt(ind);
+                    Files_Session.Items.Refresh();
+                }
+            }catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
     }
     class NameEx
     {
