@@ -65,8 +65,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Case\DisplayAllJudgements.xaml.cs">
+      <DependentUpon>DisplayAllJudgements.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Case\Judgement.xaml.cs">
       <DependentUpon>Judgement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Case\Notifications.xaml.cs">
+      <DependentUpon>Notifications.xaml</DependentUpon>
     </Compile>
     <Compile Include="Case\ResumeCase.xaml.cs">
       <DependentUpon>ResumeCase.xaml</DependentUpon>
@@ -152,11 +158,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Case\DisplayAllJudgements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Case\DisplayCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Case\Judgement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Case\Notifications.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
