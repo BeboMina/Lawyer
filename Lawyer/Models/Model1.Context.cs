@@ -29,8 +29,10 @@ namespace Lawyer.Models
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Client_Case> Client_Case { get; set; }
         public virtual DbSet<Fee> Fees { get; set; }
+        public virtual DbSet<Files_Saved> Files_Saved { get; set; }
         public virtual DbSet<FilesCas> FilesCases { get; set; }
         public virtual DbSet<FilesProcuration> FilesProcurations { get; set; }
+        public virtual DbSet<Fils_Fees> Fils_Fees { get; set; }
         public virtual DbSet<Jadge> Jadges { get; set; }
         public virtual DbSet<Lawery> Laweries { get; set; }
         public virtual DbSet<Lawery_Session> Lawery_Session { get; set; }

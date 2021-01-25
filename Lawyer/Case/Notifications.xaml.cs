@@ -27,6 +27,7 @@ namespace Lawyer.Case
 
         testEntities Context = new testEntities();
         List<Models.Session> sessions = new List<Models.Session>();
+        List<Models.Jadge> jadges = new List<Jadge>();
         string Now_Date = DateTime.Now.ToShortDateString();
         public Notifications()
         {
@@ -60,12 +61,60 @@ namespace Lawyer.Case
                     }
                 }
             }
+            jadges = Context.Jadges.Where(J => J.Execute == false).ToList();
+            foreach(var item in jadges)
+            {
+                string Date_Jadge = item.Date.Value.AddDays(14).ToShortDateString();
+                if(Now_Date==Date_Jadge)
+                {
+                    
+                    Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID_jadge == item.ID);
+                    Models.veto veto = Context.vetoes.FirstOrDefault(V => V.ID_Jadge == item.ID);
+                    Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Jadge == item.ID);
+                    if (@case != null)
+                    {
+                        FillData(@case.ID, item);
+                    }
+                    else if (veto != null)
+                    {
 
+
+                        @case = Context.Cases.FirstOrDefault(C => C.ID == veto.ID_Case);
+                        FillData(@case.ID, item, veto.ID_veto);
+
+                    }
+                    else if (resumption != null)
+                    {
+
+
+                        @case = Context.Cases.FirstOrDefault(C => C.ID == resumption.ID_Case);
+                        FillData(@case.ID, item, resumption.ID_Resumption);
+                    }
+                }
+            }
             SessionsList.ItemsSource = sessionNotifications;
             AnnouncesList.ItemsSource = announceNotifications;
 
             // fill the lists with data like this
             //sessionNotifications.Add(new SessionNotification() { Case_Number = 24, Client_Name = "mina" });
+        }
+
+        private void FillData(long Num_Case,Models.Jadge item,long Num=-1)
+        {
+            AnnounceNotification announceNotification = new AnnounceNotification();
+            Models.Client_Case client_Case = Context.Client_Case.FirstOrDefault(C => C.IDCase == Num_Case);
+            Models.Client client;
+            if (client_Case != null)
+            {
+                client = Context.Clients.FirstOrDefault(C => C.ID == client_Case.IDClient);
+                announceNotification.Client_Name = client.Name;
+                announceNotification.Case_Number = Num == -1 ? Num_Case : Num;
+                announceNotification.Date = item.Date.Value;
+                announceNotification.Is_Done = item.Done.Value;
+                announceNotification.Judgement = item.Notes;
+                announceNotifications.Add(announceNotification);
+            }
+
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -93,7 +142,7 @@ namespace Lawyer.Case
         public class AnnounceNotification
         {
             public string Client_Name { get; set; }
-            public int Case_Number { get; set; }
+            public long Case_Number { get; set; }
             public DateTime Date { get; set; }
             public string Judgement { get; set; }
             public int Remain_Days { get; set; }
