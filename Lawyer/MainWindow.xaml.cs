@@ -23,6 +23,9 @@ namespace Lawyer
         public MainWindow()
         {
             InitializeComponent();
+
+            Login login = new Login(this);
+            login.ShowDialog();
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
@@ -107,6 +110,10 @@ namespace Lawyer
                     break;
 
                 case "ItemArchive":
+                    Login login = new Login(null);
+                    login.ShowDialog();
+                    if (!login.login)
+                        break;
                     main.Navigate(new Proxy.Archive());
                     TitleTxt.Text = "المذكرات / الاتعاب";
                     break;
