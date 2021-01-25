@@ -12,12 +12,11 @@ namespace Lawyer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Jadge
+    public partial class Files_Saved
     {
         public long ID { get; set; }
-        public Nullable<bool> Done { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public string Notes { get; set; }
-        public Nullable<bool> Execute { get; set; }
+        public string Title { get; set; }
+        public byte[] Data { get; set; }
+        public string Extantion { get; set; }
     }
 }

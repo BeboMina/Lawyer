@@ -73,6 +73,7 @@ namespace Lawyer.Case
                     {
                         Models.Jadge jadge = new Jadge();
                         jadge.Date = Convert.ToDateTime(data_Case.SelectedDate.Value);
+                        jadge.Execute = false;
                         jadge.Notes = JadgNots.Text;
                         if (Done.IsChecked == true)
                         {
@@ -105,6 +106,7 @@ namespace Lawyer.Case
                             Context.SaveChanges();
                             return;
                         }
+                        Close();
                     }
                 }
             }

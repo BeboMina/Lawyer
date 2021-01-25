@@ -48,6 +48,15 @@
           <Property Name="IDClient" Type="nvarchar" MaxLength="50" />
           <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Files_Saved">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Data" Type="varbinary(max)" />
+          <Property Name="Extantion" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="FilesCases">
           <Key>
             <PropertyRef Name="ID" />
@@ -68,6 +77,15 @@
           <Property Name="Extantion" Type="nvarchar" MaxLength="50" />
           <Property Name="IDProcuration" Type="bigint" />
         </EntityType>
+        <EntityType Name="Fils_Fees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Data" Type="varbinary(max)" />
+          <Property Name="Extantion" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Jadge">
           <Key>
             <PropertyRef Name="ID" />
@@ -76,6 +94,7 @@
           <Property Name="Done" Type="bit" />
           <Property Name="Date" Type="date" />
           <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="Execute" Type="bit" />
         </EntityType>
         <EntityType Name="Lawery">
           <Key>
@@ -97,6 +116,14 @@
           <Property Name="IDLawery" Type="bigint" Nullable="false" />
           <Property Name="IDSessios" Type="bigint" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'test.dbo.Login' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Login">
+          <Property Name="ID" Type="bigint" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar(max)" />
+        </EntityType>-->
         <EntityType Name="Procuration">
           <Key>
             <PropertyRef Name="ID" />
@@ -290,8 +317,10 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client_Case" EntityType="Self.Client_Case" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fees" EntityType="Self.Fees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Files_Saved" EntityType="Self.Files_Saved" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FilesCases" EntityType="Self.FilesCases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FilesProcuration" EntityType="Self.FilesProcuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fils_Fees" EntityType="Self.Fils_Fees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Jadge" EntityType="Self.Jadge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lawery" EntityType="Self.Lawery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lawery_Session" EntityType="Self.Lawery_Session" Schema="dbo" store:Type="Tables" />
@@ -410,6 +439,15 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="IDClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Files_Saved">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Extantion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="FilesCas">
           <Key>
             <PropertyRef Name="ID" />
@@ -432,6 +470,15 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="IDProcuration" Type="Int64" />
           <NavigationProperty Name="Procuration" Relationship="Self.FK_FilesProcuration_Procuration" FromRole="FilesProcuration" ToRole="Procuration" />
         </EntityType>
+        <EntityType Name="Fils_Fees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Extantion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Jadge">
           <Key>
             <PropertyRef Name="ID" />
@@ -440,6 +487,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="Done" Type="Boolean" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Execute" Type="Boolean" />
         </EntityType>
         <EntityType Name="Lawery">
           <Key>
@@ -662,8 +710,10 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="Client_Case" EntityType="Self.Client_Case" />
           <EntitySet Name="Fees" EntityType="Self.Fee" />
+          <EntitySet Name="Files_Saved" EntityType="Self.Files_Saved" />
           <EntitySet Name="FilesCases" EntityType="Self.FilesCas" />
           <EntitySet Name="FilesProcurations" EntityType="Self.FilesProcuration" />
+          <EntitySet Name="Fils_Fees" EntityType="Self.Fils_Fees" />
           <EntitySet Name="Jadges" EntityType="Self.Jadge" />
           <EntitySet Name="Laweries" EntityType="Self.Lawery" />
           <EntitySet Name="Lawery_Session" EntityType="Self.Lawery_Session" />
@@ -767,6 +817,16 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Files_Saved">
+            <EntityTypeMapping TypeName="testModel.Files_Saved">
+              <MappingFragment StoreEntitySet="Files_Saved">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Extantion" ColumnName="Extantion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="FilesCases">
             <EntityTypeMapping TypeName="testModel.FilesCas">
               <MappingFragment StoreEntitySet="FilesCases">
@@ -789,6 +849,16 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Fils_Fees">
+            <EntityTypeMapping TypeName="testModel.Fils_Fees">
+              <MappingFragment StoreEntitySet="Fils_Fees">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Extantion" ColumnName="Extantion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Jadges">
             <EntityTypeMapping TypeName="testModel.Jadge">
               <MappingFragment StoreEntitySet="Jadge">
@@ -796,6 +866,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Done" ColumnName="Done" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Execute" ColumnName="Execute" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
