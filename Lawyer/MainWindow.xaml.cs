@@ -35,7 +35,7 @@ namespace Lawyer
                 tt_Cases.Visibility = Visibility.Collapsed;
                 tt_Notifications.Visibility = Visibility.Collapsed;
                 tt_proxies.Visibility = Visibility.Collapsed;
-                tt_settings.Visibility = Visibility.Collapsed;
+                tt_archive.Visibility = Visibility.Collapsed;
                 tt_signout.Visibility = Visibility.Collapsed;
             }
             else
@@ -44,7 +44,7 @@ namespace Lawyer
                 tt_Cases.Visibility = Visibility.Visible;
                 tt_Notifications.Visibility = Visibility.Visible;
                 tt_proxies.Visibility = Visibility.Visible;
-                tt_settings.Visibility = Visibility.Visible;
+                tt_archive.Visibility = Visibility.Visible;
                 tt_signout.Visibility = Visibility.Visible;
             }
         }
@@ -71,9 +71,12 @@ namespace Lawyer
 
         private void LV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Tg_Btn.IsChecked = false;
-            main.Content = null;
-            TitleGrid.Visibility = Visibility.Visible;
+            if (((ListViewItem)((ListView)sender).SelectedItem).Name != "ItemNotifications")
+            {
+                Tg_Btn.IsChecked = false;
+                main.Content = null;
+                TitleGrid.Visibility = Visibility.Visible;
+            }
 
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
@@ -101,6 +104,11 @@ namespace Lawyer
                 case "ItemProxies":
                     main.Navigate(new Proxy.Proxies());
                     TitleTxt.Text = "التوكيلات";
+                    break;
+
+                case "ItemArchive":
+                    main.Navigate(new Proxy.Archive());
+                    TitleTxt.Text = "المذكرات / الاتعاب";
                     break;
 
                 default:

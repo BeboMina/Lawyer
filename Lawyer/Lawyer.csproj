@@ -140,6 +140,9 @@
     <Compile Include="Proxy\AddProxy.xaml.cs">
       <DependentUpon>AddProxy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Proxy\Archive.xaml.cs">
+      <DependentUpon>Archive.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Proxy\DisplayProxy.xaml.cs">
       <DependentUpon>DisplayProxy.xaml</DependentUpon>
     </Compile>
@@ -231,6 +234,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Proxy\Archive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Proxy\DisplayProxy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -318,6 +325,7 @@
     <Resource Include="Assets\notifications.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\archive.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
