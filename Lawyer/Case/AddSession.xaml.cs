@@ -34,12 +34,24 @@ namespace Lawyer.Case
         List<NameEx> names = new List<NameEx>();
         
         bool add = false;
+
+        string type;
         
-        public AddSession()
+        public AddSession(string typ)
         {
             InitializeComponent();
             Num_Cases = Context.Cases.Select(C => C.ID).ToList();
             Com_Num_Case.ItemsSource = Num_Cases;
+
+            type = typ;
+            if (type != "case")
+            {
+                Client_Panel.Visibility = Visibility.Collapsed;
+                Veto_Panel.Visibility = Visibility.Visible;
+
+                Com_Num_Case.Visibility = Visibility.Collapsed;
+                Num_Case.Visibility = Visibility.Visible;
+            }
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -73,7 +85,7 @@ namespace Lawyer.Case
                     session.date =Convert.ToDateTime(Data_Session.SelectedDate.Value);
                     session.NextDate = Convert.ToDateTime(NextData_Session.SelectedDate.Value);
                     session.Jadge = jadge.Text;
-                    session.IDCase = ID_Case;
+                    session.IDCase = (type == "case")? ID_Case : int.Parse(Num_Veto.Text);
                     Context.Sessions.Add(session);
                     Context.SaveChanges();
                     if(add)

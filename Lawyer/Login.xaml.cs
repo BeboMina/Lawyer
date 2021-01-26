@@ -31,6 +31,31 @@ namespace Lawyer
 
         private void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
+            ComboBoxItem item = (ComboBoxItem)TypeCombo.SelectedItem;
+
+            if(item.Content.ToString() == "Admin")
+            {
+                if(UserName.Text != "admin" || Password.Password != "123")
+                {
+                    MessageBox.Show("Wrong User Name or Password!");
+                    return;
+                }
+            }
+            else
+            {
+                if(main == null)
+                {
+                    MessageBox.Show("ليس لديك صلاحية للدخول");
+                    return;
+                }
+
+                if (UserName.Text != "user" || Password.Password != "123")
+                {
+                    MessageBox.Show("Wrong User Name or Password!");
+                    return;
+                }
+            }
+
             login = true;
             this.Close();
         }

@@ -28,26 +28,32 @@
                 </Grid>
             </GroupBox.Header>
 
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
-                <StackPanel Margin="20" Orientation="Horizontal">
+
+                <ComboBox x:Name="TypeCombo" Grid.Row="0" Foreground="Black" Margin="10" Width="200">
+                    <ComboBoxItem IsSelected="True">Admin</ComboBoxItem>
+                    <ComboBoxItem>User</ComboBoxItem>
+                </ComboBox>
+
+                <StackPanel Margin="10" Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="الاسم"/>
                     <TextBox x:Name="UserName" Width="200" Margin ="30 0"/>
                 </StackPanel>
-                <StackPanel Margin="20" Orientation="Horizontal" Grid.Row="1">
+                <StackPanel Margin="10" Orientation="Horizontal" Grid.Row="2">
                     <TextBlock Text="الباسورد"/>
-                    <TextBox x:Name="Password" Width="200" Margin ="10 0"/>
+                    <PasswordBox x:Name="Password" Width="200" Margin ="10 0"/>
                 </StackPanel>
 
-                <Button x:Name="SignInBtn" Content="دخول" Grid.Row="2"
+                <Button x:Name="SignInBtn" Content="دخول" Grid.Row="3" Style="{StaticResource btnColored}"
                         HorizontalAlignment="Right" Click="SignInBtn_Click"/>
 
-                <Button x:Name="CancelBtn" Content="إلغاء" Grid.Row="2"
+                <Button x:Name="CancelBtn" Content="إلغاء" Grid.Row="3" Style="{StaticResource btnColored}"
                         HorizontalAlignment="Left" Click="CancelBtn_Click"/>
             </Grid>
         </GroupBox>

@@ -48,7 +48,7 @@
                         </ListView.Resources>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="1" Width="440" Height="100" Grid.Column="1">
+                                <Grid Margin="1" Width="530" Height="100" Grid.Column="1">
                                     <Grid.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
                                             <GradientStop Color="#FFFFD190" Offset="0.2"/>
@@ -105,7 +105,7 @@
                         </ListView.Resources>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="1" Width="440" Height="100" Grid.Column="1">
+                                <Grid Margin="1" Width="530" Height="100" Grid.Column="1">
                                     <Grid.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
                                             <GradientStop Color="#FFFFD190" Offset="0.2"/>

@@ -50,10 +50,16 @@
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Column="1">
-                    <TextBlock Text="اسم العميل" FontSize="12"/>
-                    <TextBox Width="200"  Height="35" IsReadOnly="True" HorizontalAlignment="Left" Name="Client_Name"/>
-                    <TextBlock Text="كود العميل" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200"  Height="35" IsReadOnly="True" HorizontalAlignment="Left" Name="ID_Client"/>
+                    <StackPanel x:Name="Client_Panel">
+                        <TextBlock Text="اسم العميل" FontSize="12"/>
+                        <TextBox Width="200"  Height="35" IsReadOnly="True" HorizontalAlignment="Left" Name="Client_Name"/>
+                        <TextBlock Text="كود العميل" FontSize="12" Margin="0 10 0 0"/>
+                        <TextBox Width="200"  Height="35" IsReadOnly="True" HorizontalAlignment="Left" Name="ID_Client"/>
+                    </StackPanel>
+                    <StackPanel x:Name="Veto_Panel" Visibility="Collapsed">
+                        <TextBlock Text="رقم الاستئناف/النقض" FontSize="12" Margin="0 10 0 0"/>
+                        <TextBox Width="200"  Height="35" IsReadOnly="True" HorizontalAlignment="Left" Name="Num_Veto"/>
+                    </StackPanel>
                     <TextBlock Text="ملفات الجلسة" FontSize="12" Margin="0 15 0 0"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
