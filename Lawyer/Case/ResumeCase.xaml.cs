@@ -48,6 +48,16 @@ namespace Lawyer.Case
                 if (veto != null)
                     caseHasVeto(veto.ID_veto, veto.Circle, veto.Notes);
             }
+
+            int veto_res_id = 0;
+            if(int.TryParse(Res_Num.Text, out veto_res_id))
+            {
+                List<Models.Session> sessions = Context.Sessions.Where(S => S.IDCase == veto_res_id).ToList();
+                if (sessions.Count != 0)
+                {
+                    GridView_Session.ItemsSource = sessions;
+                }
+            }
         }
 
         private void caseHasVeto(long num, string circle, string notes)
@@ -103,6 +113,14 @@ namespace Lawyer.Case
             Case.ResumeCase resumeCase = new ResumeCase(type, case_num.ToString());
             Close();
             resumeCase.ShowDialog();
+        }
+
+        private void Add_SessionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Case.AddSession addSession = new AddSession(type);
+            addSession.Num_Case.Text = Case_Number.Text;
+            addSession.Num_Veto.Text = Res_Num.Text;
+            addSession.ShowDialog();
         }
     }
 }

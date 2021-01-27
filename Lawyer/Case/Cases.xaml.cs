@@ -38,7 +38,7 @@ namespace Lawyer.Case
         private void AddProxyBtn_Click(object sender, RoutedEventArgs e)
         {
             
-            AddSession addSession = new AddSession();
+            AddSession addSession = new AddSession("case");
             addSession.ShowDialog();
         }
 

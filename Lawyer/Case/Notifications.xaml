@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lawyer.Case"
         mc:Ignorable="d"
-        Title="Notifications" FontSize="18" Height="450" Width="900" Foreground="White"
+        Title="Notifications" FontSize="18" Height="450" Width="1200" Foreground="White"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         FlowDirection="RightToLeft" WindowStyle="None">
 
@@ -35,7 +35,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <GroupBox x:Name="SessionsGrbox" Style="{StaticResource GroupBoxWithCenteredHeader}" Grid.Column="0">
+                <GroupBox x:Name="SessionsGrbox" Style="{StaticResource GroupBoxWithCenteredHeader}" 
+                          Grid.Column="0" Margin="15 0">
                     <GroupBox.Header>
                         <TextBlock Text="مواعيد الجلسات" FontWeight="Bold"/>
                     </GroupBox.Header>
@@ -47,7 +48,7 @@
                         </ListView.Resources>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="1" Width="440" Height="100" Grid.Column="1">
+                                <Grid Margin="1" Width="530" Height="100" Grid.Column="1">
                                     <Grid.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
                                             <GradientStop Color="#FFFFD190" Offset="0.2"/>
@@ -55,10 +56,6 @@
                                             <GradientStop Color="#FFFFD190" Offset="1"/>
                                         </LinearGradientBrush>
                                     </Grid.Background>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="5*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
 
                                     <Grid Grid.Column="0" Margin="5 10 0 0">
                                         <Grid.ColumnDefinitions>
@@ -92,7 +89,8 @@
                     </ListView>
                 </GroupBox>
 
-                <GroupBox x:Name="AnnouncesGrbox" Style="{StaticResource GroupBoxWithCenteredHeader}" Grid.Column="1">
+                <GroupBox x:Name="AnnouncesGrbox" Style="{StaticResource GroupBoxWithCenteredHeader}" 
+                          Grid.Column="1"  Margin="15 0">
                     <GroupBox.Header>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="مواعيد التنفيذات" FontWeight="Bold"/>
@@ -107,7 +105,7 @@
                         </ListView.Resources>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="1" Width="440" Height="100" Grid.Column="1">
+                                <Grid Margin="1" Width="530" Height="100" Grid.Column="1">
                                     <Grid.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
                                             <GradientStop Color="#FFFFD190" Offset="0.2"/>
