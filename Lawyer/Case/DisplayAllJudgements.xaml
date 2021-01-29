@@ -56,7 +56,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="التاريخ" Binding="{Binding Date}">
+                        <DataGridTextColumn Header="التاريخ" Binding="{Binding Date, StringFormat= 'MM/dd/yyyy'}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />

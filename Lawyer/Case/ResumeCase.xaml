@@ -67,7 +67,7 @@
                         Foreground="White" FontSize="16" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Session" AutoGenerateColumns="False">
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="تاريخ الجلسة" Binding="{Binding date}">
+                            <DataGridTextColumn Header="تاريخ الجلسة" Binding="{Binding date, StringFormat= 'MM/dd/yyyy'}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -88,7 +88,7 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="التاريخ القادم" Binding="{Binding NextDate}">
+                            <DataGridTextColumn Header="التاريخ القادم" Binding="{Binding NextDate, StringFormat= 'MM/dd/yyyy'}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />

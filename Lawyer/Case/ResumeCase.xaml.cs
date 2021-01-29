@@ -81,38 +81,44 @@ namespace Lawyer.Case
 
         private void Add_Veto_Click(object sender, RoutedEventArgs e)
         {
-            long res_veto_num;
-            if(!long.TryParse(Res_Num.Text, out res_veto_num))
+            string message = "تاكيد حفظ البيانات";
+            string title = "حفظ";
+            MessageBoxButton buttons = MessageBoxButton.YesNo;
+            MessageBoxResult result = MessageBox.Show(message, title, buttons);
+            if (result == MessageBoxResult.Yes)
             {
-                MessageBox.Show("يجب اضافة رقم ال" + GboxHeader.Text);
-                return;
-            }
-            
-            if (((Button)sender).Content.ToString() == "اضافة استئناف")
-            {
-                Models.veto veto = new veto();
-                veto.ID_Case = case_num;
-                veto.ID_veto = res_veto_num;
-                veto.Circle = Veto_Re_Circle.Text;
-                veto.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
-                Context.vetoes.Add(veto);
-            }
-            else
-            {
-                Models.Resumption resumption = new Resumption();
-                resumption.ID_Case = case_num;
-                resumption.ID_Resumption = res_veto_num;
-                resumption.Circle = Veto_Re_Circle.Text;
-                resumption.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
-                Context.Resumptions.Add(resumption);
-            }
-            Context.SaveChanges();
 
-            //Add_Veto.Visibility = Visibility.Hidden;
-            //Add_SessionBtn.Visibility = Visibility.Visible;
-            Case.ResumeCase resumeCase = new ResumeCase(type, case_num.ToString());
-            Close();
-            resumeCase.ShowDialog();
+                long res_veto_num;
+                if (!long.TryParse(Res_Num.Text, out res_veto_num))
+                {
+                    MessageBox.Show("يجب اضافة رقم ال" + GboxHeader.Text);
+                    return;
+                }
+
+                if (((Button)sender).Content.ToString() == "اضافة استئناف")
+                {
+                    Models.veto veto = new veto();
+                    veto.ID_Case = case_num;
+                    veto.ID_veto = res_veto_num;
+                    veto.Circle = Veto_Re_Circle.Text;
+                    veto.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
+                    Context.vetoes.Add(veto);
+                }
+                else
+                {
+                    Models.Resumption resumption = new Resumption();
+                    resumption.ID_Case = case_num;
+                    resumption.ID_Resumption = res_veto_num;
+                    resumption.Circle = Veto_Re_Circle.Text;
+                    resumption.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
+                    Context.Resumptions.Add(resumption);
+                }
+                Context.SaveChanges();
+
+                Case.ResumeCase resumeCase = new ResumeCase(type, case_num.ToString());
+                Close();
+                resumeCase.ShowDialog();
+            }
         }
 
         private void Add_SessionBtn_Click(object sender, RoutedEventArgs e)
