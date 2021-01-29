@@ -145,9 +145,9 @@
 
                                     <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock Text="الاعلان:" FontSize="10" Foreground="LightSlateGray"/>
-                                        <CheckBox Tag="{Binding Judgement_ID}" IsChecked="{Binding Is_Done}"
-                                            Foreground="White" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked" 
-                                            FontSize="12px"/>
+                                        <CheckBox Tag="{Binding Judgement_ID}" IsChecked="False"
+                                            Foreground="White" Checked="CheckBox_Checked"  
+                                            FontSize="12px" />
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>

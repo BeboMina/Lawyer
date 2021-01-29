@@ -124,9 +124,17 @@ namespace Lawyer.Case
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            int judgement_id = int.Parse(((CheckBox)sender).Tag.ToString());
-
-            // do what you want on the judgement with that judgement id 
+          /*  int judgement_id = int.Parse(((CheckBox)sender).Tag.ToString());
+            string message = "تاكيد بداء فى الاجرارات الاعلان ";
+            string title = "حفظ";
+            MessageBoxButton buttons = MessageBoxButton.YesNo;
+            MessageBoxResult result = MessageBox.Show(message, title, buttons);
+            if (result == MessageBoxResult.Yes)
+            {
+                Models.Jadge jadge = Context.Jadges.FirstOrDefault(J => J.ID == judgement_id);
+                jadge.Execute = true;
+                Context.SaveChanges();
+            }*/
         }
 
         public class SessionNotification
