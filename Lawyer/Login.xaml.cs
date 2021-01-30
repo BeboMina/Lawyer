@@ -31,9 +31,9 @@ namespace Lawyer
 
         private void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
-            ComboBoxItem item = (ComboBoxItem)TypeCombo.SelectedItem;
+           
 
-            if(item.Content.ToString() == "Admin")
+            if(Button2.IsChecked==true)
             {
                 if(UserName.Text != "admin" || Password.Password != "123")
                 {
@@ -41,7 +41,7 @@ namespace Lawyer
                     return;
                 }
             }
-            else
+            else if(Button1.IsChecked==true)
             {
                 if(main == null)
                 {
@@ -54,6 +54,11 @@ namespace Lawyer
                     MessageBox.Show("Wrong User Name or Password!");
                     return;
                 }
+            }
+            else
+            {
+                MessageBox.Show(" admin او user اختار اذ كنت");
+                return;
             }
 
             login = true;

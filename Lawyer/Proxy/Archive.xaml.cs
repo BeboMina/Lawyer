@@ -74,7 +74,7 @@ namespace Lawyer.Proxy
             try
             {
 
-                if (GridView_Notes.SelectedItem != null)
+                if (GridView_Bills.SelectedItem != null)
                 {
                     string message = "تاكيد حزف الملفات";
                     string title = "حفظ";
@@ -82,8 +82,7 @@ namespace Lawyer.Proxy
                     MessageBoxResult result = System.Windows.MessageBox.Show(message, title, buttons);
                     if (result == MessageBoxResult.Yes)
                     {
-                        Models.Fils_Fees fils_Fees = new Models.Fils_Fees();
-                        fils_Fees = fils_Feess.ElementAt(GridView_Bills.SelectedIndex);
+                        Models.Fils_Fees fils_Fees = (Models.Fils_Fees)GridView_Bills.SelectedItem;
                         Context.Fils_Fees.Remove(fils_Fees);
                         Context.SaveChanges();
                         fils_Feess = Context.Fils_Fees.ToList();
@@ -129,8 +128,7 @@ namespace Lawyer.Proxy
                 FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
                 if(folderBrowser.ShowDialog()==DialogResult.OK)
                 {
-                    Models.Fils_Fees fils_Fees = new Models.Fils_Fees();
-                    fils_Fees = fils_Feess.ElementAt(GridView_Bills.SelectedIndex);
+                    Models.Fils_Fees fils_Fees = (Models.Fils_Fees)GridView_Bills.SelectedItem;
                     string folder = folderBrowser.SelectedPath;
                     string name = fils_Fees.Title + fils_Fees.Extantion;
                     byte[] data = fils_Fees.Data;
@@ -181,6 +179,7 @@ namespace Lawyer.Proxy
         {
             try
             {
+                
                 if (GridView_Notes.SelectedItem != null)
                 {
                     string message = "تاكيد حزف الملفات";
@@ -189,8 +188,7 @@ namespace Lawyer.Proxy
                     MessageBoxResult result = System.Windows.MessageBox.Show(message, title, buttons);
                     if (result == MessageBoxResult.Yes)
                     {
-                        Models.Files_Saved files_Saved = new Models.Files_Saved();
-                        files_Saved = files_Saveds.ElementAt(GridView_Notes.SelectedIndex);
+                        Models.Files_Saved files_Saved = (Models.Files_Saved)GridView_Notes.SelectedItem;
                         Context.Files_Saved.Remove(files_Saved);
                         Context.SaveChanges();
                         files_Saveds = Context.Files_Saved.ToList();
@@ -213,13 +211,13 @@ namespace Lawyer.Proxy
         {
             try
             {
-                if (SearchBillsTxt.Text == "")
+                if (SearchNotesTxt.Text == "")
                 {
                     files_Saveds = Context.Files_Saved.ToList();
                 }
                 else
                 {
-                    files_Saveds = Context.Files_Saved.Where(F => F.Title.Contains(SearchBillsTxt.Text)).ToList();
+                    files_Saveds = Context.Files_Saved.Where(F => F.Title.Contains(SearchNotesTxt.Text)).ToList();
                 }
                 GridView_Notes.ItemsSource = files_Saveds;
             }
@@ -233,11 +231,11 @@ namespace Lawyer.Proxy
         {
             try
             {
+                
                 FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
                 if (folderBrowser.ShowDialog() == DialogResult.OK)
                 {
-                    Models.Files_Saved files_Saved = new Models.Files_Saved();
-                    files_Saved = files_Saveds.ElementAt(GridView_Notes.SelectedIndex);
+                    Models.Files_Saved files_Saved = (Models.Files_Saved)GridView_Notes.SelectedItem;
                     string folder = folderBrowser.SelectedPath;
                     string name = files_Saved.Title + files_Saved.Extantion;
                     byte[] data = files_Saved.Data;

@@ -38,34 +38,36 @@ namespace Lawyer.Case
 
 
             sessions = Context.Sessions.Where(S=>S.NextDate.Value.Year==DateTime.Now.Year).ToList();
-            foreach(var sess in sessions)
+            foreach(var item in sessions)
             {
-                string Next_Date = sess.NextDate.Value.ToShortDateString();
+                string Next_Date = item.NextDate.Value.ToShortDateString();
                 
                 if(Next_Date==Now_Date)
                 {
-                    SessionNotification sessionNotification = new SessionNotification();
-                    Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == sess.IDCase);
-                    Models.Client_Case client_Case = Context.Client_Case.FirstOrDefault(C => C.IDCase == sess.IDCase);
-                    Models.Client client;
-                    if(client_Case!=null)
+                    
+                    Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == item.IDCase);
+                    Models.veto veto = Context.vetoes.FirstOrDefault(V => V.ID_veto == item.IDCase);
+                    Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Resumption == item.IDCase);
+                    if (@case != null)
                     {
-                        client = Context.Clients.FirstOrDefault(C => C.ID == client_Case.IDClient);
-                        sessionNotification.Case_Number = sess.IDCase;
-                        sessionNotification.Circle = @case.Circle;
-                        sessionNotification.Client_Name = client.Name;
-                        sessionNotification.Court = sess.Jadge;
-                        sessionNotification.Next_Date = sess.NextDate.Value;
-                        sessionNotification.Time = sess.Timer;
-                        sessionNotifications.Add(sessionNotification);
+                        FillListSession(item,@case.Circle,@case.ID);
+                    }
+                    else if (veto != null)
+                    {
+                        FillListSession(item, veto.Circle, (long)veto.ID_Case);
+                    }
+                    else if(resumption!=null)
+                    {
+                        FillListSession(item, resumption.Circle, (long)resumption.ID_Case);
                     }
                 }
             }
             jadges = Context.Jadges.Where(J => J.Execute == false).ToList();
             foreach(var item in jadges)
             {
-                string Date_Jadge = item.Date.Value.AddDays(14).ToShortDateString();
-                if(Now_Date==Date_Jadge)
+                DateTime Date_Jadge = item.Date.Value.AddDays(14);
+                int result = DateTime.Compare(Date_Jadge, DateTime.Now.Date);
+                if (result<=0)
                 {
                     
                     Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID_jadge == item.ID);
@@ -78,15 +80,12 @@ namespace Lawyer.Case
                     else if (veto != null)
                     {
 
-
                         @case = Context.Cases.FirstOrDefault(C => C.ID == veto.ID_Case);
                         FillData(@case.ID, item, veto.ID_veto);
 
                     }
                     else if (resumption != null)
                     {
-
-
                         @case = Context.Cases.FirstOrDefault(C => C.ID == resumption.ID_Case);
                         FillData(@case.ID, item, resumption.ID_Resumption);
                     }
@@ -95,8 +94,24 @@ namespace Lawyer.Case
             SessionsList.ItemsSource = sessionNotifications;
             AnnouncesList.ItemsSource = announceNotifications;
 
-            // fill the lists with data like this
-            //sessionNotifications.Add(new SessionNotification() { Case_Number = 24, Client_Name = "mina" });
+        }
+
+        private void FillListSession(Models.Session sess,string circle,long num_Case)
+        {
+            SessionNotification sessionNotification = new SessionNotification();
+            Models.Client_Case client_Case = Context.Client_Case.FirstOrDefault(C => C.IDCase == num_Case);
+            if (client_Case != null)
+            {
+                Models.Client client;
+                client = Context.Clients.FirstOrDefault(C => C.ID == client_Case.IDClient);
+                sessionNotification.Case_Number = sess.IDCase;
+                sessionNotification.Circle = circle;
+                sessionNotification.Client_Name = client.Name;
+                sessionNotification.Court = sess.Jadge;
+                sessionNotification.Next_Date = sess.NextDate.Value;
+                sessionNotification.Time = sess.Timer;
+                sessionNotifications.Add(sessionNotification);
+            }
         }
 
         private void FillData(long Num_Case,Models.Jadge item,long Num=-1)
@@ -112,6 +127,7 @@ namespace Lawyer.Case
                 announceNotification.Date = item.Date.Value;
                 announceNotification.Is_Done = item.Done.Value;
                 announceNotification.Judgement = item.Notes;
+                announceNotification.Judgement_ID = Convert.ToInt32( item.ID);
                 announceNotifications.Add(announceNotification);
             }
 
@@ -124,7 +140,7 @@ namespace Lawyer.Case
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-          /*  int judgement_id = int.Parse(((CheckBox)sender).Tag.ToString());
+            int judgement_id = int.Parse(((CheckBox)sender).Tag.ToString());
             string message = "تاكيد بداء فى الاجرارات الاعلان ";
             string title = "حفظ";
             MessageBoxButton buttons = MessageBoxButton.YesNo;
@@ -134,7 +150,7 @@ namespace Lawyer.Case
                 Models.Jadge jadge = Context.Jadges.FirstOrDefault(J => J.ID == judgement_id);
                 jadge.Execute = true;
                 Context.SaveChanges();
-            }*/
+            }
         }
 
         public class SessionNotification
