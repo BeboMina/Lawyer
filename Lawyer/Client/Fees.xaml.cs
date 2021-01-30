@@ -101,8 +101,7 @@ namespace Lawyer.Client
                     MessageBoxResult result = System.Windows.MessageBox.Show(message, title, buttons);
                     if (result == MessageBoxResult.Yes)
                     {
-                        Models.Fils_Fees fils_Fees = new Models.Fils_Fees();
-                        fils_Fees = fils_Feess.ElementAt(GridView_Bills.SelectedIndex);
+                        Models.Fils_Fees fils_Fees = (Models.Fils_Fees)GridView_Bills.SelectedItem;
                         Context.Fils_Fees.Remove(fils_Fees);
                         Context.SaveChanges();
                         fils_Feess = Context.Fils_Fees.ToList();
@@ -151,8 +150,7 @@ namespace Lawyer.Client
                 FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
                 if (folderBrowser.ShowDialog() == DialogResult.OK)
                 {
-                    Models.Fils_Fees fils_Fees = new Models.Fils_Fees();
-                    fils_Fees = fils_Feess.ElementAt(GridView_Bills.SelectedIndex);
+                    Models.Fils_Fees fils_Fees = (Models.Fils_Fees)GridView_Bills.SelectedItem;
                     string folder = folderBrowser.SelectedPath;
                     string name = fils_Fees.Title + fils_Fees.Extantion;
                     byte[] data = fils_Fees.Data;
