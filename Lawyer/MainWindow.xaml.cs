@@ -98,15 +98,14 @@ namespace Lawyer
                     TitleTxt.Text = "الدعاوي";
                     break;
 
-                case "ItemLawyers":
-                    //usc = new Clients();
-                    //gridMain.Children.Add(usc);
-                    TitleTxt.Text = "المحامين";
-                    break;
-
                 case "ItemProxies":
                     main.Navigate(new Proxy.Proxies());
                     TitleTxt.Text = "التوكيلات";
+                    break;
+
+                case "ItemLawyers":
+                    main.Navigate(new Staff.Staff());
+                    TitleTxt.Text = "طقم العمل";
                     break;
 
                 case "ItemBills":

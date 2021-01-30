@@ -1,0 +1,67 @@
+﻿<Window x:Class="Lawyer.Staff.AddTask"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lawyer.Staff"
+        mc:Ignorable="d"
+        Title="AddTask" FontSize="18" Height="270" Width="800" Foreground="White"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        FlowDirection="RightToLeft" WindowStyle="None">
+
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Lawyer;component/Css/MyStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+
+    <Grid>
+        <GroupBox Style="{StaticResource MicrosoftGroupBox}">
+            <GroupBox.Header>
+                <Grid>
+                    <TextBlock x:Name="GboxHeader" Text="اضافة مهمة" 
+                               FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Button x:Name="CloseBtn" Content="X" 
+                            Style="{StaticResource btnColored}" Width="40"
+                            HorizontalAlignment="Right" Click="CloseBtn_Click"/>
+                </Grid>
+            </GroupBox.Header>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="10">
+                    <TextBlock Text="من" FontSize="12" Margin="0 10 0 0"/>
+                    <DatePicker Width="200" Height="35" HorizontalAlignment="Left" Name="Task_Start"/>
+                    <TextBlock Text="إلي" FontSize="12" Margin="0 10 0 0"/>
+                    <DatePicker Width="200" Height="35" HorizontalAlignment="Left" Name="Task_End"/>
+                </StackPanel>
+
+                <StackPanel Margin="10" Grid.Column="1">
+                    <TextBlock Text="المهمة" FontSize="12" Margin="0 10 0 0" />
+                    <RichTextBox Height="70" Width="350" 
+                                 HorizontalAlignment="Left" 
+                                 VerticalScrollBarVisibility="Auto" Name="Task_Lawyer">
+                        <RichTextBox.Resources >
+                            <Style TargetType="{x:Type Paragraph}">
+                                <Setter Property="Margin" Value="0 0 0 5" />
+                            </Style>
+                        </RichTextBox.Resources>
+                    </RichTextBox>
+                    <Button Height="40" Width="120"
+                            Margin="30" HorizontalAlignment="Right" 
+                            Style="{StaticResource NewGameButtonStyle}" 
+                            Click="Save_Task"
+                            >
+                        <TextBlock Text="حفظ" TextAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
