@@ -71,6 +71,7 @@ namespace Lawyer.Proxy
         {
             try
             {
+                
                 if (GridView_Notes.SelectedItem != null)
                 {
                     string message = "تاكيد حزف الملفات";
@@ -79,8 +80,7 @@ namespace Lawyer.Proxy
                     MessageBoxResult result = System.Windows.MessageBox.Show(message, title, buttons);
                     if (result == MessageBoxResult.Yes)
                     {
-                        Models.Files_Saved files_Saved = new Models.Files_Saved();
-                        files_Saved = files_Saveds.ElementAt(GridView_Notes.SelectedIndex);
+                        Models.Files_Saved files_Saved = (Models.Files_Saved)GridView_Notes.SelectedItem;
                         Context.Files_Saved.Remove(files_Saved);
                         Context.SaveChanges();
                         files_Saveds = Context.Files_Saved.ToList();
@@ -126,11 +126,11 @@ namespace Lawyer.Proxy
 
             try
             {
+                
                 FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
                 if (folderBrowser.ShowDialog() == DialogResult.OK)
                 {
-                    Models.Files_Saved files_Saved = new Models.Files_Saved();
-                    files_Saved = files_Saveds.ElementAt(GridView_Notes.SelectedIndex);
+                    Models.Files_Saved files_Saved = (Models.Files_Saved)GridView_Notes.SelectedItem;
                     string folder = folderBrowser.SelectedPath;
                     string name = files_Saved.Title + files_Saved.Extantion;
                     byte[] data = files_Saved.Data;

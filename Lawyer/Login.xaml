@@ -36,18 +36,18 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <ComboBox x:Name="TypeCombo" Grid.Row="0" Foreground="Black" Margin="10" Width="200">
-                    <ComboBoxItem IsSelected="True">Admin</ComboBoxItem>
-                    <ComboBoxItem>User</ComboBoxItem>
-                </ComboBox>
+                <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Left" Width="232">
+                    <RadioButton GroupName="certification" Foreground="White" Margin="0 0 70 0" VerticalContentAlignment="Center" Name="Button1">User</RadioButton>
+                    <RadioButton GroupName="certification" Foreground="White" Margin="0 0 70 0" VerticalContentAlignment="Center" Name="Button2">Admin</RadioButton>
+                </StackPanel>
 
                 <StackPanel Margin="10" Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="الاسم"/>
+                    <TextBlock Text="اسم المتخدم"/>
                     <TextBox x:Name="UserName" Width="200" Margin ="30 0"/>
                 </StackPanel>
                 <StackPanel Margin="10" Orientation="Horizontal" Grid.Row="2">
                     <TextBlock Text="الباسورد"/>
-                    <PasswordBox x:Name="Password" Width="200" Margin ="10 0"/>
+                    <PasswordBox x:Name="Password" Width="200" Margin ="60 0"/>
                 </StackPanel>
 
                 <Button x:Name="SignInBtn" Content="دخول" Grid.Row="3" Style="{StaticResource btnColored}"

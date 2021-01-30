@@ -65,7 +65,7 @@ namespace Lawyer.Case
                 }
                 else
                 {
-                    string message = "تاكيد حفظ بيانات الجلسة";
+                    string message = "تاكيد حفظ بيانات الحكم";
                     string title = "حفظ";
                     MessageBoxButton buttons = MessageBoxButton.YesNo;
                     MessageBoxResult result = System.Windows.MessageBox.Show(message, title, buttons);
@@ -88,23 +88,23 @@ namespace Lawyer.Case
                         Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == NumOFCase);
                         Models.veto veto = Context.vetoes.FirstOrDefault(V => V.ID_veto == NumOFCase);
                         Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Resumption == NumOFCase);
-                        if (@case != null)
+                        if (index==0&&@case != null)
                         {
                             @case.ID_jadge = jadge.ID;
                             Context.SaveChanges();
-                            return;
+                            
                         }
-                        else if (veto != null)
+                        else if (index==1&&veto != null)
                         {
                             veto.ID_Jadge = jadge.ID;
                             Context.SaveChanges();
-                            return;
+                            
                         }
-                        else if (resumption != null)
+                        else if (index==2&&resumption != null)
                         {
                             resumption.ID_Jadge = jadge.ID;
                             Context.SaveChanges();
-                            return;
+                            
                         }
                         Close();
                     }

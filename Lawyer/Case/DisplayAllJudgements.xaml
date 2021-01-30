@@ -35,14 +35,14 @@
                         AutoGenerateColumns="False">
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="رقم القضية" Binding="{Binding Case_Number}">
+                        <DataGridTextColumn Header="رقم القضية" Binding="{Binding NumberCase}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="اسم العميل" Binding="{Binding Client_Name}">
+                        <DataGridTextColumn Header="اسم العميل" Binding="{Binding NameClient}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -63,7 +63,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="التنفيذ" Binding="{Binding Done}">
+                        <DataGridTextColumn Header="التنفيذ" Binding="{Binding Excute}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />
