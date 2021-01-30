@@ -77,6 +77,15 @@
     <Compile Include="Case\ResumeCase.xaml.cs">
       <DependentUpon>ResumeCase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Client\AddFees.xaml.cs">
+      <DependentUpon>AddFees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Client\DisplayFees.xaml.cs">
+      <DependentUpon>DisplayFees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Fees.xaml.cs">
+      <DependentUpon>Fees.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -194,11 +203,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Client\AddFees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Client\Clients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Client\DisplayClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Client\DisplayFees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Client\Fees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -341,6 +362,7 @@
     <Resource Include="Assets\archive.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\bills.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

@@ -38,8 +38,8 @@ namespace Lawyer.Proxy
 
         private void DataGrid_Proxies_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Proxy.DisplayProxy displayProxy = new DisplayProxy();
-            displayProxy.ShowDialog();
+            //Proxy.DisplayProxy displayProxy = new DisplayProxy();
+            //displayProxy.ShowDialog();
         }
     }
 }

@@ -109,13 +109,18 @@ namespace Lawyer
                     TitleTxt.Text = "التوكيلات";
                     break;
 
-                case "ItemArchive":
+                case "ItemBills":
                     Login login = new Login(null);
                     login.ShowDialog();
                     if (!login.login)
                         break;
+                    main.Navigate(new Client.Fees());
+                    TitleTxt.Text = "الاتعاب";
+                    break;
+
+                case "ItemArchive":
                     main.Navigate(new Proxy.Archive());
-                    TitleTxt.Text = "المذكرات / الاتعاب";
+                    TitleTxt.Text = "المذكرات";
                     break;
 
                 default:

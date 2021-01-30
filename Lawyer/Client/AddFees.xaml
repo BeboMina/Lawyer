@@ -1,0 +1,71 @@
+﻿<Window x:Class="Lawyer.Client.AddFees"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lawyer.Client"
+        mc:Ignorable="d"
+        Title="AddFees" FontSize="18" Height="320" Width="700" Foreground="White"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        FlowDirection="RightToLeft" WindowStyle="None">
+
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Lawyer;component/Css/MyStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+
+    <Grid>
+        <GroupBox Style="{StaticResource MicrosoftGroupBox}">
+            <GroupBox.Header>
+                <Grid>
+                    <TextBlock x:Name="GboxHeader" Text="اضافة مدفوعات" 
+                               FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Button x:Name="CloseBtn" Content="X" 
+                            Style="{StaticResource btnColored}" Width="40"
+                            HorizontalAlignment="Right" Click="CloseBtn_Click"/>
+                </Grid>
+            </GroupBox.Header>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="10">
+                    <TextBlock Text="التاريخ" FontSize="12"/>
+                    <DatePicker Width="200" Height="35" HorizontalAlignment="Left" Name="Fee_Date"/>
+                    <TextBlock Text="المبلغ المدفوع" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBox Width="200"  Height="35" HorizontalAlignment="Left" Name="Paid_Amount"/>
+                    <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />
+                    <RichTextBox Height="70" Width="300" 
+                                 HorizontalAlignment="Left" 
+                                 VerticalScrollBarVisibility="Auto"
+                                 Name="Notes">
+                        <RichTextBox.Resources >
+                            <Style TargetType="{x:Type Paragraph}">
+                                <Setter Property="Margin" Value="0 0 0 5" />
+                            </Style>
+                        </RichTextBox.Resources>
+                    </RichTextBox>
+                </StackPanel>
+
+                <StackPanel Margin="10" Grid.Column="1">
+                    <TextBlock Text="اسم العميل" FontSize="12"/>
+                    <Grid>
+                        <ComboBox Width="200" Height="35" HorizontalAlignment="Left" Name="Client_Name" Foreground="Black" SelectionChanged="Client_Name_SelectionChanged"/>
+                        <TextBox Width="200"  Height="35" HorizontalAlignment="Left" Name="Client_Name_Txt" IsReadOnly="True" Visibility="Collapsed"/>
+                    </Grid>
+                    <Button Height="40" Width="120"
+                            Margin="30 90" HorizontalAlignment="Right" 
+                            Style="{StaticResource NewGameButtonStyle}" Click="Button_Click">
+                        <TextBlock Text="حفظ" TextAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

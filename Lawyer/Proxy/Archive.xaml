@@ -22,138 +22,55 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Style="{StaticResource GroupBoxWithCenteredHeader}" Grid.Column="0" Margin="15">
-            <GroupBox.Header>
-                <TextBlock Text="الفواتير" FontWeight="Bold" Foreground="White"/>
-            </GroupBox.Header>
+        <StackPanel Grid.Column="0">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Button x:Name="AddBillBtn" Content="اضافة اتعاب" 
-                    HorizontalAlignment="Center" FontSize="16" Margin="0 10"
-                    VerticalAlignment="Center" Width="150" Height="45"
-                    Click="AddBillBtn_Click"
-                    Style="{StaticResource OrangeButton}"/>
-
-                    <Button x:Name="RemoveBillBtn" Content="حذف اتعاب" 
-                    HorizontalAlignment="Center" FontSize="16"
-                    VerticalAlignment="Center" Width="150" Height="45"
-                    Click="RemoveBillBtn_Click"  Margin="0 10"
-                    Style="{StaticResource OrangeButton}" Grid.Column="1"/>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <TextBox x:Name="SearchBillsTxt"  FontSize="18"
+                <TextBox x:Name="SearchNotesTxt"  FontSize="18" Margin="0 50"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center" Width="200" Height="35"
-                         TextChanged="SearchBillsTxt_TextChanged"
+                         TextChanged="SearchNotesTxt_TextChanged"
                          />
-                    <TextBlock IsHitTestVisible="False" Text="بحث بالاسم ..." VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,100,0" Foreground="DarkGray">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Text, ElementName=SearchBillsTxt}" Value="">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                </Grid>
-
-                <DataGrid Grid.Row="2" Style="{StaticResource CustomDataGrid}" 
-                  ItemsSource="{Binding}" AutoGenerateColumns="False"
-                  Margin="40" IsReadOnly="True" MouseDoubleClick="GridView_Bills_MouseDoubleClick"
-                  Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Bills">
-
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="اسم الملف" Binding="{Binding Title}">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <TextBlock IsHitTestVisible="False" Text="بحث بالاسم ..." VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,100,0" Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=SearchNotesTxt}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </Grid>
-        </GroupBox>
-
-        <GroupBox Style="{StaticResource GroupBoxWithCenteredHeader}" Grid.Column="1" Margin="15">
-            <GroupBox.Header>
-                <TextBlock Text="المذكرات" FontWeight="Bold" Foreground="White"/>
-            </GroupBox.Header>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Button x:Name="AddNoteBtn" Content="اضافة مذكرة" 
+            
+            <Button x:Name="AddNoteBtn" Content="اضافة مذكرة" 
                     HorizontalAlignment="Center" FontSize="16" Margin="0 10"
                     VerticalAlignment="Center" Width="150" Height="45"
                     Click="AddNoteBtn_Click"
                     Style="{StaticResource OrangeButton}"/>
 
-                    <Button x:Name="RemoveNoteBtn" Content="حذف مذكرة" 
+            <Button x:Name="RemoveNoteBtn" Content="حذف مذكرة" 
                     HorizontalAlignment="Center" FontSize="16"
                     VerticalAlignment="Center" Width="150" Height="45"
                     Click="RemoveNoteBtn_Click"  Margin="0 10"
                     Style="{StaticResource OrangeButton}" Grid.Column="1"/>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <TextBox x:Name="SearchNotesTxt"  FontSize="18"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center" Width="200" Height="35"
-                         TextChanged="SearchNotesTxt_TextChanged"
-                         />
-                    <TextBlock IsHitTestVisible="False" Text="بحث بالاسم ..." VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,100,0" Foreground="DarkGray">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Text, ElementName=SearchNotesTxt}" Value="">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                </Grid>
+        </StackPanel>
 
-                <DataGrid Grid.Row="2" Style="{StaticResource CustomDataGrid}" 
-                  ItemsSource="{Binding}" AutoGenerateColumns="False"
-                  Margin="40" IsReadOnly="True" MouseDoubleClick="GridView_Notes_MouseDoubleClick"
-                  Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Notes">
+        <DataGrid Grid.Column="1" Style="{StaticResource CustomDataGrid}" 
+                      ItemsSource="{Binding}" AutoGenerateColumns="False"
+                      Margin="40" IsReadOnly="True" MouseDoubleClick="GridView_Notes_MouseDoubleClick"
+                      Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Notes">
 
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="اسم الملف" Binding="{Binding Title}">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </GroupBox>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="اسم الملف" Binding="{Binding Title}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
+
 </Page>

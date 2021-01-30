@@ -16,24 +16,45 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Lawyer.Proxy
+namespace Lawyer.Client
 {
     /// <summary>
-    /// Interaction logic for Archive.xaml
+    /// Interaction logic for Fees.xaml
     /// </summary>
-    public partial class Archive : Page
+    public partial class Fees : Page
     {
         testEntities Context = new testEntities();
-        List<Models.Files_Saved> files_Saveds;
-        public Archive()
+        List<Models.Fils_Fees> fils_Feess;
+
+        public Fees()
         {
             InitializeComponent();
-            
-            files_Saveds = Context.Files_Saved.ToList();
-            GridView_Notes.ItemsSource = files_Saveds;
+
+            fils_Feess = Context.Fils_Fees.ToList();
+            GridView_Bills.ItemsSource = fils_Feess;
         }
 
-        private void AddNoteBtn_Click(object sender, RoutedEventArgs e)
+        private void AddPaidBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Client.AddFees addFees = new AddFees();
+            addFees.ShowDialog();
+        }
+
+        private void SearchClientsTxt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void GridView_Client_Paid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (GridView_Client_Paid.SelectedItem == null)
+                return;
+
+            Client.DisplayFees displayFees = new DisplayFees();
+            displayFees.ShowDialog();
+        }
+
+        private void AddBillBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -47,17 +68,17 @@ namespace Lawyer.Proxy
                     MessageBoxResult result = System.Windows.MessageBox.Show(message, title, buttons);
                     if (result == MessageBoxResult.Yes)
                     {
-                        Models.Files_Saved files_Saved = new Models.Files_Saved();
+                        Models.Fils_Fees fils_Fees = new Models.Fils_Fees();
                         foreach (var item in open.FileNames)
                         {
-                            files_Saved.Data = File.ReadAllBytes(item);
-                            files_Saved.Title = System.IO.Path.GetFileNameWithoutExtension(item);
-                            files_Saved.Extantion = System.IO.Path.GetExtension(item);
-                            Context.Files_Saved.Add(files_Saved);
+                            fils_Fees.Data = File.ReadAllBytes(item);
+                            fils_Fees.Title = System.IO.Path.GetFileNameWithoutExtension(item);
+                            fils_Fees.Extantion = System.IO.Path.GetExtension(item);
+                            Context.Fils_Fees.Add(fils_Fees);
                             Context.SaveChanges();
                         }
-                        files_Saveds = Context.Files_Saved.ToList();
-                        GridView_Notes.ItemsSource = files_Saveds;
+                        fils_Feess = Context.Fils_Fees.ToList();
+                        GridView_Bills.ItemsSource = fils_Feess;
                     }
                 }
             }
@@ -67,11 +88,12 @@ namespace Lawyer.Proxy
             }
         }
 
-        private void RemoveNoteBtn_Click(object sender, RoutedEventArgs e)
+        private void RemoveBillBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (GridView_Notes.SelectedItem != null)
+
+                if (GridView_Bills.SelectedItem != null)
                 {
                     string message = "تاكيد حزف الملفات";
                     string title = "حفظ";
@@ -79,18 +101,18 @@ namespace Lawyer.Proxy
                     MessageBoxResult result = System.Windows.MessageBox.Show(message, title, buttons);
                     if (result == MessageBoxResult.Yes)
                     {
-                        Models.Files_Saved files_Saved = new Models.Files_Saved();
-                        files_Saved = files_Saveds.ElementAt(GridView_Notes.SelectedIndex);
-                        Context.Files_Saved.Remove(files_Saved);
+                        Models.Fils_Fees fils_Fees = new Models.Fils_Fees();
+                        fils_Fees = fils_Feess.ElementAt(GridView_Bills.SelectedIndex);
+                        Context.Fils_Fees.Remove(fils_Fees);
                         Context.SaveChanges();
-                        files_Saveds = Context.Files_Saved.ToList();
-                        GridView_Notes.ItemsSource = files_Saveds;
+                        fils_Feess = Context.Fils_Fees.ToList();
+                        GridView_Bills.ItemsSource = fils_Feess;
                     }
 
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show("اختار الملف اولا");
+                    System.Windows.MessageBox.Show("اختار الملق اولا");
                 }
             }
             catch (Exception ex)
@@ -99,19 +121,19 @@ namespace Lawyer.Proxy
             }
         }
 
-        private void SearchNotesTxt_TextChanged(object sender, TextChangedEventArgs e)
+        private void SearchBillsTxt_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
-                if (SearchNotesTxt.Text == "")
+                if (SearchBillsTxt.Text == "")
                 {
-                    files_Saveds = Context.Files_Saved.ToList();
+                    fils_Feess = Context.Fils_Fees.ToList();
                 }
                 else
                 {
-                    files_Saveds = Context.Files_Saved.Where(F => F.Title.Contains(SearchNotesTxt.Text)).ToList();
+                    fils_Feess = Context.Fils_Fees.Where(F => F.Title.Contains(SearchBillsTxt.Text)).ToList();
                 }
-                GridView_Notes.ItemsSource = files_Saveds;
+                GridView_Bills.ItemsSource = fils_Feess;
             }
             catch (Exception ex)
             {
@@ -119,9 +141,9 @@ namespace Lawyer.Proxy
             }
         }
 
-        private void GridView_Notes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void GridView_Bills_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (GridView_Notes.SelectedItem == null)
+            if (GridView_Bills.SelectedItem == null)
                 return;
 
             try
@@ -129,11 +151,11 @@ namespace Lawyer.Proxy
                 FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
                 if (folderBrowser.ShowDialog() == DialogResult.OK)
                 {
-                    Models.Files_Saved files_Saved = new Models.Files_Saved();
-                    files_Saved = files_Saveds.ElementAt(GridView_Notes.SelectedIndex);
+                    Models.Fils_Fees fils_Fees = new Models.Fils_Fees();
+                    fils_Fees = fils_Feess.ElementAt(GridView_Bills.SelectedIndex);
                     string folder = folderBrowser.SelectedPath;
-                    string name = files_Saved.Title + files_Saved.Extantion;
-                    byte[] data = files_Saved.Data;
+                    string name = fils_Fees.Title + fils_Fees.Extantion;
+                    byte[] data = fils_Fees.Data;
                     File.WriteAllBytes(folder + "\\" + name, data);
                 }
             }

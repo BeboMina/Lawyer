@@ -486,6 +486,37 @@
 
                         </ListViewItem>
 
+                        <!--// Bills //-->
+
+                        <ListViewItem HorizontalAlignment="Left" x:Name="ItemBills"
+                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                      >
+
+                            <StackPanel Orientation="Horizontal"
+                                        Width="230">
+
+                                <Image Source="Assets/bills.png"
+                                       Stretch="None"
+                                       Margin="12,0,0,0"/>
+
+                                <TextBlock Text="الاتعاب"
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+
+                            </StackPanel>
+
+                            <!--// Tooltip //-->
+
+                            <ListViewItem.ToolTip>
+
+                                <ToolTip x:Name="tt_bills"
+                                         Content="اتعاب"
+                                         Style="{StaticResource tt_style}"/>
+
+                            </ListViewItem.ToolTip>
+
+                        </ListViewItem>
+
                         <!--// Archive //-->
 
                         <ListViewItem HorizontalAlignment="Left" x:Name="ItemArchive"
@@ -499,7 +530,7 @@
                                        Stretch="None"
                                        Margin="12,0,0,0"/>
 
-                                <TextBlock Text="المذكرات/الاتعاب"
+                                <TextBlock Text="المذكرات"
                                            Margin="25,0,0,0"
                                            Style="{StaticResource font_style}"/>
 
@@ -510,7 +541,7 @@
                             <ListViewItem.ToolTip>
 
                                 <ToolTip x:Name="tt_archive"
-                                         Content="مذكرات/اتعاب" Width="110"
+                                         Content="مذكرات"
                                          Style="{StaticResource tt_style}"/>
 
                             </ListViewItem.ToolTip>
