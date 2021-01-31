@@ -61,7 +61,7 @@
                     </Grid>
                     <Button Height="40" Width="120"
                             Margin="30 90" HorizontalAlignment="Right" 
-                            Style="{StaticResource NewGameButtonStyle}" Click="Button_Click">
+                            Style="{StaticResource NewGameButtonStyle}" Click="Save_Button_Click">
                         <TextBlock Text="حفظ" TextAlignment="Center"/>
                     </Button>
                 </StackPanel>

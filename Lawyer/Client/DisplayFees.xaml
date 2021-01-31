@@ -42,7 +42,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="المبلغ المدفوع" Binding="{Binding Paid}">
+                        <DataGridTextColumn Header="المبلغ المدفوع" Binding="{Binding Quantity}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
