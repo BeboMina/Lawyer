@@ -167,6 +167,18 @@
     <Compile Include="Proxy\Proxies.xaml.cs">
       <DependentUpon>Proxies.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Staff\AddLawyer.xaml.cs">
+      <DependentUpon>AddLawyer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\AddTask.xaml.cs">
+      <DependentUpon>AddTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\DisplayStaff.xaml.cs">
+      <DependentUpon>DisplayStaff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\Staff.xaml.cs">
+      <DependentUpon>Staff.xaml</DependentUpon>
+    </Compile>
     <Page Include="Case\AddCase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -277,6 +289,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Proxy\Proxies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Staff\AddLawyer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Staff\AddTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Staff\DisplayStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Staff\Staff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

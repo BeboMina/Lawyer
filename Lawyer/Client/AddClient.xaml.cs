@@ -196,11 +196,6 @@ namespace Lawyer
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void Name_client_combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (action == "تعديل")
