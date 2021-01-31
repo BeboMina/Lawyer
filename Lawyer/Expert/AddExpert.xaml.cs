@@ -12,16 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Lawyer.Staff
+namespace Lawyer.Expert
 {
     /// <summary>
-    /// Interaction logic for DisplayStaff.xaml
+    /// Interaction logic for AddExpert.xaml
     /// </summary>
-    public partial class DisplayStaff : Window
+    public partial class AddExpert : Window
     {
-        public DisplayStaff()
+        public AddExpert(string action)
         {
             InitializeComponent();
+
+            if(action == "update")
+            {
+                GboxHeader.Text = "تعديل الخبير";
+                Case_Number_combo.Visibility = Visibility.Collapsed;
+                Case_Number.Visibility = Visibility.Visible;
+            }
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -29,13 +36,12 @@ namespace Lawyer.Staff
             Close();
         }
 
-        private void AddTaskBtn_Click(object sender, RoutedEventArgs e)
+        private void Case_Number_combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            AddTask addTask = new AddTask();
-            addTask.ShowDialog();
+
         }
 
-        private void Task_Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void Save_Expert(object sender, RoutedEventArgs e)
         {
 
         }

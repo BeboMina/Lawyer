@@ -38,6 +38,9 @@ namespace Lawyer
                 tt_Cases.Visibility = Visibility.Collapsed;
                 tt_Notifications.Visibility = Visibility.Collapsed;
                 tt_proxies.Visibility = Visibility.Collapsed;
+                tt_bills.Visibility = Visibility.Collapsed;
+                tt_Lawyers.Visibility = Visibility.Collapsed;
+                tt_experts.Visibility = Visibility.Collapsed;
                 tt_archive.Visibility = Visibility.Collapsed;
                 tt_signout.Visibility = Visibility.Collapsed;
             }
@@ -47,6 +50,9 @@ namespace Lawyer
                 tt_Cases.Visibility = Visibility.Visible;
                 tt_Notifications.Visibility = Visibility.Visible;
                 tt_proxies.Visibility = Visibility.Visible;
+                tt_experts.Visibility = Visibility.Visible;
+                tt_Lawyers.Visibility = Visibility.Visible;
+                tt_bills.Visibility = Visibility.Visible;
                 tt_archive.Visibility = Visibility.Visible;
                 tt_signout.Visibility = Visibility.Visible;
             }
@@ -120,6 +126,11 @@ namespace Lawyer
                 case "ItemArchive":
                     main.Navigate(new Proxy.Archive());
                     TitleTxt.Text = "المذكرات";
+                    break;
+
+                case "ItemExperts":
+                    main.Navigate(new Expert.Experts());
+                    TitleTxt.Text = "الخبراء";
                     break;
 
                 default:

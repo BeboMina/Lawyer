@@ -1,12 +1,12 @@
-﻿<Page x:Class="Lawyer.Staff.Staff"
+﻿<Page x:Class="Lawyer.Expert.Experts"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Lawyer.Staff"
+      xmlns:local="clr-namespace:Lawyer.Expert"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Staff" FontSize="16" FlowDirection="RightToLeft">
+      Title="Experts" FontSize="16" FlowDirection="RightToLeft">
 
     <FrameworkElement.Resources>
         <ResourceDictionary>
@@ -23,46 +23,21 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel>
-            <Grid>
-                <TextBox x:Name="SearchTxt"  FontSize="18" Margin="0 50"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center" Width="200" Height="35"
-                         TextChanged="SearchTxt_TextChanged"
-                         />
-                <TextBlock IsHitTestVisible="False" Text="اسم الموظف ..." VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,100,0" Foreground="DarkGray">
-                    <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Text, ElementName=SearchTxt}" Value="">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-            </Grid>
-
-            <Button x:Name="AddLawyerBtn" Content="اضافة موظف" 
-                    HorizontalAlignment="Center" FontSize="16" Margin="0 10"
+            <Button x:Name="AddExpertBtn" Content="اضافة خبير" 
+                    HorizontalAlignment="Center" FontSize="16" Margin="0 60"
                     VerticalAlignment="Top" Width="150" Height="45"
-                    Click="AddLawyerBtn_Click"
+                    Click="AddExpertBtn_Click"
                     Style="{StaticResource OrangeButton}"/>
 
-            <Button x:Name="UpdateLawyerBtn" Content="تعديل موظف" 
-                    HorizontalAlignment="Center" FontSize="16"
-                    VerticalAlignment="Top" Width="150" Height="45"
-                    Click="UpdateLawyerBtn_Click"  Margin="0 10"
-                    Style="{StaticResource OrangeButton}"/>
         </StackPanel>
 
         <DataGrid Grid.Column="1" Style="{StaticResource CustomDataGrid}" 
                   ItemsSource="{Binding}" AutoGenerateColumns="False"
-                  Margin="40" IsReadOnly="True" MouseDoubleClick="GridView_Staff_MouseDoubleClick"
-                  Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Staff">
+                  Margin="40" IsReadOnly="True" MouseDoubleClick="GridView_Expert_MouseDoubleClick"
+                  Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Expert">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="اسم الموظف" Binding="{Binding Name}">
+                <DataGridTextColumn Header="اسم الخبير" Binding="{Binding Name}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -76,21 +51,28 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="الايميل" Binding="{Binding Email}">
+                <DataGridTextColumn Header="رقم القضية" Binding="{Binding Case_Number}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="العنوان" Binding="{Binding Address}">
+                <DataGridTextColumn Header="ميعاد 1" Binding="{Binding Date_1, StringFormat= 'MM/dd/yyyy'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="ملاحظات" Width="auto" Binding="{Binding Notes}">
+                <DataGridTextColumn Header="ميعاد 2" Binding="{Binding Date_2, StringFormat= 'MM/dd/yyyy'}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="ميعاد 3" Binding="{Binding Date_3, StringFormat= 'MM/dd/yyyy'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
