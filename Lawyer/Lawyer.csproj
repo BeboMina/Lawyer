@@ -86,6 +86,12 @@
     <Compile Include="Client\Fees.xaml.cs">
       <DependentUpon>Fees.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Expert\AddExpert.xaml.cs">
+      <DependentUpon>AddExpert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Expert\Experts.xaml.cs">
+      <DependentUpon>Experts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -245,6 +251,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Expert\AddExpert.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Expert\Experts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -397,8 +411,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\bills.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Assets\experts.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

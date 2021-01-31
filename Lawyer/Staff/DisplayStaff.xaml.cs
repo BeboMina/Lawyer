@@ -49,5 +49,10 @@ namespace Lawyer.Staff
             AddTask addTask = new AddTask(stuff);
             addTask.ShowDialog();
         }
+
+        private void Task_Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
