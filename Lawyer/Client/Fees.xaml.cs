@@ -24,14 +24,38 @@ namespace Lawyer.Client
     public partial class Fees : Page
     {
         testEntities Context = new testEntities();
-        List<Models.Fils_Fees> fils_Feess;
-
+        List<Models.Fils_Fees> fils_Feess = new List<Fils_Fees>();
+        List<Models.Fee> fees = new List<Fee>();
+        Dictionary<string,float> fillDates = new Dictionary<string, float>();
+        List<FillDate> fillDates1 = new List<FillDate>();
         public Fees()
         {
             InitializeComponent();
 
             fils_Feess = Context.Fils_Fees.ToList();
+            fees = Context.Fees.ToList();
             GridView_Bills.ItemsSource = fils_Feess;
+            foreach(var item in fees)
+            {
+                if (fillDates.ContainsKey(item.IDClient))
+                {
+                    fillDates[item.IDClient] += (float)item.Quantity;
+                }
+                else
+                {
+                    fillDates.Add(item.IDClient, (float)item.Quantity);
+                }
+            }
+            foreach(var item in fillDates)
+            {
+                Models.Client client = Context.Clients.FirstOrDefault(C => C.ID == item.Key);
+                FillDate fillDate = new FillDate();
+                fillDate.ID = item.Key;
+                fillDate.Name = client.Name;
+                fillDate.Tole_Fee = item.Value;
+                fillDates1.Add(fillDate);
+            }
+            GridView_Client_Paid.ItemsSource = fillDates1;
         }
 
         private void AddPaidBtn_Click(object sender, RoutedEventArgs e)
@@ -49,8 +73,8 @@ namespace Lawyer.Client
         {
             if (GridView_Client_Paid.SelectedItem == null)
                 return;
-
-            Client.DisplayFees displayFees = new DisplayFees();
+            FillDate fillDate = (FillDate)GridView_Client_Paid.SelectedItem;
+            Client.DisplayFees displayFees = new DisplayFees(fillDate.ID);
             displayFees.ShowDialog();
         }
 
@@ -162,5 +186,11 @@ namespace Lawyer.Client
                 System.Windows.MessageBox.Show(ex.Message);
             }
         }
+    }
+    public class FillDate
+    {
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public float Tole_Fee { get; set; }
     }
 }

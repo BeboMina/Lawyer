@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lawyer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,13 @@ namespace Lawyer.Client
     /// </summary>
     public partial class DisplayFees : Window
     {
-        public DisplayFees()
+        testEntities Context = new testEntities();
+        List<Models.Fee> fees = new List<Fee>();
+        public DisplayFees(string Id)
         {
             InitializeComponent();
+            fees = Context.Fees.Where(F=>F.IDClient==Id).ToList();
+            PaidGrid.ItemsSource = fees;
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)

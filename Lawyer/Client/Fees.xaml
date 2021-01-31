@@ -72,7 +72,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="اجمالي المدفوعات" Binding="{Binding Paid}">
+                        <DataGridTextColumn Header="اجمالي المدفوعات" Binding="{Binding Tole_Fee}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
