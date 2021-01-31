@@ -39,7 +39,7 @@
                     
                     <StackPanel>
                         <TextBlock Text="بحث بالتاريخ" FontSize="12" Margin="0 10 0 0"/>
-                        <DatePicker Width="200" Height="35" HorizontalAlignment="Left" Name="Task_Date"/>
+                        <DatePicker Width="200" Height="35" HorizontalAlignment="Left" Name="Task_Date" />
                         <Button Content="اضافة مهمة" Height="40" Width="120" x:Name="AddTaskBtn"
                                 Margin="80" Style="{StaticResource btnColored}" Click="AddTaskBtn_Click"/>
                     </StackPanel>
@@ -54,21 +54,21 @@
                         Foreground="White" FontSize="16" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Session" AutoGenerateColumns="False">
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="من" Binding="{Binding from_date, StringFormat= 'MM/dd/yyyy'}">
+                            <DataGridTextColumn Header="من" Binding="{Binding Start_Date, StringFormat= 'MM/dd/yyyy'}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="إلي" Binding="{Binding to_date, StringFormat= 'MM/dd/yyyy'}">
+                            <DataGridTextColumn Header="إلي" Binding="{Binding End_Data, StringFormat= 'MM/dd/yyyy'}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="المهمة" Binding="{Binding task}">
+                            <DataGridTextColumn Header="المهمة" Binding="{Binding Notes}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />

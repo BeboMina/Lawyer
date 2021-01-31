@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lawyer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace Lawyer.Staff
     /// </summary>
     public partial class Staff : Page
     {
+        testEntities Context = new testEntities();
+        List<Models.Stuff> Stuffs = new List<Stuff>();
         public Staff()
         {
             InitializeComponent();
+            Stuffs = Context.Stuffs.ToList();
+            GridView_Staff.ItemsSource = Stuffs;
         }
 
         private void SearchTxt_TextChanged(object sender, TextChangedEventArgs e)
@@ -46,8 +51,8 @@ namespace Lawyer.Staff
         {
             if (GridView_Staff.SelectedItem == null)
                 return;
-
-            DisplayStaff displayStaff = new DisplayStaff();
+            Models.Stuff stuff = (Models.Stuff)GridView_Staff.SelectedItem;
+            DisplayStaff displayStaff = new DisplayStaff(stuff);
             displayStaff.ShowDialog();
         }
     }

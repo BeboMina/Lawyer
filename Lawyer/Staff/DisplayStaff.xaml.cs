@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lawyer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,23 @@ namespace Lawyer.Staff
     /// </summary>
     public partial class DisplayStaff : Window
     {
-        public DisplayStaff()
+        testEntities Context = new testEntities();
+        Models.Stuff stuff = new Stuff();
+        List<Models.Task> tasks = new List<Models.Task>();
+        public DisplayStaff(Models.Stuff stuff1)
         {
             InitializeComponent();
+            try
+            {
+                stuff = stuff1;
+                tasks = Context.Tasks.Where(T => T.Stuff_ID == stuff.ID).ToList();
+                Name_Lawyer.Text = stuff.Name;
+                GridView_Session.ItemsSource = tasks;
+            }
+            catch(Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -31,7 +46,7 @@ namespace Lawyer.Staff
 
         private void AddTaskBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddTask addTask = new AddTask();
+            AddTask addTask = new AddTask(stuff);
             addTask.ShowDialog();
         }
     }

@@ -4,24 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3470b001afd7437e95a2e63cd35866c3" Name="Diagram1">
+      <Diagram DiagramId="c9831ef8753b4c369f6e93d41395e5f3" Name="Diagram1">
         <EntityTypeShape EntityType="testModel.Case" Width="1.5" PointX="5.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Client" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Client_Case" Width="1.5" PointX="8" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Fee" Width="1.5" PointX="10.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Files_Saved" Width="1.5" PointX="10.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Fee" Width="1.5" PointX="10.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Files_Saved" Width="1.5" PointX="10.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.FilesCas" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.FilesProcuration" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Fils_Fees" Width="1.5" PointX="10.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Jadge" Width="1.5" PointX="10.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Fils_Fees" Width="1.5" PointX="10.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Jadge" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Lawery" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Lawery_Session" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Procuration" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Resumption" Width="1.5" PointX="8" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Session" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Stuff" Width="1.5" PointX="10.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Task" Width="1.5" PointX="13" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.veto" Width="1.5" PointX="8" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.View_1" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.ViewClient_Pro" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.ViewClient_Pro" Width="1.5" PointX="2.75" PointY="13" IsExpanded="true" />
         <AssociationConnector Association="testModel.FK_Client_Case_Cases" ManuallyRouted="false" />
         <AssociationConnector Association="testModel.FK_Resumption_Resumption" ManuallyRouted="false" />
         <AssociationConnector Association="testModel.FK_veto_Cases" ManuallyRouted="false" />
@@ -32,6 +34,7 @@
         <AssociationConnector Association="testModel.FK_Procuration_Lawery" ManuallyRouted="false" />
         <AssociationConnector Association="testModel.FK_Lawery_Session_Lawery_Session" ManuallyRouted="false" />
         <AssociationConnector Association="testModel.FK_Sessions_Sessions" ManuallyRouted="false" />
+        <AssociationConnector Association="testModel.FK_Tasks_Stuff" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

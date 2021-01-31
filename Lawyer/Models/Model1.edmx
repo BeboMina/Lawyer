@@ -158,6 +158,28 @@ warning 6013: The table/view 'test.dbo.Login' does not have a primary key define
           <Property Name="Notes" Type="nvarchar(max)" />
           <Property Name="Timer" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Stuff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Salar" Type="float" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="phone" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Start_Date" Type="date" />
+          <Property Name="End_Data" Type="date" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="Stuff_ID" Type="bigint" />
+        </EntityType>
         <EntityType Name="veto">
           <Key>
             <PropertyRef Name="ID_veto" />
@@ -300,6 +322,18 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tasks_Stuff">
+          <End Role="Stuff" Type="Self.Stuff" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stuff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="Stuff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_veto_Cases">
           <End Role="Cases" Type="Self.Cases" Multiplicity="0..1" />
           <End Role="veto" Type="Self.veto" Multiplicity="*" />
@@ -327,6 +361,8 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Procuration" EntityType="Self.Procuration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Resumption" EntityType="Self.Resumption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stuff" EntityType="Self.Stuff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="veto" EntityType="Self.veto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -379,6 +415,10 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <AssociationSet Name="FK_Sessions_Sessions" Association="Self.FK_Sessions_Sessions">
             <End Role="Sessions" EntitySet="Sessions" />
             <End Role="Sessions1" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Stuff" Association="Self.FK_Tasks_Stuff">
+            <End Role="Stuff" EntitySet="Stuff" />
+            <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
           <AssociationSet Name="FK_veto_Cases" Association="Self.FK_veto_Cases">
             <End Role="Cases" EntitySet="Cases" />
@@ -554,6 +594,30 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <NavigationProperty Name="Sessions1" Relationship="Self.FK_Sessions_Sessions" FromRole="Sessions" ToRole="Sessions1" />
           <NavigationProperty Name="Session1" Relationship="Self.FK_Sessions_Sessions" FromRole="Sessions1" ToRole="Sessions" />
         </EntityType>
+        <EntityType Name="Stuff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salar" Type="Double" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_Stuff" FromRole="Stuff" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Start_Date" Type="DateTime" Precision="0" />
+          <Property Name="End_Data" Type="DateTime" Precision="0" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Stuff_ID" Type="Int64" />
+          <NavigationProperty Name="Stuff" Relationship="Self.FK_Tasks_Stuff" FromRole="Tasks" ToRole="Stuff" />
+        </EntityType>
         <EntityType Name="veto">
           <Key>
             <PropertyRef Name="ID_veto" />
@@ -705,6 +769,18 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tasks_Stuff">
+          <End Role="Stuff" Type="Self.Stuff" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stuff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="Stuff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="testEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cases" EntityType="Self.Case" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
@@ -720,6 +796,8 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Procurations" EntityType="Self.Procuration" />
           <EntitySet Name="Resumptions" EntityType="Self.Resumption" />
           <EntitySet Name="Sessions" EntityType="Self.Session" />
+          <EntitySet Name="Stuffs" EntityType="Self.Stuff" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
           <EntitySet Name="vetoes" EntityType="Self.veto" />
           <EntitySet Name="View_1" EntityType="Self.View_1" />
           <EntitySet Name="ViewClient_Pro" EntityType="Self.ViewClient_Pro" />
@@ -762,6 +840,10 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <AssociationSet Name="FK_Sessions_Sessions" Association="Self.FK_Sessions_Sessions">
             <End Role="Sessions" EntitySet="Sessions" />
             <End Role="Sessions1" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Stuff" Association="Self.FK_Tasks_Stuff">
+            <End Role="Stuff" EntitySet="Stuffs" />
+            <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -926,6 +1008,30 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Jadge" ColumnName="Jadge" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="Timer" ColumnName="Timer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stuffs">
+            <EntityTypeMapping TypeName="testModel.Stuff">
+              <MappingFragment StoreEntitySet="Stuff">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Salar" ColumnName="Salar" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="testModel.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="End_Data" ColumnName="End_Data" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Stuff_ID" ColumnName="Stuff_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
