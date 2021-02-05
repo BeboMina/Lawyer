@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lawyer.Case"
         mc:Ignorable="d"
-        Title="DisplayCase" FontSize="18" Height="500" Width="800" Foreground="White"
+        Title="DisplayCase" FontSize="18" Height="500" Width="900" Foreground="White"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         FlowDirection="RightToLeft" WindowStyle="None">
 
@@ -77,8 +77,10 @@
                     <!--<TextBlock Text="التنفيذ" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>-->
                     <TextBlock Text="الجلسات" FontSize="12" Margin="0 10 0 0"/>
-                    <DataGrid IsReadOnly="True" Margin="0 5 10 0" Height="250" Style="{StaticResource CustomDataGrid}"
-                        Foreground="White" FontSize="16" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Session" AutoGenerateColumns="False">
+                    <DataGrid IsReadOnly="True" Margin="0 5 0 0" Height="250" Style="{StaticResource CustomDataGrid}"
+                        Foreground="White" FontSize="16" ColumnWidth="*" 
+                        ColumnHeaderHeight="30" Name="GridView_Session" 
+                              AutoGenerateColumns="False" MouseDoubleClick="GridView_Session_MouseDoubleClick">
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="تاريخ الجلسة" Binding="{Binding date, StringFormat= 'MM/dd/yyyy'}">
