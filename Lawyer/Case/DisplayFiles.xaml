@@ -32,10 +32,10 @@
             <Grid>
                 <DataGrid x:Name="FilesGrid" IsReadOnly="True" Margin="10" Style="{StaticResource CustomDataGrid}"
                         Foreground="White" FontSize="16" ColumnWidth="*" ColumnHeaderHeight="30"
-                        AutoGenerateColumns="False">
+                        AutoGenerateColumns="False" MouseDoubleClick="FilesGrid_MouseDoubleClick" >
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="اسم الملف" Binding="{Binding Name}">
+                        <DataGridTextColumn Header="اسم الملف" Binding="{Binding Title}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center"/>

@@ -36,6 +36,7 @@ namespace Lawyer.Case
         bool add = false;
 
         string type;
+        long degree;
         
         public AddSession(string typ)
         {
@@ -46,11 +47,23 @@ namespace Lawyer.Case
             type = typ;
             if (type != "case")
             {
+                if(type== "استئناف")
+                {
+                    degree = 2;
+                }
+                else if(type== "نقض")
+                {
+                    degree = 3;
+                }
                 Client_Panel.Visibility = Visibility.Collapsed;
                 Veto_Panel.Visibility = Visibility.Visible;
 
                 Com_Num_Case.Visibility = Visibility.Collapsed;
                 Num_Case.Visibility = Visibility.Visible;
+            }
+            else if(type== "case")
+            {
+                degree = 1;
             }
         }
 
@@ -88,10 +101,11 @@ namespace Lawyer.Case
                     }
                     if (NextData_Session.SelectedDate != null)
                     {
-                        session.date = Convert.ToDateTime(NextData_Session.SelectedDate.Value);
+                        session.NextDate = Convert.ToDateTime(NextData_Session.SelectedDate.Value);
                     }
                     session.Jadge = jadge.Text;
                     session.IDCase = (type == "case")? ID_Case : int.Parse(Num_Veto.Text);
+                    session.Case_Degree = degree;
                     Context.Sessions.Add(session);
                     Context.SaveChanges();
                     if(add)

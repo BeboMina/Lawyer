@@ -133,8 +133,8 @@ namespace Lawyer.Case
         {
             if (GridView_Session.SelectedItem == null)
                 return;
-
-            Case.DisplayFiles displayFiles = new DisplayFiles();
+            Models.Session session = (Models.Session)GridView_Session.SelectedItem;
+            Case.DisplayFiles displayFiles = new DisplayFiles(session.ID);
             displayFiles.ShowDialog();
         }
     }
