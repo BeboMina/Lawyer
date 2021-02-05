@@ -53,7 +53,7 @@ namespace Lawyer.Case
             displayCase.Case_Number.Text = @case.ID.ToString();
             displayCase.Case_Type.Text= @case.Type;
             displayCase.C_Case.Text = case1.Circle;
-            List<Models.Session> sessions = Context.Sessions.Where(S => S.IDCase == @case.ID).ToList();
+            List<Models.Session> sessions = Context.Sessions.Where(S => S.IDCase == @case.ID&&S.Case_Degree==1).ToList();
             if(sessions.Count!=0)
             {
                 displayCase.GridView_Session.ItemsSource = sessions;

@@ -27,7 +27,6 @@ namespace Lawyer.Proxy
         Models.Procuration procuration = new Models.Procuration();
         Models.Client client = new Models.Client();
         byte[] data;
-        string Name;
         string Ex;
         int index;
         bool add = false;
@@ -45,7 +44,6 @@ namespace Lawyer.Proxy
             NameClient = Context.Clients.Select(C => C.Name).ToList();
             IDClient = Context.Clients.Select(C => C.ID).ToList();
             Com_Name_Client.ItemsSource = NameClient;
-            bool add = false;
             
 
             if(action == "update")
@@ -145,7 +143,8 @@ namespace Lawyer.Proxy
         {
             index = Com_Name_Client.SelectedIndex;
             Code_Client.Text = IDClient[index];
-            Models.Client client_Chek = Context.Clients.FirstOrDefault(C => C.ID == IDClient[index]);
+            string Cli_Id = IDClient[index];
+            Models.Client client_Chek = Context.Clients.FirstOrDefault(C => C.ID == Cli_Id);
             if(client_Chek.IDProcuration!=null)
             {
                /* long ID_Pro= (long)client_Chek.IDProcuration;

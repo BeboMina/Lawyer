@@ -54,14 +54,14 @@
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="رقم التوكيل" Binding="{Binding Number}">
+                <DataGridTextColumn Header="كود العميل" Binding="{Binding Client_ID}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="اسم العميل" Binding="{Binding Name}">
+                <DataGridTextColumn Header="اسم العميل" Binding="{Binding Client_Name}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
