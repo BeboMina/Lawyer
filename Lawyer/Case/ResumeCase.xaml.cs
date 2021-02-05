@@ -128,5 +128,14 @@ namespace Lawyer.Case
             addSession.Num_Veto.Text = Res_Num.Text;
             addSession.ShowDialog();
         }
+
+        private void GridView_Session_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (GridView_Session.SelectedItem == null)
+                return;
+
+            Case.DisplayFiles displayFiles = new DisplayFiles();
+            displayFiles.ShowDialog();
+        }
     }
 }

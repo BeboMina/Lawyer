@@ -46,5 +46,14 @@ namespace Lawyer.Case
             Case.ResumeCase resumeCase = new ResumeCase("نقض", Case_Number.Text);
             resumeCase.ShowDialog();
         }
+
+        private void GridView_Session_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (GridView_Session.SelectedItem == null)
+                return;
+
+            Case.DisplayFiles displayFiles = new DisplayFiles();
+            displayFiles.ShowDialog();
+        }
     }
 }
