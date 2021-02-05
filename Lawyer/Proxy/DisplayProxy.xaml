@@ -18,7 +18,7 @@
     </FrameworkElement.Resources>
 
     <Grid>
-        <GroupBox Style="{StaticResource MicrosoftGroupBox}">
+        <GroupBox Style="{StaticResource MicrosoftGroupBox}" Margin="0,0,0,-44" Height="444" VerticalAlignment="Top">
             <GroupBox.Header>
                 <Grid>
                     <TextBlock x:Name="GboxHeader" Text="بيانات التوكيل" 
@@ -36,14 +36,17 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Margin="10">
-                    <TextBlock Text="رقم التوكيل" FontSize="12"/>
+                    <TextBlock Text="كود العميل" FontSize="12"/>
                     <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True" Name="Client_Code"/>
                     <TextBlock Text="تاريخ الاصدار" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True" Name="Date_Start"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"  Name="Date_Start"/>
                     <TextBlock Text="تاريخ الانتهاء" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True" Name="Date_End"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left"  Name="Date_End"/>
                     <TextBlock Text="التوثيق" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" IsReadOnly="True" Name="Done"/>
+                    <StackPanel Orientation="Horizontal" Height="35" HorizontalAlignment="Left">
+                        <RadioButton GroupName="certification" Foreground="White" Margin="0 0 70 0" VerticalContentAlignment="Center" Name="Button1">موثق</RadioButton>
+                        <RadioButton GroupName="certification" Foreground="White" VerticalContentAlignment="Center" Name="Button2">غير موثق</RadioButton>
+                    </StackPanel>
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Column="1">
@@ -52,10 +55,8 @@
                     <TextBlock Text="ملفات التوكيل" FontSize="12" Margin="0 15 0 0"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
-                            <Button Content="اضافة ملف" Height="40" Width="100"
-                            Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}"/>
-                            <Button Content="حذف ملف" Height="40" Width="100"
-                            Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}"/>
+                            <Button Content="تغير ملف" Height="40" Width="100"
+                            Margin="5" VerticalAlignment="Top" Style="{StaticResource btnColored}" Click="Save_File_Click"/>
                         </StackPanel>
                         <DataGrid Style="{StaticResource CustomDataGrid}"
                                   ItemsSource="{Binding}" AutoGenerateColumns="False" 
@@ -73,6 +74,11 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
+                    <Button Height="40" Width="120"
+                            Margin="15" HorizontalAlignment="Right" 
+                            Style="{StaticResource NewGameButtonStyle}" Name="Save_Date" Click="Save_Date_Click">
+                        <TextBlock Text="حفظ" TextAlignment="Center" RenderTransformOrigin="0.476,1.838"/>
+                    </Button>
                 </StackPanel>
             </Grid>
         </GroupBox>

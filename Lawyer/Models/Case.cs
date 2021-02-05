@@ -29,6 +29,7 @@ namespace Lawyer.Models
         public Nullable<long> Number_of_Session { get; set; }
         public string Circle { get; set; }
         public Nullable<long> ID_jadge { get; set; }
+        public Nullable<bool> Lock { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client_Case> Client_Case { get; set; }
