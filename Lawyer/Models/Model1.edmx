@@ -15,6 +15,7 @@
           <Property Name="Number_of_Session" Type="bigint" />
           <Property Name="Circle" Type="nvarchar(max)" />
           <Property Name="ID_jadge" Type="bigint" />
+          <Property Name="Lock" Type="bit" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -52,6 +53,7 @@
           <Property Name="Date2" Type="date" />
           <Property Name="Date3" Type="date" />
           <Property Name="Case_ID" Type="bigint" />
+          <Property Name="Case_Degree" Type="bigint" />
         </EntityType>
         <EntityType Name="Fees">
           <Key>
@@ -172,6 +174,7 @@ warning 6013: The table/view 'test.dbo.Login' does not have a primary key define
           <Property Name="Jadge" Type="nvarchar(max)" />
           <Property Name="Notes" Type="nvarchar(max)" />
           <Property Name="Timer" Type="nvarchar(max)" />
+          <Property Name="Case_Degree" Type="bigint" />
         </EntityType>
         <EntityType Name="Stuff">
           <Key>
@@ -472,6 +475,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="Number_of_Session" Type="Int64" />
           <Property Name="Circle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID_jadge" Type="Int64" />
+          <Property Name="Lock" Type="Boolean" />
           <NavigationProperty Name="Client_Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Cases" ToRole="Client_Case" />
           <NavigationProperty Name="EXperts" Relationship="Self.FK_EXpert_Cases" FromRole="Cases" ToRole="EXpert" />
           <NavigationProperty Name="Resumptions" Relationship="Self.FK_Resumption_Resumption" FromRole="Cases" ToRole="Resumption" />
@@ -516,6 +520,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="Date2" Type="DateTime" Precision="0" />
           <Property Name="Date3" Type="DateTime" Precision="0" />
           <Property Name="Case_ID" Type="Int64" />
+          <Property Name="Case_Degree" Type="Int64" />
           <NavigationProperty Name="Case" Relationship="Self.FK_EXpert_Cases" FromRole="EXpert" ToRole="Cases" />
         </EntityType>
         <EntityType Name="Fee">
@@ -638,6 +643,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="Jadge" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Timer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Case_Degree" Type="Int64" />
           <NavigationProperty Name="FilesCases" Relationship="Self.FK_FilesCases_Sessions" FromRole="Sessions" ToRole="FilesCases" />
           <NavigationProperty Name="Lawery_Session" Relationship="Self.FK_Lawery_Session_Lawery_Session" FromRole="Sessions" ToRole="Lawery_Session" />
           <NavigationProperty Name="Sessions1" Relationship="Self.FK_Sessions_Sessions" FromRole="Sessions" ToRole="Sessions1" />
@@ -927,6 +933,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Number_of_Session" ColumnName="Number_of_Session" />
                 <ScalarProperty Name="Circle" ColumnName="Circle" />
                 <ScalarProperty Name="ID_jadge" ColumnName="ID_jadge" />
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -967,6 +974,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Date2" ColumnName="Date2" />
                 <ScalarProperty Name="Date3" ColumnName="Date3" />
                 <ScalarProperty Name="Case_ID" ColumnName="Case_ID" />
+                <ScalarProperty Name="Case_Degree" ColumnName="Case_Degree" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1090,6 +1098,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Jadge" ColumnName="Jadge" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="Timer" ColumnName="Timer" />
+                <ScalarProperty Name="Case_Degree" ColumnName="Case_Degree" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

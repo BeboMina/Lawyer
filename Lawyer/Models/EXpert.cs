@@ -24,6 +24,7 @@ namespace Lawyer.Models
         public Nullable<System.DateTime> Date2 { get; set; }
         public Nullable<System.DateTime> Date3 { get; set; }
         public Nullable<long> Case_ID { get; set; }
+        public Nullable<long> Case_Degree { get; set; }
     
         public virtual Case Case { get; set; }
     }

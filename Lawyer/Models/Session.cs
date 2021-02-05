@@ -28,6 +28,7 @@ namespace Lawyer.Models
         public string Jadge { get; set; }
         public string Notes { get; set; }
         public string Timer { get; set; }
+        public Nullable<long> Case_Degree { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FilesCas> FilesCases { get; set; }

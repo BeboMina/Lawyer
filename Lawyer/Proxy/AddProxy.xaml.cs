@@ -37,7 +37,6 @@ namespace Lawyer.Proxy
         public byte[] data1 { get; set; }
         public string name1 { get; set; }
         public string ex1 { get; set; }
-        string EX;
         List<NameEx>NameExt = new List<NameEx>();
         public AddProxy(string act)
         {
@@ -69,8 +68,7 @@ namespace Lawyer.Proxy
                 string title = "حفظ";
                 MessageBoxButton buttons = MessageBoxButton.YesNo;
                 MessageBoxResult result = System.Windows.MessageBox.Show(message, title, buttons);
-                if (result == MessageBoxResult.Yes)
-                {
+                
                     if (Date_Start.SelectedDate!=null)
                     {
                         procuration.StardDate = Convert.ToDateTime(Date_Start.SelectedDate.Value);
@@ -93,6 +91,8 @@ namespace Lawyer.Proxy
                         NameFile = "";
                         return;
                     }
+                if (result == MessageBoxResult.Yes)
+                {
                     if (action != "client_Add")
                     {
                         Context.Procurations.Add(procuration);
@@ -144,6 +144,25 @@ namespace Lawyer.Proxy
         private void Com_Name_Client_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             index = Com_Name_Client.SelectedIndex;
+            Code_Client.Text = IDClient[index];
+            Models.Client client_Chek = Context.Clients.FirstOrDefault(C => C.ID == IDClient[index]);
+            if(client_Chek.IDProcuration!=null)
+            {
+               /* long ID_Pro= (long)client_Chek.IDProcuration;
+                Models.Procuration procuration = Context.Procurations.FirstOrDefault(P => P.ID == ID_Pro);
+                if (Date_Start.SelectedDate != null)
+                {
+                    Date_Start.SelectedDate=procuration.StardDate.Value;
+                }
+                if (Date_End.SelectedDate != null)
+                {
+                    Date_End.SelectedDate = procuration.EndDate.Value;
+                }
+                if (Button1.IsChecked == true)
+                {
+                    procuration.certified = true;
+                }*/
+            }
         }
 
         private void Save_File_Click(object sender, RoutedEventArgs e)
