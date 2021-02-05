@@ -248,7 +248,7 @@ namespace Lawyer
                 Proxy.AddProxy addProxy = new Proxy.AddProxy("client_Edit");
                 addProxy.Com_Name_Client.Visibility = Visibility.Collapsed;
                 addProxy.Text_Name_Client.Visibility = Visibility.Visible;
-                addProxy.Text_Name_Client.Text = Name_Client.Text;
+                addProxy.Text_Name_Client.Text = client.Name;
                 addProxy.ShowDialog();
             }
         }
