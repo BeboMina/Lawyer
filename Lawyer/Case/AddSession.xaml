@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lawyer.Case"
         mc:Ignorable="d"
-        Title="AddSession" FontSize="18" Height="450" Width="950" Foreground="White"
+        Title="AddSession" FontSize="18" Height="550" Width="950" Foreground="White"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         FlowDirection="RightToLeft" WindowStyle="None">
 
@@ -47,6 +47,16 @@
                     <DatePicker Width="200" Height="35" HorizontalAlignment="Left" Name="NextData_Session"/>
                     <TextBlock Text="المحكمة" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="jadge"/>
+                    <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />
+                    <RichTextBox Height="70" Width="350" 
+                                 HorizontalAlignment="Left" 
+                                 VerticalScrollBarVisibility="Auto" Name="Notes_Session">
+                        <RichTextBox.Resources >
+                            <Style TargetType="{x:Type Paragraph}">
+                                <Setter Property="Margin" Value="0 0 0 5" />
+                            </Style>
+                        </RichTextBox.Resources>
+                    </RichTextBox>
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Column="1">
@@ -84,7 +94,7 @@
                         </DataGrid>
                     </StackPanel>
                     <Button Height="40" Width="120"
-                            Margin="15" HorizontalAlignment="Right" 
+                            Margin="60" HorizontalAlignment="Right" 
                             Style="{StaticResource NewGameButtonStyle}"
                             Click="Save_Click">
                         <TextBlock Text="حفظ" TextAlignment="Center"/>

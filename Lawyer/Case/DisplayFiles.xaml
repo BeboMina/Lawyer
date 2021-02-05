@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lawyer.Case"
         mc:Ignorable="d"
-        Title="DisplayFiles" FontSize="18" Height="350" Width="300" Foreground="White"
+        Title="DisplayFiles" FontSize="18" Height="400" Width="300" Foreground="White"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         FlowDirection="RightToLeft" WindowStyle="None">
 
@@ -29,9 +29,19 @@
                 </Grid>
             </GroupBox.Header>
 
-            <Grid>
-                <DataGrid x:Name="FilesGrid" IsReadOnly="True" Margin="10" Style="{StaticResource CustomDataGrid}"
-                        Foreground="White" FontSize="16" ColumnWidth="*" ColumnHeaderHeight="30"
+            <StackPanel>
+                <TextBlock Text="ملاحظات" FontSize="12" Margin="20 10 0 0" />
+                <RichTextBox Height="70" Width="250" IsReadOnly="True" Background="#FFC5CBF9"
+                                 VerticalScrollBarVisibility="Auto" Name="Notes_Session">
+                    <RichTextBox.Resources >
+                        <Style TargetType="{x:Type Paragraph}">
+                            <Setter Property="Margin" Value="0 0 0 5" />
+                        </Style>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+
+                <DataGrid x:Name="FilesGrid" IsReadOnly="True" Margin="10 30" Style="{StaticResource CustomDataGrid}"
+                        Foreground="White" FontSize="16" ColumnWidth="*" ColumnHeaderHeight="30" Height="200"
                         AutoGenerateColumns="False" MouseDoubleClick="FilesGrid_MouseDoubleClick" >
 
                     <DataGrid.Columns>
@@ -44,7 +54,7 @@
                         </DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-            </Grid>
+            </StackPanel>
         </GroupBox>
     </Grid>
 </Window>

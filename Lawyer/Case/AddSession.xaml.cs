@@ -106,6 +106,7 @@ namespace Lawyer.Case
                     session.Jadge = jadge.Text;
                     session.IDCase = (type == "case")? ID_Case : int.Parse(Num_Veto.Text);
                     session.Case_Degree = degree;
+                    session.Notes = new TextRange(Notes_Session.Document.ContentStart, Notes_Session.Document.ContentEnd).Text;
                     Context.Sessions.Add(session);
                     Context.SaveChanges();
                     if(add)
