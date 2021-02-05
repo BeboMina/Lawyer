@@ -82,8 +82,14 @@ namespace Lawyer.Case
                 {
                     Models.Session session = new Models.Session();
                     session.Timer = Time_Session.Text;
-                    session.date =Convert.ToDateTime(Data_Session.SelectedDate.Value);
-                    session.NextDate = Convert.ToDateTime(NextData_Session.SelectedDate.Value);
+                    if (Data_Session.SelectedDate!=null)
+                    {
+                        session.date = Convert.ToDateTime(Data_Session.SelectedDate.Value);
+                    }
+                    if (NextData_Session.SelectedDate != null)
+                    {
+                        session.date = Convert.ToDateTime(NextData_Session.SelectedDate.Value);
+                    }
                     session.Jadge = jadge.Text;
                     session.IDCase = (type == "case")? ID_Case : int.Parse(Num_Veto.Text);
                     Context.Sessions.Add(session);

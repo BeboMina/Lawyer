@@ -23,7 +23,7 @@ namespace Lawyer
         public MainWindow()
         {
             InitializeComponent();
-
+            
             Login login = new Login(this);
             login.ShowDialog();
         }

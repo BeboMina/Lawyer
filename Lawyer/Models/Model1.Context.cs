@@ -28,6 +28,7 @@ namespace Lawyer.Models
         public virtual DbSet<Case> Cases { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Client_Case> Client_Case { get; set; }
+        public virtual DbSet<EXpert> EXperts { get; set; }
         public virtual DbSet<Fee> Fees { get; set; }
         public virtual DbSet<Files_Saved> Files_Saved { get; set; }
         public virtual DbSet<FilesCas> FilesCases { get; set; }
@@ -39,6 +40,8 @@ namespace Lawyer.Models
         public virtual DbSet<Procuration> Procurations { get; set; }
         public virtual DbSet<Resumption> Resumptions { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
+        public virtual DbSet<Stuff> Stuffs { get; set; }
+        public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<veto> vetoes { get; set; }
         public virtual DbSet<View_1> View_1 { get; set; }
         public virtual DbSet<ViewClient_Pro> ViewClient_Pro { get; set; }
