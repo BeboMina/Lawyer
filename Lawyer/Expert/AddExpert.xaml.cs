@@ -100,5 +100,10 @@ namespace Lawyer.Expert
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void Case_Type_combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -38,6 +38,9 @@ namespace Lawyer.Proxy
 
         private void DataGrid_Proxies_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (DataGrid_Proxies.SelectedItem == null)
+                return;
+
             Models.ViewClient_Pro viewClient_Pro= (Models.ViewClient_Pro)DataGrid_Proxies.SelectedItem;
             Models.Procuration procuration = Context.Procurations.FirstOrDefault(P=>P.ID==viewClient_Pro.ID);
             Proxy.DisplayProxy displayProxy = new DisplayProxy(procuration);

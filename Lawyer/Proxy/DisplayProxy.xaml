@@ -59,7 +59,7 @@
                         </StackPanel>
                         <DataGrid Style="{StaticResource CustomDataGrid}"
                                   ItemsSource="{Binding}" AutoGenerateColumns="False" 
-                                  IsReadOnly="True" Foreground="White"
+                                  IsReadOnly="True" Foreground="White" ColumnWidth="*"
                                   Width="340" Height="200" Name="Grid_Files">
 
                             <DataGrid.Columns>
