@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lawyer.Proxy"
         mc:Ignorable="d"
-        Title="DisplayProxy" FontSize="18" Height="400" Width="950" Foreground="White"
+        Title="DisplayProxy" FontSize="18" Height="450" Width="950" Foreground="White"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         FlowDirection="RightToLeft" WindowStyle="None">
 
@@ -18,7 +18,7 @@
     </FrameworkElement.Resources>
 
     <Grid>
-        <GroupBox Style="{StaticResource MicrosoftGroupBox}" Margin="0,0,0,-44" Height="444" VerticalAlignment="Top">
+        <GroupBox Style="{StaticResource MicrosoftGroupBox}">
             <GroupBox.Header>
                 <Grid>
                     <TextBlock x:Name="GboxHeader" Text="بيانات التوكيل" 

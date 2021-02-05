@@ -53,7 +53,7 @@ namespace Lawyer.Staff
 
         private void Task_Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(Task_Date.SelectedDate.Value!=null)
+            if(Task_Date.SelectedDate != null)
             {
                 DateTime dateTime = Task_Date.SelectedDate.Value;
                 tasks1.Clear();
@@ -64,6 +64,7 @@ namespace Lawyer.Staff
                         tasks1.Add(item);
                     }
                 }
+                GridView_Session.ItemsSource = null;
                 GridView_Session.ItemsSource = tasks1;
             }
             else
