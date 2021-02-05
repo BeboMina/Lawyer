@@ -71,8 +71,14 @@ namespace Lawyer.Proxy
                 MessageBoxResult result = System.Windows.MessageBox.Show(message, title, buttons);
                 if (result == MessageBoxResult.Yes)
                 {
-                    procuration.StardDate= Convert.ToDateTime(Date_Start.SelectedDate.Value);
-                    procuration.EndDate= Convert.ToDateTime(Date_End.SelectedDate.Value);
+                    if (Date_Start.SelectedDate!=null)
+                    {
+                        procuration.StardDate = Convert.ToDateTime(Date_Start.SelectedDate.Value);
+                    }
+                    if(Date_End.SelectedDate!=null)
+                    {
+                        procuration.EndDate = Convert.ToDateTime(Date_End.SelectedDate.Value);
+                    }
                     if(Button1.IsChecked==true)
                     {
                         procuration.certified = true;
@@ -84,6 +90,7 @@ namespace Lawyer.Proxy
                     else
                     {
                         MessageBox.Show("التوكيل موثق ام غير موثق");
+                        NameFile = "";
                         return;
                     }
                     if (action != "client_Add")
@@ -120,7 +127,7 @@ namespace Lawyer.Proxy
                         }
                         else
                         {
-                            NameFile = "";
+                            NameFile ="";
                         }
                         
                     }
@@ -130,6 +137,7 @@ namespace Lawyer.Proxy
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
+                NameFile = "";
             }
         }
 

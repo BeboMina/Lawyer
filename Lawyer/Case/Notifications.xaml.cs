@@ -40,25 +40,29 @@ namespace Lawyer.Case
             sessions = Context.Sessions.Where(S=>S.NextDate.Value.Year==DateTime.Now.Year).ToList();
             foreach(var item in sessions)
             {
-                string Next_Date = item.NextDate.Value.ToShortDateString();
-                
-                if(Next_Date==Now_Date)
+                if (item.NextDate != null)
                 {
-                    
-                    Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == item.IDCase);
-                    Models.veto veto = Context.vetoes.FirstOrDefault(V => V.ID_veto == item.IDCase);
-                    Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Resumption == item.IDCase);
-                    if (@case != null)
+
+                    string Next_Date = item.NextDate.Value.ToShortDateString();
+
+                    if (Next_Date == Now_Date)
                     {
-                        FillListSession(item,@case.Circle,@case.ID);
-                    }
-                    else if (veto != null)
-                    {
-                        FillListSession(item, veto.Circle, (long)veto.ID_Case);
-                    }
-                    else if(resumption!=null)
-                    {
-                        FillListSession(item, resumption.Circle, (long)resumption.ID_Case);
+
+                        Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == item.IDCase);
+                        Models.veto veto = Context.vetoes.FirstOrDefault(V => V.ID_veto == item.IDCase);
+                        Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Resumption == item.IDCase);
+                        if (@case != null)
+                        {
+                            FillListSession(item, @case.Circle, @case.ID);
+                        }
+                        else if (veto != null)
+                        {
+                            FillListSession(item, veto.Circle, (long)veto.ID_Case);
+                        }
+                        else if (resumption != null)
+                        {
+                            FillListSession(item, resumption.Circle, (long)resumption.ID_Case);
+                        }
                     }
                 }
             }

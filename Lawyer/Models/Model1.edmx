@@ -38,6 +38,21 @@
           <Property Name="IDClient" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IDCase" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="EXpert">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="Date1" Type="date" />
+          <Property Name="Date2" Type="date" />
+          <Property Name="Date3" Type="date" />
+          <Property Name="Case_ID" Type="bigint" />
+        </EntityType>
         <EntityType Name="Fees">
           <Key>
             <PropertyRef Name="ID" />
@@ -238,6 +253,18 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EXpert_Cases">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1" />
+          <End Role="EXpert" Type="Self.EXpert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EXpert">
+              <PropertyRef Name="Case_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FilesCases_Sessions">
           <End Role="Sessions" Type="Self.Sessions" Multiplicity="1" />
           <End Role="FilesCases" Type="Self.FilesCases" Multiplicity="*" />
@@ -350,6 +377,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client_Case" EntityType="Self.Client_Case" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXpert" EntityType="Self.EXpert" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fees" EntityType="Self.Fees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Files_Saved" EntityType="Self.Files_Saved" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FilesCases" EntityType="Self.FilesCases" Schema="dbo" store:Type="Tables" />
@@ -387,6 +415,10 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <AssociationSet Name="FK_Client_Case_Client1" Association="Self.FK_Client_Case_Client1">
             <End Role="Client" EntitySet="Client" />
             <End Role="Client_Case" EntitySet="Client_Case" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXpert_Cases" Association="Self.FK_EXpert_Cases">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="EXpert" EntitySet="EXpert" />
           </AssociationSet>
           <AssociationSet Name="FK_FilesCases_Sessions" Association="Self.FK_FilesCases_Sessions">
             <End Role="Sessions" EntitySet="Sessions" />
@@ -441,6 +473,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="Circle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID_jadge" Type="Int64" />
           <NavigationProperty Name="Client_Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Cases" ToRole="Client_Case" />
+          <NavigationProperty Name="EXperts" Relationship="Self.FK_EXpert_Cases" FromRole="Cases" ToRole="EXpert" />
           <NavigationProperty Name="Resumptions" Relationship="Self.FK_Resumption_Resumption" FromRole="Cases" ToRole="Resumption" />
           <NavigationProperty Name="vetoes" Relationship="Self.FK_veto_Cases" FromRole="Cases" ToRole="veto" />
         </EntityType>
@@ -468,6 +501,22 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="IDCase" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Client_Case" ToRole="Cases" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Client_Case_Client1" FromRole="Client_Case" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="EXpert">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date1" Type="DateTime" Precision="0" />
+          <Property Name="Date2" Type="DateTime" Precision="0" />
+          <Property Name="Date3" Type="DateTime" Precision="0" />
+          <Property Name="Case_ID" Type="Int64" />
+          <NavigationProperty Name="Case" Relationship="Self.FK_EXpert_Cases" FromRole="EXpert" ToRole="Cases" />
         </EntityType>
         <EntityType Name="Fee">
           <Key>
@@ -661,6 +710,18 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EXpert_Cases">
+          <End Role="Cases" Type="Self.Case" Multiplicity="0..1" />
+          <End Role="EXpert" Type="Self.EXpert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EXpert">
+              <PropertyRef Name="Case_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Resumption_Resumption">
           <End Role="Cases" Type="Self.Case" Multiplicity="0..1" />
           <End Role="Resumption" Type="Self.Resumption" Multiplicity="*" />
@@ -785,6 +846,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Cases" EntityType="Self.Case" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="Client_Case" EntityType="Self.Client_Case" />
+          <EntitySet Name="EXperts" EntityType="Self.EXpert" />
           <EntitySet Name="Fees" EntityType="Self.Fee" />
           <EntitySet Name="Files_Saved" EntityType="Self.Files_Saved" />
           <EntitySet Name="FilesCases" EntityType="Self.FilesCas" />
@@ -804,6 +866,10 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <AssociationSet Name="FK_Client_Case_Cases" Association="Self.FK_Client_Case_Cases">
             <End Role="Cases" EntitySet="Cases" />
             <End Role="Client_Case" EntitySet="Client_Case" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXpert_Cases" Association="Self.FK_EXpert_Cases">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="EXpert" EntitySet="EXperts" />
           </AssociationSet>
           <AssociationSet Name="FK_Resumption_Resumption" Association="Self.FK_Resumption_Resumption">
             <End Role="Cases" EntitySet="Cases" />
@@ -885,6 +951,22 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IDClient" ColumnName="IDClient" />
                 <ScalarProperty Name="IDCase" ColumnName="IDCase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXperts">
+            <EntityTypeMapping TypeName="testModel.EXpert">
+              <MappingFragment StoreEntitySet="EXpert">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Date1" ColumnName="Date1" />
+                <ScalarProperty Name="Date2" ColumnName="Date2" />
+                <ScalarProperty Name="Date3" ColumnName="Date3" />
+                <ScalarProperty Name="Case_ID" ColumnName="Case_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

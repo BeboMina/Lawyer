@@ -23,6 +23,7 @@ namespace Lawyer.Staff
         testEntities Context = new testEntities();
         Models.Stuff stuff = new Stuff();
         List<Models.Task> tasks = new List<Models.Task>();
+        List<Models.Task> tasks1 = new List<Models.Task>();
         public DisplayStaff(Models.Stuff stuff1)
         {
             InitializeComponent();
@@ -52,7 +53,25 @@ namespace Lawyer.Staff
 
         private void Task_Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if(Task_Date.SelectedDate.Value!=null)
+            {
+                DateTime dateTime = Task_Date.SelectedDate.Value;
+                tasks1.Clear();
+                foreach (var item in tasks)
+                {
+                    if(DateTime.Compare(item.Start_Date.Value,dateTime)<=0&& DateTime.Compare(item.End_Data.Value, dateTime) >= 0)
+                    {
+                        tasks1.Add(item);
+                    }
+                }
+                GridView_Session.ItemsSource = tasks1;
+            }
+            else
+            {
+                tasks = Context.Tasks.Where(T => T.Stuff_ID == stuff.ID).ToList();
+                GridView_Session.ItemsSource = tasks;
+            }
+            
         }
     }
 }

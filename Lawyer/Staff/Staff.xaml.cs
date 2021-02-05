@@ -32,7 +32,28 @@ namespace Lawyer.Staff
 
         private void SearchTxt_TextChanged(object sender, TextChangedEventArgs e)
         {
+            try
+            {
+                List<Models.Stuff> stuffs1;
+                if (SearchTxt.Text == "")
+                {
+                    stuffs1 = Context.Stuffs.ToList();
 
+                }
+                else
+                {
+                    stuffs1 = Context.Stuffs.Where(C => C.Name.Contains(SearchTxt.Text)).ToList();
+                }
+                GridView_Staff.ItemsSource = stuffs1;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+            }
         }
 
         private void AddLawyerBtn_Click(object sender, RoutedEventArgs e)
