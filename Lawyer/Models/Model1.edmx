@@ -53,7 +53,7 @@
           <Property Name="Date2" Type="date" />
           <Property Name="Date3" Type="date" />
           <Property Name="Case_ID" Type="bigint" />
-          <Property Name="Case_Degree" Type="bigint" />
+          <Property Name="Case_Degree" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Fees">
           <Key>
@@ -256,18 +256,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EXpert_Cases">
-          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1" />
-          <End Role="EXpert" Type="Self.EXpert" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cases">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="EXpert">
-              <PropertyRef Name="Case_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_FilesCases_Sessions">
           <End Role="Sessions" Type="Self.Sessions" Multiplicity="1" />
           <End Role="FilesCases" Type="Self.FilesCases" Multiplicity="*" />
@@ -419,10 +407,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             <End Role="Client" EntitySet="Client" />
             <End Role="Client_Case" EntitySet="Client_Case" />
           </AssociationSet>
-          <AssociationSet Name="FK_EXpert_Cases" Association="Self.FK_EXpert_Cases">
-            <End Role="Cases" EntitySet="Cases" />
-            <End Role="EXpert" EntitySet="EXpert" />
-          </AssociationSet>
           <AssociationSet Name="FK_FilesCases_Sessions" Association="Self.FK_FilesCases_Sessions">
             <End Role="Sessions" EntitySet="Sessions" />
             <End Role="FilesCases" EntitySet="FilesCases" />
@@ -477,7 +461,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="ID_jadge" Type="Int64" />
           <Property Name="Lock" Type="Boolean" />
           <NavigationProperty Name="Client_Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Cases" ToRole="Client_Case" />
-          <NavigationProperty Name="EXperts" Relationship="Self.FK_EXpert_Cases" FromRole="Cases" ToRole="EXpert" />
           <NavigationProperty Name="Resumptions" Relationship="Self.FK_Resumption_Resumption" FromRole="Cases" ToRole="Resumption" />
           <NavigationProperty Name="vetoes" Relationship="Self.FK_veto_Cases" FromRole="Cases" ToRole="veto" />
         </EntityType>
@@ -520,8 +503,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="Date2" Type="DateTime" Precision="0" />
           <Property Name="Date3" Type="DateTime" Precision="0" />
           <Property Name="Case_ID" Type="Int64" />
-          <Property Name="Case_Degree" Type="Int64" />
-          <NavigationProperty Name="Case" Relationship="Self.FK_EXpert_Cases" FromRole="EXpert" ToRole="Cases" />
+          <Property Name="Case_Degree" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Fee">
           <Key>
@@ -716,18 +698,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EXpert_Cases">
-          <End Role="Cases" Type="Self.Case" Multiplicity="0..1" />
-          <End Role="EXpert" Type="Self.EXpert" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cases">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="EXpert">
-              <PropertyRef Name="Case_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Resumption_Resumption">
           <End Role="Cases" Type="Self.Case" Multiplicity="0..1" />
           <End Role="Resumption" Type="Self.Resumption" Multiplicity="*" />
@@ -872,10 +842,6 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <AssociationSet Name="FK_Client_Case_Cases" Association="Self.FK_Client_Case_Cases">
             <End Role="Cases" EntitySet="Cases" />
             <End Role="Client_Case" EntitySet="Client_Case" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EXpert_Cases" Association="Self.FK_EXpert_Cases">
-            <End Role="Cases" EntitySet="Cases" />
-            <End Role="EXpert" EntitySet="EXperts" />
           </AssociationSet>
           <AssociationSet Name="FK_Resumption_Resumption" Association="Self.FK_Resumption_Resumption">
             <End Role="Cases" EntitySet="Cases" />

@@ -51,35 +51,35 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding Case_Number}">
+                <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding Case_ID}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="درجة الدعوى" Binding="{Binding Case_Type}">
+                <DataGridTextColumn Header="درجة الدعوى" Binding="{Binding Case_Degree}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="ميعاد 1" Binding="{Binding Date_1, StringFormat= 'MM/dd/yyyy'}">
+                <DataGridTextColumn Header="ميعاد 1" Binding="{Binding Date1, StringFormat= 'MM/dd/yyyy'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="ميعاد 2" Binding="{Binding Date_2, StringFormat= 'MM/dd/yyyy'}">
+                <DataGridTextColumn Header="ميعاد 2" Binding="{Binding Date2, StringFormat= 'MM/dd/yyyy'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="ميعاد 3" Binding="{Binding Date_3, StringFormat= 'MM/dd/yyyy'}">
+                <DataGridTextColumn Header="ميعاد 3" Binding="{Binding Date3, StringFormat= 'MM/dd/yyyy'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
