@@ -56,5 +56,10 @@ namespace Lawyer.Case
             new TextRange(displayFiles.Notes_Session.Document.ContentStart, displayFiles.Notes_Session.Document.ContentEnd).Text = session.Notes;
             displayFiles.ShowDialog();
         }
+
+        private void CloseCaseBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
