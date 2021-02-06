@@ -77,14 +77,18 @@ namespace Lawyer
             new TextRange(displayClient.Notes_Client.Document.ContentStart, displayClient.Notes_Client.Document.ContentEnd).Text = client.Notes;
             Models.Procuration procuration = Context.Procurations.FirstOrDefault(p => p.ID == client.IDProcuration);
             List<Models.Client_Case> client_Cases = Context.Client_Case.Where(C=>C.IDClient==client.ID).ToList();
-            List<Models.Case> cases = new List<Models.Case>();
+            List<Case_Model> cases = new List<Case_Model>();
             if(client_Cases.Count!=0)
             {
                 foreach(var item in client_Cases)
                 {
                     Models.Case case1= new Models.Case();
+                    Case_Model case_Model = new Case_Model();
                     case1 = Context.Cases.FirstOrDefault(C => C.ID == item.IDCase);
-                    cases.Add(case1);
+                    case_Model.ID_Case = case1.ID;
+                    case_Model.Type_Case = case1.Type;
+                    case_Model.Lock = (case1.Lock == true) ? "الدعوى مغلقة" : " الدعوى مفتوحة";
+                    cases.Add(case_Model);
                 }
                 displayClient.DataGrid_Case.ItemsSource = cases;
             }

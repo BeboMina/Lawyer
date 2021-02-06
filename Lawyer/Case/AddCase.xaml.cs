@@ -63,6 +63,7 @@ namespace Lawyer.Case
                 MessageBoxResult result = MessageBox.Show(message, title, buttons);
                 if (result == MessageBoxResult.Yes)
                 {
+                    Case.Lock = false;
                     if (Action == "Client_Add")
                     {
                         Case.ID = Convert.ToInt64(Number_Case.Text);
