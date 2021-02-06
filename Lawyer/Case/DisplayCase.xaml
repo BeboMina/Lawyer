@@ -47,16 +47,21 @@
                     <TextBlock Text="الدايرة" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True" Name="C_Case"/>
                     <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />
-                    <RichTextBox Height="70" Width="300" 
+                    <StackPanel Orientation="Horizontal">
+                        <RichTextBox Height="70" Width="300" 
                                  HorizontalAlignment="Left" 
                                  VerticalScrollBarVisibility="Auto"
                                  Name="Notes" IsReadOnly="True" Background="#FFC5CBF9">
-                        <RichTextBox.Resources >
-                            <Style TargetType="{x:Type Paragraph}">
-                                <Setter Property="Margin" Value="0 0 0 5" />
-                            </Style>
-                        </RichTextBox.Resources>
-                    </RichTextBox>
+                            <RichTextBox.Resources >
+                                <Style TargetType="{x:Type Paragraph}">
+                                    <Setter Property="Margin" Value="0 0 0 5" />
+                                </Style>
+                            </RichTextBox.Resources>
+                        </RichTextBox>
+                        <Button Content="تعديل" Height="40" Width="60" x:Name="UpdateNotesBtn"
+                                VerticalAlignment="Bottom"
+                                 Style="{StaticResource btnColored}" Click="UpdateNotesBtn_Click"/>
+                    </StackPanel>
                     <StackPanel>
                         <Button Content="الحكم" Height="40" Width="120" x:Name="JudgementBtn"
                                 Margin="20" Style="{StaticResource btnColored}" Click="JudgementBtn_Click"/>

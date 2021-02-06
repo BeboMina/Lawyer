@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lawyer.Case"
         mc:Ignorable="d"
-        Title="DisplayFiles" FontSize="18" Height="400" Width="300" Foreground="White"
+        Title="DisplayFiles" FontSize="18" Height="500" Width="400" Foreground="White"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         FlowDirection="RightToLeft" WindowStyle="None">
 
@@ -31,17 +31,23 @@
 
             <StackPanel>
                 <TextBlock Text="ملاحظات" FontSize="12" Margin="20 10 0 0" />
-                <RichTextBox Height="70" Width="250" IsReadOnly="True" Background="#FFC5CBF9"
+                <StackPanel Orientation="Horizontal">
+                    <RichTextBox Height="70" Width="250" IsReadOnly="True" Background="#FFC5CBF9"
+                             HorizontalAlignment="Left" Margin="20 0 0 0"
                                  VerticalScrollBarVisibility="Auto" Name="Notes_Session">
-                    <RichTextBox.Resources >
-                        <Style TargetType="{x:Type Paragraph}">
-                            <Setter Property="Margin" Value="0 0 0 5" />
-                        </Style>
-                    </RichTextBox.Resources>
-                </RichTextBox>
+                        <RichTextBox.Resources >
+                            <Style TargetType="{x:Type Paragraph}">
+                                <Setter Property="Margin" Value="0 0 0 5" />
+                            </Style>
+                        </RichTextBox.Resources>
+                    </RichTextBox>
+                    <Button Content="تعديل" Height="40" Width="60" x:Name="UpdateNotesBtn"
+                                VerticalAlignment="Bottom"
+                                 Style="{StaticResource btnColored}" Click="UpdateNotesBtn_Click"/>
+                </StackPanel>
 
                 <DataGrid x:Name="FilesGrid" IsReadOnly="True" Margin="10 30" Style="{StaticResource CustomDataGrid}"
-                        Foreground="White" FontSize="16" ColumnWidth="*" ColumnHeaderHeight="30" Height="200"
+                        Foreground="White" FontSize="16" ColumnWidth="*" ColumnHeaderHeight="30" Height="300"
                         AutoGenerateColumns="False" MouseDoubleClick="FilesGrid_MouseDoubleClick" >
 
                     <DataGrid.Columns>

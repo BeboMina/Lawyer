@@ -54,5 +54,22 @@ namespace Lawyer.Case
                 System.Windows.MessageBox.Show(ex.Message);
             }
         }
+
+        private void UpdateNotesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (UpdateNotesBtn.Content.ToString() == "تعديل")
+            {
+                Notes_Session.IsReadOnly = false;
+                Notes_Session.Background = Brushes.White;
+                Notes_Session.Focus();
+                UpdateNotesBtn.Content = "حفظ";
+            }
+            else
+            {
+                Notes_Session.IsReadOnly = true;
+                Notes_Session.Background = (Brush)(new BrushConverter().ConvertFrom("#FFC5CBF9"));
+                UpdateNotesBtn.Content = "تعديل";
+            }
+        }
     }
 }
