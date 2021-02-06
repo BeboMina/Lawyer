@@ -60,28 +60,28 @@
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding ID}">
+                <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding ID_Case}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="اسم العميل" Binding="{Binding Name}">
+                <DataGridTextColumn Header="اسم العميل" Binding="{Binding Client_Name}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="نوع الدعوى" Binding="{Binding Type}">
+                <DataGridTextColumn Header="نوع الدعوى" Binding="{Binding Type_Case}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="الحالة" Binding="{Binding Status}">
+                <DataGridTextColumn Header="الحالة" Binding="{Binding Lock}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
