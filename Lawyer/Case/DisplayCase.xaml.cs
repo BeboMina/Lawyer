@@ -102,9 +102,24 @@ namespace Lawyer.Case
             }
             else
             {
-                Notes.IsReadOnly = true;
-                Notes.Background = (Brush)(new BrushConverter().ConvertFrom("#FFC5CBF9"));
-                UpdateNotesBtn.Content = "تعديل";
+                try
+                {
+                    Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == ID_Case);
+                    if (@case != null)
+                    {
+                        @case.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
+                        Context.SaveChanges();
+                        MessageBox.Show("تم التعديل");
+                    }
+
+                    Notes.IsReadOnly = true;
+                    Notes.Background = (Brush)(new BrushConverter().ConvertFrom("#FFC5CBF9"));
+                    UpdateNotesBtn.Content = "تعديل";
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }

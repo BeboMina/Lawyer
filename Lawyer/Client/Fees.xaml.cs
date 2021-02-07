@@ -26,36 +26,16 @@ namespace Lawyer.Client
         testEntities Context = new testEntities();
         List<Models.Fils_Fees> fils_Feess = new List<Fils_Fees>();
         List<Models.Fee> fees = new List<Fee>();
-        Dictionary<string,float> fillDates = new Dictionary<string, float>();
-        List<FillDate> fillDates1 = new List<FillDate>();
+        
         public Fees()
         {
             InitializeComponent();
 
             fils_Feess = Context.Fils_Fees.ToList();
             fees = Context.Fees.ToList();
+            
             GridView_Bills.ItemsSource = fils_Feess;
-            foreach(var item in fees)
-            {
-                if (fillDates.ContainsKey(item.IDClient))
-                {
-                    fillDates[item.IDClient] += (float)item.Quantity;
-                }
-                else
-                {
-                    fillDates.Add(item.IDClient, (float)item.Quantity);
-                }
-            }
-            foreach(var item in fillDates)
-            {
-                Models.Client client = Context.Clients.FirstOrDefault(C => C.ID == item.Key);
-                FillDate fillDate = new FillDate();
-                fillDate.ID = item.Key;
-                fillDate.Name = client.Name;
-                fillDate.Tole_Fee = item.Value;
-                fillDates1.Add(fillDate);
-            }
-            GridView_Client_Paid.ItemsSource = fillDates1;
+            FillGridFee("");
         }
 
         private void AddPaidBtn_Click(object sender, RoutedEventArgs e)
@@ -70,13 +50,17 @@ namespace Lawyer.Client
             {
                 if (SearchClientsTxt.Text == "")
                 {
-                    fils_Feess = Context.Fils_Fees.ToList();
+
+                    fees = Context.Fees.ToList();
+                    FillGridFee("");
+
                 }
                 else
                 {
-                    fils_Feess = Context.Fils_Fees.Where(F => F.Title.Contains(SearchBillsTxt.Text)).ToList();
+                    string name = SearchClientsTxt.Text;
+                    FillGridFee(name);
                 }
-                GridView_Bills.ItemsSource = fils_Feess;
+
             }
             catch (Exception ex)
             {
@@ -161,7 +145,22 @@ namespace Lawyer.Client
 
         private void SearchBillsTxt_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            try
+            {
+                if (SearchBillsTxt.Text == "")
+                {
+                    fils_Feess = Context.Fils_Fees.ToList();
+                }
+                else
+                {
+                    fils_Feess = Context.Fils_Fees.Where(F => F.Title.Contains(SearchBillsTxt.Text)).ToList();
+                }
+                GridView_Bills.ItemsSource = fils_Feess;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
 
         private void GridView_Bills_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -185,6 +184,42 @@ namespace Lawyer.Client
             {
                 System.Windows.MessageBox.Show(ex.Message);
             }
+        }
+        private void FillGridFee(string Name_Search)
+        {
+            Dictionary<string, float> fillDates = new Dictionary<string, float>();
+            List<FillDate> fillDates1 = new List<FillDate>();
+            foreach (var item in fees)
+            {
+                if (fillDates.ContainsKey(item.IDClient))
+                {
+                    fillDates[item.IDClient] += (float)item.Quantity;
+                }
+                else
+                {
+                    fillDates.Add(item.IDClient, (float)item.Quantity);
+                }
+            }
+            foreach (var item in fillDates)
+            {
+                Models.Client client = Context.Clients.FirstOrDefault(C => C.ID == item.Key);
+                FillDate fillDate = new FillDate();
+                fillDate.ID = item.Key;
+                fillDate.Name = client.Name;
+                fillDate.Tole_Fee = item.Value;
+                if (Name_Search != "")
+                {
+                    if(fillDate.Name.Contains(Name_Search))
+                    {
+                        fillDates1.Add(fillDate);
+                    }
+                }
+                else
+                {
+                    fillDates1.Add(fillDate);
+                }
+            }
+            GridView_Client_Paid.ItemsSource = fillDates1;
         }
     }
     public class FillDate
