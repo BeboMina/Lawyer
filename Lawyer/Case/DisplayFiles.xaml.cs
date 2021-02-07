@@ -23,9 +23,11 @@ namespace Lawyer.Case
     public partial class DisplayFiles : Window
     {
         testEntities Context = new testEntities();
+        long Id_Session;
         public DisplayFiles(long id)
         {
             InitializeComponent();
+            Id_Session = id;
             List<Models.FilesCas> filesCas = Context.FilesCases.Where(C => C.IDSessios == id).ToList();
             FilesGrid.ItemsSource = filesCas;
         }
@@ -66,9 +68,24 @@ namespace Lawyer.Case
             }
             else
             {
-                Notes_Session.IsReadOnly = true;
-                Notes_Session.Background = (Brush)(new BrushConverter().ConvertFrom("#FFC5CBF9"));
-                UpdateNotesBtn.Content = "تعديل";
+                try
+                {
+                    Models.Session session = Context.Sessions.FirstOrDefault(S => S.ID == Id_Session);
+                    if(session!=null)
+                    {
+                        session.Notes= new TextRange(Notes_Session.Document.ContentStart, Notes_Session.Document.ContentEnd).Text;
+                        Context.SaveChanges();
+                        System.Windows.MessageBox.Show("تم التعديل");
+
+                    }
+                    Notes_Session.IsReadOnly = true;
+                    Notes_Session.Background = (Brush)(new BrushConverter().ConvertFrom("#FFC5CBF9"));
+                    UpdateNotesBtn.Content = "تعديل";
+                }
+                catch(Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message);
+                }
             }
         }
     }
