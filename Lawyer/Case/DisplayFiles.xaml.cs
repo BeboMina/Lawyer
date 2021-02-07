@@ -37,6 +37,9 @@ namespace Lawyer.Case
 
         private void FilesGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (FilesGrid.SelectedItem == null)
+                return;
+
             try
             {
                 FolderBrowserDialog folderBrowser = new FolderBrowserDialog();

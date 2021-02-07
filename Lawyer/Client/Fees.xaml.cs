@@ -66,7 +66,22 @@ namespace Lawyer.Client
 
         private void SearchClientsTxt_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            try
+            {
+                if (SearchClientsTxt.Text == "")
+                {
+                    fils_Feess = Context.Fils_Fees.ToList();
+                }
+                else
+                {
+                    fils_Feess = Context.Fils_Fees.Where(F => F.Title.Contains(SearchBillsTxt.Text)).ToList();
+                }
+                GridView_Bills.ItemsSource = fils_Feess;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
 
         private void GridView_Client_Paid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -146,22 +161,7 @@ namespace Lawyer.Client
 
         private void SearchBillsTxt_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                if (SearchBillsTxt.Text == "")
-                {
-                    fils_Feess = Context.Fils_Fees.ToList();
-                }
-                else
-                {
-                    fils_Feess = Context.Fils_Fees.Where(F => F.Title.Contains(SearchBillsTxt.Text)).ToList();
-                }
-                GridView_Bills.ItemsSource = fils_Feess;
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void GridView_Bills_MouseDoubleClick(object sender, MouseButtonEventArgs e)
