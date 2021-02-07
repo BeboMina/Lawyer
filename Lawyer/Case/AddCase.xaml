@@ -37,7 +37,8 @@
 
                 <StackPanel Margin="10">
                     <TextBlock Text="رقم الدعوى" FontSize="12"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="Number_Case"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" Name="Number_Case"
+                             PreviewTextInput="Number_Case_PreviewTextInput"/>
                     <TextBlock Text="نوع الدعوى" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200"  Height="35" HorizontalAlignment="Left" Name="Tybe_case"/>
                     <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />

@@ -57,6 +57,9 @@ namespace Lawyer.Expert
 
         private void Case_Number_combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (Case_Number_combo.SelectedItem == null)
+                return;
+
             ID =(long) Case_Number_combo.SelectedItem;
         }
 

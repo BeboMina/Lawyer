@@ -46,7 +46,8 @@
                     <TextBlock Text="الموبايل" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200"  Height="35" HorizontalAlignment="Left" Name="Phone_Lawyer"/>
                     <TextBlock Text="المرتب" FontSize="12" Margin="0 10 0 0"/>
-                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" x:Name="Salary_Lawyer"/>
+                    <TextBox Width="200" Height="35" HorizontalAlignment="Left" x:Name="Salary_Lawyer"
+                             PreviewTextInput="Salary_Lawyer_PreviewTextInput"/>
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Column="1">

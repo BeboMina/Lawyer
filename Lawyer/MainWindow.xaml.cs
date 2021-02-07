@@ -20,9 +20,13 @@ namespace Lawyer
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool isUser;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            isUser = false;
             
             Login login = new Login(this);
             login.ShowDialog();
@@ -31,6 +35,10 @@ namespace Lawyer
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility
+            if(LV.SelectedItem != null && ((ListViewItem)LV.SelectedItem).Name == "ItemNotifications")
+            {
+                LV.SelectedItem = null;
+            }
 
             if (Tg_Btn.IsChecked == true)
             {
@@ -80,6 +88,9 @@ namespace Lawyer
 
         private void LV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (LV.SelectedItem == null)
+                return;
+
             if (((ListViewItem)((ListView)sender).SelectedItem).Name != "ItemNotifications")
             {
                 Tg_Btn.IsChecked = false;
@@ -115,10 +126,11 @@ namespace Lawyer
                     break;
 
                 case "ItemBills":
-                    Login login = new Login(null);
-                    login.ShowDialog();
-                    if (!login.login)
+                    if (isUser)
+                    {
+                        MessageBox.Show("عذرا, ليس لديك صلاحية");
                         break;
+                    }
                     main.Navigate(new Client.Fees());
                     TitleTxt.Text = "الاتعاب";
                     break;

@@ -42,12 +42,12 @@
                 </StackPanel>
 
                 <StackPanel Margin="10" Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="اسم المتخدم"/>
+                    <TextBlock Text="اسم المستخدم"/>
                     <TextBox x:Name="UserName" Width="200" Margin ="30 0"/>
                 </StackPanel>
                 <StackPanel Margin="10" Orientation="Horizontal" Grid.Row="2">
                     <TextBlock Text="الباسورد"/>
-                    <PasswordBox x:Name="Password" Width="200" Margin ="60 0"/>
+                    <PasswordBox x:Name="Password" Width="200" Margin ="73 0"/>
                 </StackPanel>
 
                 <Button x:Name="SignInBtn" Content="دخول" Grid.Row="3" Style="{StaticResource btnColored}"

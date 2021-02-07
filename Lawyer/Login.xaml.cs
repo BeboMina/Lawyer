@@ -20,7 +20,6 @@ namespace Lawyer
     public partial class Login : Window
     {
         MainWindow main;
-        public bool login = false;
 
         public Login(MainWindow window)
         {
@@ -31,7 +30,6 @@ namespace Lawyer
 
         private void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
-           
 
             if(Button2.IsChecked==true)
             {
@@ -43,17 +41,13 @@ namespace Lawyer
             }
             else if(Button1.IsChecked==true)
             {
-                if(main == null)
-                {
-                    MessageBox.Show("ليس لديك صلاحية للدخول");
-                    return;
-                }
-
                 if (UserName.Text != "user" || Password.Password != "123")
                 {
                     MessageBox.Show("Wrong User Name or Password!");
                     return;
                 }
+
+                main.isUser = true;
             }
             else
             {
@@ -61,21 +55,13 @@ namespace Lawyer
                 return;
             }
 
-            login = true;
             this.Close();
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(main == null)
-            {
-                this.Close();
-            }
-            else
-            {
-                this.Close();
-                main.Close();
-            }
+            this.Close();
+            main.Close();
         }
     }
 }

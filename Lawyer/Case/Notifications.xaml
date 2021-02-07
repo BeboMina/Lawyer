@@ -134,8 +134,8 @@
                                         <StackPanel Grid.Column="1">
                                             <TextBlock Text="التاريخ:" FontSize="10" Foreground="LightSlateGray"/>
                                             <TextBlock x:Name="DateTxt" Text="{Binding Date, StringFormat= 'MM/dd/yyyy'}" Margin="0 0 0 10"/>
-                                            <TextBlock Text="الايام المتبقية:" FontSize="10" Foreground="LightSlateGray"/>
-                                            <TextBlock x:Name="RemainDaysTxt" Text="{Binding Remain_Days}" Margin="0 0 0 10"/>
+                                            <!--<TextBlock Text="الايام المتبقية:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock x:Name="RemainDaysTxt" Text="{Binding Remain_Days}" Margin="0 0 0 10"/>-->
                                         </StackPanel>
                                         <StackPanel Grid.Column="2">
                                             <TextBlock Text="الحكم:" FontSize="10" Foreground="LightSlateGray"/>
