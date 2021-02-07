@@ -91,8 +91,7 @@ namespace Lawyer.Expert
                     {
                         eXpert.Date3 = Date_3.SelectedDate.Value;
                     }
-                    eXpert.Case_ID = ID;
-                    eXpert.Case_Degree = Degree[index];
+                    
                     eXpert.Name = Name_Expert.Text;
                     eXpert.Address = Address_Expert.Text;
                     eXpert.Email = Email_Expert.Text;
@@ -100,6 +99,8 @@ namespace Lawyer.Expert
                     eXpert.Notes = new TextRange(Notes_Expert.Document.ContentStart, Notes_Expert.Document.ContentEnd).Text;
                     if(act== "add")
                     {
+                        eXpert.Case_ID = ID;
+                        eXpert.Case_Degree = Degree[index];
                         Context.EXperts.Add(eXpert);
                     }
                     else
@@ -129,8 +130,6 @@ namespace Lawyer.Expert
                         {
                             eXpert1.Date3 = null;
                         }
-                        eXpert1.Case_ID = ID;
-                        eXpert1.Case_Degree = Degree[index];
                         eXpert1.Name = Name_Expert.Text;
                         eXpert1.Address = Address_Expert.Text;
                         eXpert1.Email = Email_Expert.Text;

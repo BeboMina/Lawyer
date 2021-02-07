@@ -22,7 +22,7 @@ namespace Lawyer.Case
     {
         testEntities Context = new testEntities();
         List<Models.View_1> view_1s;
-        List<Case_Model> Case_Models = new List<Case_Model>();
+        
         public Cases()
         {
             InitializeComponent();
@@ -31,23 +31,7 @@ namespace Lawyer.Case
 
 
                 view_1s = Context.View_1.ToList();
-                foreach (var item in view_1s)
-                {
-                    Case_Model case_Model = new Case_Model();
-                    case_Model.ID_Case = item.ID;
-                    case_Model.Client_Name = item.Name;
-                    case_Model.Type_Case = item.Type;
-                    Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == item.ID);
-                    if (@case!=null) 
-                    {
-                        case_Model.Notes = @case.Notes;
-                        case_Model.Lock = (@case.Lock == true) ? "الدعوى مغلقة" : " الدعوى مفتوحة";
-                        Case_Models.Add(case_Model);
-
-
-                    }
-                }
-                DataGrid_Cases.ItemsSource = Case_Models;
+                FillData();
             }
             catch(Exception ex)
             {
@@ -95,21 +79,43 @@ namespace Lawyer.Case
             {
                 if (SearchTxt.Text == "")
                 {
+                   
                     view_1s = Context.View_1.ToList();
+                    FillData();
 
                 }
                 else
                 {
                     long id = Convert.ToInt64(SearchTxt.Text);
-                    view_1s = Context.View_1.Where(V => V.ID==id).ToList();
+                    view_1s = Context.View_1.Where(V => V.ID == id).ToList();
+                    FillData();
                 }
-                DataGrid_Cases.ItemsSource = view_1s;
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        private void FillData()
+        {
+            List<Case_Model> Case_Models = new List<Case_Model>();
+
+            foreach (var item in view_1s)
+            {
+                Case_Model case_Model = new Case_Model();
+                case_Model.ID_Case = item.ID;
+                case_Model.Client_Name = item.Name;
+                case_Model.Type_Case = item.Type;
+                Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == item.ID);
+                if (@case != null)
+                {
+                    case_Model.Notes = @case.Notes;
+                    case_Model.Lock = (@case.Lock == true) ? "الدعوى مغلقة" : " الدعوى مفتوحة";
+                    Case_Models.Add(case_Model);
+                }
+            }
+            DataGrid_Cases.ItemsSource = Case_Models;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Lawyer.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,7 @@ namespace Lawyer.Proxy
             }
             else
             {
-                Date_Start.Text = procuration.StardDate.Value.ToShortDateString();
+                Date_Start.Text = procuration.StardDate.Value.ToString("dd/MM/yyy");
             }
             if (procuration.EndDate == null)
             {
@@ -50,7 +51,7 @@ namespace Lawyer.Proxy
             }
             else
             {
-                Date_End.Text = procuration.EndDate.Value.ToShortDateString();
+                Date_End.Text = procuration.EndDate.Value.ToString("dd/MM/yyy");
             }
             if(procuration.certified==true)
             {
@@ -104,7 +105,8 @@ namespace Lawyer.Proxy
                 Models.Procuration procuration = Context.Procurations.FirstOrDefault(P => P.ID == id);
                 if (Date_Start.Text != "")
                 {
-                    procuration.StardDate = Convert.ToDateTime(Date_Start.Text);
+                    DateTime date = DateTime.ParseExact(Date_Start.Text.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    procuration.StardDate = date;
                 }
                 else
                 {
@@ -112,11 +114,12 @@ namespace Lawyer.Proxy
                 }
                 if (Date_End.Text != "")
                 {
-                    procuration.EndDate = null;
+                    DateTime date = DateTime.ParseExact(Date_End.Text.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    procuration.EndDate = date;
                 }
                 else
                 {
-                    procuration.EndDate = Convert.ToDateTime(DBNull.Value);
+                    procuration.EndDate = null;
                 }
                 if (Button1.IsChecked == true)
                 {

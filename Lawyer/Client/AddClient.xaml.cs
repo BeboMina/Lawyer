@@ -156,7 +156,7 @@ namespace Lawyer
                             Context.SaveChanges();
                             client.IDProcuration = procuration.ID;
                         }
-                        if(NameFile!="")
+                        if(NameFile!=""&&NameFile!=null)
                         {
                             Models.FilesProcuration filesProcuration = new Models.FilesProcuration();
                             filesProcuration.Date=data;
