@@ -125,6 +125,12 @@ namespace Lawyer
 
         private void Save_Client(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(Name_Client.Text) && action == "اضافة")
+            {
+                MessageBox.Show("يجب ادخال اسم العميل");
+                return;
+            }
+            
             try
             {
 
@@ -235,6 +241,7 @@ namespace Lawyer
                     addProxy.Com_Name_Client.Visibility = Visibility.Collapsed;
                     addProxy.Text_Name_Client.Visibility = Visibility.Visible;
                     addProxy.Text_Name_Client.Text = Name_Client.Text;
+                    addProxy.Code_Client.Text = ID_Client.Text;
                     addProxy.ShowDialog();
                     NameFile = addProxy.NameFile;
                     procuration = addProxy.procuration1;

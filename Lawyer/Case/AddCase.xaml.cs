@@ -27,7 +27,7 @@ namespace Lawyer.Case
         List<Models.Client> clients;
         Models.Case Case = new Models.Case();
         Models.Client_Case Client_Case = new Client_Case();
-        int index = 0;
+        int index = -1;
         string Action;
         public Models.Case cases { get; set; }
         public String IDcl { get; set; }
@@ -55,6 +55,12 @@ namespace Lawyer.Case
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(Number_Case.Text) || (Action == "case" && index == -1))
+            {
+                MessageBox.Show("يجب اختيار عميل واضافة رقم الدعوى");
+                return;
+            }
+            
             try
             {
 

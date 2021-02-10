@@ -65,8 +65,14 @@ namespace Lawyer.Expert
 
         private void Save_Expert(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
+            if (string.IsNullOrWhiteSpace(Name_Expert.Text))
+            {
+                MessageBox.Show("يجب ادخال اسم الخبير");
+                return;
+            }
+
+            try
+            {
                 string message = "تاكيد حفظ بيانات الخبير";
                 string title = "حفظ";
                 MessageBoxButton buttons = MessageBoxButton.YesNo;
@@ -142,11 +148,11 @@ namespace Lawyer.Expert
                 }
                 MainWindow parent = (MainWindow)App.Current.MainWindow;
                 parent.main.Navigate(new Experts());
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Case_Type_combo_SelectionChanged(object sender, SelectionChangedEventArgs e)

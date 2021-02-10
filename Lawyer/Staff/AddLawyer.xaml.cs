@@ -70,6 +70,12 @@ namespace Lawyer.Staff
 
         private void Lawyer_Save(object sender, RoutedEventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(Name_Lawyer.Text) && act == "add")
+            {
+                MessageBox.Show("يجب ادخال اسم الموظف");
+                return;
+            }
+
             try
             {
                 Models.Stuff stuff = new Stuff();

@@ -28,7 +28,7 @@ namespace Lawyer.Proxy
         Models.Client client = new Models.Client();
         byte[] data;
         string Ex;
-        int index;
+        int index = -1;
         bool add = false;
         string action;
         public string NameFile { get; set; }
@@ -53,13 +53,14 @@ namespace Lawyer.Proxy
             }
         }
 
-        private void Client_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Close();
-        }
-
         private void Save_Date_Click(object sender, RoutedEventArgs e)
         {
+            if(index == -1)
+            {
+                MessageBox.Show("يجب اختيار عميل");
+                return;
+            }
+
             try
             {
 

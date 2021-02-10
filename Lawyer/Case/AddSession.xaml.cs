@@ -84,6 +84,12 @@ namespace Lawyer.Case
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            if((ID_Case == 0 && type == "case") || (string.IsNullOrWhiteSpace(Num_Veto.Text) && type != "case"))
+            {
+                System.Windows.MessageBox.Show("يجب ادخال رقم الدعوى / الاستئناف / النقض");
+                return;
+            }
+
             try
             {
 

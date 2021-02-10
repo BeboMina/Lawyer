@@ -227,6 +227,10 @@
                                    VerticalAlignment="Center"/>
                     </Grid>
 
+                    <Grid>
+                        <Image Source="Assets/background_logo.jpeg"/>
+                    </Grid>
+
                     
                 </Grid>
                 

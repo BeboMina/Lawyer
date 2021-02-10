@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lawyer"
         mc:Ignorable="d"
-        Title="Login" Height="350" Width="450"
+        Title="Login" Height="250" Width="450"
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen" 
@@ -51,10 +51,10 @@
                 </StackPanel>
 
                 <Button x:Name="SignInBtn" Content="دخول" Grid.Row="3" Style="{StaticResource btnColored}"
-                        HorizontalAlignment="Right" Click="SignInBtn_Click"/>
+                        HorizontalAlignment="Right" Click="SignInBtn_Click" Width="80"/>
 
                 <Button x:Name="CancelBtn" Content="إلغاء" Grid.Row="3" Style="{StaticResource btnColored}"
-                        HorizontalAlignment="Left" Click="CancelBtn_Click"/>
+                        HorizontalAlignment="Left" Click="CancelBtn_Click" Width="80"/>
             </Grid>
         </GroupBox>
     </Grid>

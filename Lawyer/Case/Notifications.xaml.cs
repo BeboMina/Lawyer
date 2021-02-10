@@ -145,7 +145,7 @@ namespace Lawyer.Case
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             int judgement_id = int.Parse(((CheckBox)sender).Tag.ToString());
-            string message = "تاكيد بداء فى الاجرارات الاعلان ";
+            string message = "تاكيد البدء فى اجراءات الاعلان ";
             string title = "حفظ";
             MessageBoxButton buttons = MessageBoxButton.YesNo;
             MessageBoxResult result = MessageBox.Show(message, title, buttons);
