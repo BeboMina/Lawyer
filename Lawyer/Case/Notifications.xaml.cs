@@ -154,6 +154,12 @@ namespace Lawyer.Case
                 Models.Jadge jadge = Context.Jadges.FirstOrDefault(J => J.ID == judgement_id);
                 jadge.Execute = true;
                 Context.SaveChanges();
+
+                ((CheckBox)sender).IsEnabled = false;
+            }
+            else
+            {
+                ((CheckBox)sender).IsChecked = false;
             }
         }
 

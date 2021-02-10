@@ -55,7 +55,7 @@ namespace Lawyer.Proxy
 
         private void Save_Date_Click(object sender, RoutedEventArgs e)
         {
-            if(index == -1)
+            if(index == -1 && action != "client_Add")
             {
                 MessageBox.Show("يجب اختيار عميل");
                 return;

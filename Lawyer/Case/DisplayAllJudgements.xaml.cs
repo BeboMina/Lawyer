@@ -61,7 +61,7 @@ namespace Lawyer.Case
                     viewJadge.NameClient = client.Name;
                     viewJadge.NumberCase = Num;
                     viewJadge.Excute = item.Execute.Value ? "تم" : "لا يتم";
-                    viewJadge.Date = item.Date.Value.ToShortDateString();
+                    viewJadge.Date = (item.Date.Value != null) ? DateTime.Parse(item.Date.ToString()).ToString("dd/MM/yyyy") : "";
                     viewJadges.Add(viewJadge);
                 }
                 JudgmentsGrid.ItemsSource = viewJadges;

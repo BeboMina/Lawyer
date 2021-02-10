@@ -139,15 +139,19 @@
                                         </StackPanel>
                                         <StackPanel Grid.Column="2">
                                             <TextBlock Text="الحكم:" FontSize="10" Foreground="LightSlateGray"/>
-                                            <TextBlock x:Name="JudgementTxt" Text="{Binding Judgement, StringFormat= 'dd/MM/yyyy'}" Margin="0 0 0 10"/>
+                                            <TextBlock x:Name="JudgementTxt" Text="{Binding Judgement}" TextWrapping="Wrap" Margin="0 0 0 10"/>
                                         </StackPanel>
                                     </Grid>
 
                                     <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock Text="الاعلان:" FontSize="10" Foreground="LightSlateGray"/>
                                         <CheckBox Tag="{Binding Judgement_ID}" IsChecked="False"
-                                            Foreground="White" Checked="CheckBox_Checked"  
-                                            FontSize="12px" />
+                                            Foreground="White" Checked="CheckBox_Checked" FlowDirection="LeftToRight">
+
+                                            <CheckBox.LayoutTransform>
+                                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                            </CheckBox.LayoutTransform>
+                                        </CheckBox>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
