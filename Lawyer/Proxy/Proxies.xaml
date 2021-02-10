@@ -68,7 +68,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="تاريخ الاصدار" Binding="{Binding StardDate, StringFormat= 'MM/dd/yyyy'}">
+                <DataGridTextColumn Header="تاريخ الاصدار" Binding="{Binding StardDate, StringFormat= 'dd/MM/yyyy'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -82,7 +82,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="تاريخ الانتهاء" Binding="{Binding EndDate, StringFormat= 'MM/dd/yyyy'}">
+                <DataGridTextColumn Header="تاريخ الانتهاء" Binding="{Binding EndDate, StringFormat= 'dd/MM/yyyy'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />

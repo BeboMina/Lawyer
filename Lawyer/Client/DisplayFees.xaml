@@ -35,7 +35,7 @@
                         AutoGenerateColumns="False">
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="التاريخ" Binding="{Binding Date, StringFormat= 'MM/dd/yyyy'}">
+                        <DataGridTextColumn Header="التاريخ" Binding="{Binding Date, StringFormat= 'dd/MM/yyyy'}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />

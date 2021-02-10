@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Lawyer.Case"
         mc:Ignorable="d"
         Title="ResumeCase" FontSize="18" Height="450" Width="900" Foreground="White"
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         FlowDirection="RightToLeft" WindowStyle="None">
 
     <FrameworkElement.Resources>
@@ -65,11 +65,11 @@
                     <TextBlock Text="الجلسات" FontSize="12" Margin="0 10 0 0"/>
                     <DataGrid IsReadOnly="True" Margin="0 5 0 0" Height="250" Style="{StaticResource CustomDataGrid}"
                         Foreground="White" FontSize="16" ColumnWidth="*" 
-                        ColumnHeaderHeight="30" Name="GridView_Session" 
+                        ColumnHeaderHeight="30" Name="GridView_Session"
                               AutoGenerateColumns="False" MouseDoubleClick="GridView_Session_MouseDoubleClick">
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="تاريخ الجلسة" Binding="{Binding date, StringFormat= 'MM/dd/yyyy'}">
+                            <DataGridTextColumn Header="تاريخ الجلسة" Binding="{Binding date, StringFormat= 'dd/MM/yyyy'}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -90,7 +90,7 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="التاريخ القادم" Binding="{Binding NextDate, StringFormat= 'MM/dd/yyyy'}">
+                            <DataGridTextColumn Header="التاريخ القادم" Binding="{Binding NextDate, StringFormat= 'dd/MM/yyyy'}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />

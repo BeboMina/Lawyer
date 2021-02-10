@@ -65,21 +65,21 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="ميعاد 1" Binding="{Binding Date1, StringFormat= 'MM/dd/yyyy'}">
+                <DataGridTextColumn Header="ميعاد 1" Binding="{Binding Date1, StringFormat= 'dd/MM/yyyy'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="ميعاد 2" Binding="{Binding Date2, StringFormat= 'MM/dd/yyyy'}">
+                <DataGridTextColumn Header="ميعاد 2" Binding="{Binding Date2, StringFormat= 'dd/MM/yyyy'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="ميعاد 3" Binding="{Binding Date3, StringFormat= 'MM/dd/yyyy'}">
+                <DataGridTextColumn Header="ميعاد 3" Binding="{Binding Date3, StringFormat= 'dd/MM/yyyy'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />

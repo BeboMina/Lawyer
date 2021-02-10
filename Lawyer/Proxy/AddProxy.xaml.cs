@@ -34,6 +34,7 @@ namespace Lawyer.Proxy
         public string NameFile { get; set; }
         public Models.Procuration procuration1{ get; set; }
         public byte[] data1 { get; set; }
+        string Name;
         public string name1 { get; set; }
         public string ex1 { get; set; }
         List<NameEx>NameExt = new List<NameEx>();

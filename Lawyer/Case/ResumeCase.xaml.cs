@@ -32,7 +32,7 @@ namespace Lawyer.Case
             case_num = long.Parse(num);
             Case_Number.Text = num;
 
-            if(type == "نقض")
+            if (type == "نقض")
             {
                 Models.Resumption resumption = Context.Resumptions.FirstOrDefault(C => C.ID_Case == case_num);
                 if(resumption != null)
@@ -49,25 +49,7 @@ namespace Lawyer.Case
                     caseHasVeto(veto.ID_veto, veto.Circle, veto.Notes);
             }
 
-            int veto_res_id = 0;
-            if(int.TryParse(Res_Num.Text, out veto_res_id))
-            {
-                List<Models.Session> sessions;
-                if (type == "نقض")
-                {
-                    sessions = Context.Sessions.Where(S => S.IDCase == veto_res_id&&S.Case_Degree==3).ToList();
-                }
-                else
-                {
-                     sessions = Context.Sessions.Where(S => S.IDCase == veto_res_id && S.Case_Degree == 3).ToList();
-
-                }
-                
-                if (sessions.Count != 0)
-                {
-                    GridView_Session.ItemsSource = sessions;
-                }
-            }
+            load_gridview();
         }
 
         private void caseHasVeto(long num, string circle, string notes)
@@ -137,6 +119,8 @@ namespace Lawyer.Case
             addSession.Num_Case.Text = Case_Number.Text;
             addSession.Num_Veto.Text = Res_Num.Text;
             addSession.ShowDialog();
+
+            load_gridview();
         }
 
         private void GridView_Session_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -147,6 +131,19 @@ namespace Lawyer.Case
             Case.DisplayFiles displayFiles = new DisplayFiles(session.ID);
             new TextRange(displayFiles.Notes_Session.Document.ContentStart, displayFiles.Notes_Session.Document.ContentEnd).Text = session.Notes;
             displayFiles.ShowDialog();
+        }
+
+        void load_gridview()
+        {
+            int veto_res_id = 0;
+            if (int.TryParse(Res_Num.Text, out veto_res_id))
+            {
+                List<Models.Session> sessions = Context.Sessions.Where(S => S.IDCase == veto_res_id).ToList();
+                if (sessions.Count != 0)
+                {
+                    GridView_Session.ItemsSource = sessions;
+                }
+            }
         }
     }
 }

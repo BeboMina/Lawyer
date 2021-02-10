@@ -42,6 +42,9 @@ namespace Lawyer.Client
         {
             Client.AddFees addFees = new AddFees();
             addFees.ShowDialog();
+
+            fees = Context.Fees.ToList();
+            FillGridFee("");
         }
 
         private void SearchClientsTxt_TextChanged(object sender, TextChangedEventArgs e)
