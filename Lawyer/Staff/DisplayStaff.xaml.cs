@@ -27,17 +27,9 @@ namespace Lawyer.Staff
         public DisplayStaff(Models.Stuff stuff1)
         {
             InitializeComponent();
-            try
-            {
-                stuff = stuff1;
-                tasks = Context.Tasks.Where(T => T.Stuff_ID == stuff.ID).ToList();
-                Name_Lawyer.Text = stuff.Name;
-                GridView_Session.ItemsSource = tasks;
-            }
-            catch(Exception Ex)
-            {
-                MessageBox.Show(Ex.Message);
-            }
+
+            stuff = stuff1;
+            load_gridview();
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -49,6 +41,8 @@ namespace Lawyer.Staff
         {
             AddTask addTask = new AddTask(stuff);
             addTask.ShowDialog();
+
+            load_gridview();
         }
 
         private void Task_Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -73,6 +67,20 @@ namespace Lawyer.Staff
                 GridView_Session.ItemsSource = tasks;
             }
             
+        }
+
+        void load_gridview()
+        {
+            try
+            {
+                tasks = Context.Tasks.Where(T => T.Stuff_ID == stuff.ID).ToList();
+                Name_Lawyer.Text = stuff.Name;
+                GridView_Session.ItemsSource = tasks;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
         }
     }
 }

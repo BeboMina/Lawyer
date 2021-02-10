@@ -72,7 +72,7 @@
                                         </StackPanel>
                                         <StackPanel Grid.Column="1">
                                             <TextBlock Text="التاريخ:" FontSize="10" Foreground="LightSlateGray"/>
-                                            <TextBlock x:Name="NextDateTxt" Text="{Binding Next_Date, StringFormat= 'MM/dd/yyyy'}" Margin="0 0 0 10"/>
+                                            <TextBlock x:Name="NextDateTxt" Text="{Binding Next_Date, StringFormat= 'dd/MM/yyyy'}" Margin="0 0 0 10"/>
                                             <TextBlock Text="الدايرة:" FontSize="10" Foreground="LightSlateGray"/>
                                             <TextBlock x:Name="CircleTxt" Text="{Binding Circle}" Margin="0 0 0 10"/>
                                         </StackPanel>
@@ -133,7 +133,7 @@
                                         </StackPanel>
                                         <StackPanel Grid.Column="1">
                                             <TextBlock Text="التاريخ:" FontSize="10" Foreground="LightSlateGray"/>
-                                            <TextBlock x:Name="DateTxt" Text="{Binding Date, StringFormat= 'MM/dd/yyyy'}" Margin="0 0 0 10"/>
+                                            <TextBlock x:Name="DateTxt" Text="{Binding Date, StringFormat= 'dd/MM/yyyy'}" Margin="0 0 0 10"/>
                                             <!--<TextBlock Text="الايام المتبقية:" FontSize="10" Foreground="LightSlateGray"/>
                                             <TextBlock x:Name="RemainDaysTxt" Text="{Binding Remain_Days}" Margin="0 0 0 10"/>-->
                                         </StackPanel>

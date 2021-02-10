@@ -35,8 +35,8 @@ namespace Lawyer.Proxy
                 fill_Data.ID = item.ID;
                 fill_Data.Client_ID = Cli_ID.ID;
                 fill_Data.Client_Name = Cli_ID.Name;
-                fill_Data.StardDate = (item.StardDate!= null) ? item.StardDate.Value.ToShortDateString(): "";
-                fill_Data.EndDate = (item.EndDate != null)? item.EndDate.Value.ToShortDateString():"";
+                fill_Data.StardDate = (item.StardDate!= null) ? DateTime.Parse(item.StardDate.ToString()).ToString("dd/MM/yyyy") : "";
+                fill_Data.EndDate = (item.EndDate != null)? DateTime.Parse(item.EndDate.ToString()).ToString("dd/MM/yyyy") : "";
                 if(item.certified==true)
                 {
                     fill_Data.certified = "موثق";

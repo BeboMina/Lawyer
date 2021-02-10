@@ -90,7 +90,7 @@
                               AutoGenerateColumns="False" MouseDoubleClick="GridView_Session_MouseDoubleClick">
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="تاريخ الجلسة" Binding="{Binding date, StringFormat= 'MM/dd/yyyy'}">
+                            <DataGridTextColumn Header="تاريخ الجلسة" Binding="{Binding date, StringFormat= 'dd/MM/yyyy'}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -111,7 +111,7 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="التاريخ القادم" Binding="{Binding NextDate, StringFormat= 'MM/dd/yyyy'}">
+                            <DataGridTextColumn Header="التاريخ القادم" Binding="{Binding NextDate, StringFormat= 'dd/MM/yyyy'}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
