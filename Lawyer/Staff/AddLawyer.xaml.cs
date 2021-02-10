@@ -88,7 +88,14 @@ namespace Lawyer.Staff
 
                     stuff.Name = Name_Lawyer.Text;
                     stuff.phone = Phone_Lawyer.Text;
-                    stuff.Salar = Convert.ToDouble(Salary_Lawyer.Text);
+                    if(Salary_Lawyer.Text!=null&& Salary_Lawyer.Text!="")
+                    {
+                        stuff.Salar = Convert.ToDouble(Salary_Lawyer.Text);
+                    }
+                    else if(Salary_Lawyer.Text == "")
+                    {
+                        stuff.Salar = 0;
+                    }
                     stuff.Address = Address_Lawyer.Text;
                     stuff.Notes= new TextRange(Notes_Lawyer.Document.ContentStart, Notes_Lawyer.Document.ContentEnd).Text;
                     stuff.Email = Email_Lawyer.Text;

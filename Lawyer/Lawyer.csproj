@@ -171,6 +171,9 @@
     <Compile Include="Models\Procuration.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Register.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Resumption.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
