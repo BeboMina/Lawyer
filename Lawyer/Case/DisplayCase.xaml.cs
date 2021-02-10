@@ -83,6 +83,8 @@ namespace Lawyer.Case
                     CloseCaseBtn.Content = "الدعوى مغلقة";
                     MessageBox.Show("تم غلق الدعوى");
 
+                    MainWindow parent = (MainWindow)App.Current.MainWindow;
+                    parent.main.Navigate(new Cases());
                 }
             }
             catch (Exception ex)
