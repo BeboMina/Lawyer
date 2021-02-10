@@ -61,7 +61,7 @@
                         <DataGrid Style="{StaticResource CustomDataGrid}"
                                   ItemsSource="{Binding}" AutoGenerateColumns="False" 
                                   IsReadOnly="True" Foreground="White" ColumnWidth="*"
-                                  Width="340" Height="200" Name="Grid_Files">
+                                  Width="340" Height="200" Name="Grid_Files" MouseDoubleClick="Grid_Files_MouseDoubleClick">
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="اسم الملف" Binding="{Binding Name}">

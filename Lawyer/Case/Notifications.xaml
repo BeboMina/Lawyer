@@ -78,7 +78,7 @@
                                         </StackPanel>
                                         <StackPanel Grid.Column="2">
                                             <TextBlock Text="الميعاد:" FontSize="10" Foreground="LightSlateGray"/>
-                                            <TextBlock x:Name="TimeTxt" Text="{Binding Time}" Margin="0 0 0 10"/>
+                                            <TextBlock x:Name="TimeTxt" Text="{Binding Time, StringFormat= 'dd/MM/yyyy'}" Margin="0 0 0 10"/>
                                             <TextBlock Text="المحكمة:" FontSize="10" Foreground="LightSlateGray"/>
                                             <TextBlock x:Name="CourtTxt" Text="{Binding Court}" Margin="0 0 0 10"/>
                                         </StackPanel>
@@ -139,7 +139,7 @@
                                         </StackPanel>
                                         <StackPanel Grid.Column="2">
                                             <TextBlock Text="الحكم:" FontSize="10" Foreground="LightSlateGray"/>
-                                            <TextBlock x:Name="JudgementTxt" Text="{Binding Judgement}" Margin="0 0 0 10"/>
+                                            <TextBlock x:Name="JudgementTxt" Text="{Binding Judgement, StringFormat= 'dd/MM/yyyy'}" Margin="0 0 0 10"/>
                                         </StackPanel>
                                     </Grid>
 
