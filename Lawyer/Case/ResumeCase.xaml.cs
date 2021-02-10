@@ -52,7 +52,17 @@ namespace Lawyer.Case
             int veto_res_id = 0;
             if(int.TryParse(Res_Num.Text, out veto_res_id))
             {
-                List<Models.Session> sessions = Context.Sessions.Where(S => S.IDCase == veto_res_id).ToList();
+                List<Models.Session> sessions;
+                if (type == "نقض")
+                {
+                    sessions = Context.Sessions.Where(S => S.IDCase == veto_res_id&&S.Case_Degree==3).ToList();
+                }
+                else
+                {
+                     sessions = Context.Sessions.Where(S => S.IDCase == veto_res_id && S.Case_Degree == 3).ToList();
+
+                }
+                
                 if (sessions.Count != 0)
                 {
                     GridView_Session.ItemsSource = sessions;
