@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lawyer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +21,14 @@ namespace Lawyer
     public partial class Login : Window
     {
         MainWindow main;
-
+        testEntities Context = new testEntities();
+        List<Models.Register> registers = new List<Register>();
         public Login(MainWindow window)
         {
             InitializeComponent();
 
             main = window;
+            registers = Context.Registers.ToList();
         }
 
         private void SignInBtn_Click(object sender, RoutedEventArgs e)
@@ -33,7 +36,7 @@ namespace Lawyer
 
             if(Button2.IsChecked==true)
             {
-                if(UserName.Text != "admin" || Password.Password != "123")
+                if(UserName.Text != registers[1].UserName || Password.Password != registers[1].password)
                 {
                     MessageBox.Show("Wrong User Name or Password!");
                     return;
@@ -41,7 +44,7 @@ namespace Lawyer
             }
             else if(Button1.IsChecked==true)
             {
-                if (UserName.Text != "user" || Password.Password != "123")
+                if (UserName.Text != registers[0].UserName || Password.Password != registers[0].password)
                 {
                     MessageBox.Show("Wrong User Name or Password!");
                     return;

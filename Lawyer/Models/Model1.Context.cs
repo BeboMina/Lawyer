@@ -38,6 +38,7 @@ namespace Lawyer.Models
         public virtual DbSet<Lawery> Laweries { get; set; }
         public virtual DbSet<Lawery_Session> Lawery_Session { get; set; }
         public virtual DbSet<Procuration> Procurations { get; set; }
+        public virtual DbSet<Register> Registers { get; set; }
         public virtual DbSet<Resumption> Resumptions { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<Stuff> Stuffs { get; set; }

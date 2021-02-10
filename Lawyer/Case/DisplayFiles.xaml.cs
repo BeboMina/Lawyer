@@ -29,6 +29,8 @@ namespace Lawyer.Case
             InitializeComponent();
             Id_Session = id;
             List<Models.FilesCas> filesCas = Context.FilesCases.Where(C => C.IDSessios == id).ToList();
+            Models.Session session = Context.Sessions.FirstOrDefault(S => S.ID == id);
+            new TextRange(Notes_Session.Document.ContentStart, Notes_Session.Document.ContentEnd).Text = session.Notes==null? "": session.Notes;
             FilesGrid.ItemsSource = filesCas;
         }
 

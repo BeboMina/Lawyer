@@ -133,14 +133,6 @@
           <Property Name="IDLawery" Type="bigint" Nullable="false" />
           <Property Name="IDSessios" Type="bigint" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'test.dbo.Login' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Login">
-          <Property Name="ID" Type="bigint" />
-          <Property Name="UserName" Type="nvarchar(max)" />
-          <Property Name="Password" Type="nvarchar(max)" />
-          <Property Name="Type" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="Procuration">
           <Key>
             <PropertyRef Name="ID" />
@@ -150,6 +142,15 @@ warning 6013: The table/view 'test.dbo.Login' does not have a primary key define
           <Property Name="EndDate" Type="date" />
           <Property Name="certified" Type="bit" />
           <Property Name="IDLawery" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Register">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="password" Type="nvarchar(max)" />
+          <Property Name="type" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Resumption">
           <Key>
@@ -378,6 +379,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Lawery" EntityType="Self.Lawery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lawery_Session" EntityType="Self.Lawery_Session" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Procuration" EntityType="Self.Procuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Register" EntityType="Self.Register" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Resumption" EntityType="Self.Resumption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stuff" EntityType="Self.Stuff" Schema="dbo" store:Type="Tables" />
@@ -600,6 +602,15 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="IDLawery" Type="Int64" />
           <NavigationProperty Name="FilesProcurations" Relationship="Self.FK_FilesProcuration_Procuration" FromRole="Procuration" ToRole="FilesProcuration" />
           <NavigationProperty Name="Lawery" Relationship="Self.FK_Procuration_Lawery" FromRole="Procuration" ToRole="Lawery" />
+        </EntityType>
+        <EntityType Name="Register">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Resumption">
           <Key>
@@ -832,6 +843,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Laweries" EntityType="Self.Lawery" />
           <EntitySet Name="Lawery_Session" EntityType="Self.Lawery_Session" />
           <EntitySet Name="Procurations" EntityType="Self.Procuration" />
+          <EntitySet Name="Registers" EntityType="Self.Register" />
           <EntitySet Name="Resumptions" EntityType="Self.Resumption" />
           <EntitySet Name="Sessions" EntityType="Self.Session" />
           <EntitySet Name="Stuffs" EntityType="Self.Stuff" />
@@ -1038,6 +1050,16 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="certified" ColumnName="certified" />
                 <ScalarProperty Name="IDLawery" ColumnName="IDLawery" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registers">
+            <EntityTypeMapping TypeName="testModel.Register">
+              <MappingFragment StoreEntitySet="Register">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type" ColumnName="type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
