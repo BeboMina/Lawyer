@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -130,7 +131,7 @@ namespace Lawyer.Proxy
                 }
                 else
                 {
-                    MessageBox.Show("التوكيل موثق ام غير موثق");
+                    System.Windows.MessageBox.Show("التوكيل موثق ام غير موثق");
                     return;
                 }
                 if (result == MessageBoxResult.Yes)
@@ -161,6 +162,29 @@ namespace Lawyer.Proxy
                     Close();
                     MainWindow parent = (MainWindow)App.Current.MainWindow;
                     parent.main.Navigate(new Proxies());
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Grid_Files_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (Grid_Files.SelectedItem == null)
+                return;
+
+            try
+            {
+                FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
+                if (folderBrowser.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    Models.FilesProcuration fils = (Models.FilesProcuration)Grid_Files.SelectedItem;
+                    string folder = folderBrowser.SelectedPath;
+                    string name = fils.Title + fils.Extantion;
+                    byte[] data = fils.Date;
+                    File.WriteAllBytes(folder + "\\" + name, data);
                 }
             }
             catch (Exception ex)

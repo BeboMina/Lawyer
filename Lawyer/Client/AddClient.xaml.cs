@@ -66,7 +66,10 @@ namespace Lawyer
                     Name_client_combo.SelectedIndex = 0;
                     int index = 0;
                     change_data(index);
-                    
+                    Add_Case.Visibility = Visibility.Collapsed;
+                    Add_Proxy.Visibility = Visibility.Collapsed;
+
+
                 }
                 ID_Client.IsReadOnly = true;
             }
