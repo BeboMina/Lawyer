@@ -104,10 +104,11 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="ملاحظات" Width="auto" Binding="{Binding Notes}">
+                <DataGridTextColumn Header="ملاحظات" Binding="{Binding Notes}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="TextWrapping" Value="Wrap" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
