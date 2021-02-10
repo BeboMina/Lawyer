@@ -78,7 +78,7 @@
                     </StackPanel>
                     <Button Height="40" Width="120"
                             Margin="15" HorizontalAlignment="Right" 
-                            Style="{StaticResource NewGameButtonStyle}" Name="Save_Date" Click="Save_Date_Click">
+                            Style="{StaticResource NewGameButtonStyle}" Name="Save_Date" Click="Save_Date_Click" Visibility="Visible">
                         <TextBlock Text="حفظ" TextAlignment="Center"/>
                     </Button>
                 </StackPanel>

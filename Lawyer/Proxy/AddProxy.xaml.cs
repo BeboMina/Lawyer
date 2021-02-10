@@ -142,26 +142,15 @@ namespace Lawyer.Proxy
 
         private void Com_Name_Client_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Save_Date.Visibility = Visibility.Visible;
             index = Com_Name_Client.SelectedIndex;
             Code_Client.Text = IDClient[index];
             string Cli_Id = IDClient[index];
             Models.Client client_Chek = Context.Clients.FirstOrDefault(C => C.ID == Cli_Id);
             if(client_Chek.IDProcuration!=null)
             {
-               /* long ID_Pro= (long)client_Chek.IDProcuration;
-                Models.Procuration procuration = Context.Procurations.FirstOrDefault(P => P.ID == ID_Pro);
-                if (Date_Start.SelectedDate != null)
-                {
-                    Date_Start.SelectedDate=procuration.StardDate.Value;
-                }
-                if (Date_End.SelectedDate != null)
-                {
-                    Date_End.SelectedDate = procuration.EndDate.Value;
-                }
-                if (Button1.IsChecked == true)
-                {
-                    procuration.certified = true;
-                }*/
+                MessageBox.Show("هذا العميل له توكيل من قبل");
+                Save_Date.Visibility = Visibility.Collapsed;
             }
         }
 

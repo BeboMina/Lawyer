@@ -43,7 +43,7 @@ namespace Lawyer.Proxy
             }
             else
             {
-                Date_Start.Text = procuration.StardDate.Value.ToString("dd/MM/yyy");
+                Date_Start.SelectedDate = procuration.StardDate;
             }
             if (procuration.EndDate == null)
             {
@@ -51,7 +51,7 @@ namespace Lawyer.Proxy
             }
             else
             {
-                Date_End.Text = procuration.EndDate.Value.ToString("dd/MM/yyy");
+                Date_End.SelectedDate = procuration.EndDate;
             }
             if(procuration.certified==true)
             {
@@ -105,8 +105,8 @@ namespace Lawyer.Proxy
                 Models.Procuration procuration = Context.Procurations.FirstOrDefault(P => P.ID == id);
                 if (Date_Start.Text != "")
                 {
-                    DateTime date = DateTime.ParseExact(Date_Start.Text.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                    procuration.StardDate = date;
+                    
+                    procuration.StardDate = Date_Start.SelectedDate.Value;
                 }
                 else
                 {
@@ -114,8 +114,7 @@ namespace Lawyer.Proxy
                 }
                 if (Date_End.Text != "")
                 {
-                    DateTime date = DateTime.ParseExact(Date_End.Text.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                    procuration.EndDate = date;
+                    procuration.EndDate = Date_End.SelectedDate.Value;
                 }
                 else
                 {
@@ -160,6 +159,8 @@ namespace Lawyer.Proxy
                         
                     }
                     Close();
+                    MainWindow parent = (MainWindow)App.Current.MainWindow;
+                    parent.main.Navigate(new Proxies());
                 }
             }
             catch (Exception ex)
