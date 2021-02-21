@@ -184,11 +184,13 @@ namespace Lawyer
                     {
                         foreach(var item in cases)
                         {
+                            Context.Cases.Add(item);
+                            Context.SaveChanges();
                             Models.Client_Case client_Case = new Client_Case();
                             client_Case.IDCase = item.ID;
                             client_Case.IDClient = client.ID;
                             item.Client_Case.Add(client_Case);
-                            Context.Cases.Add(item);
+                            
                         }
                         
                     }

@@ -73,25 +73,24 @@ namespace Lawyer.Case
                     Case.Lock = false;
                     if (Action == "Client_Add")
                     {
-                        Case.ID = Convert.ToInt64(Number_Case.Text);
+                        Case.Case_Namber = Number_Case.Text;
                         Case.Circle = circle.Text;
                         Case.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
-                        Client_Case.IDCase = Case.ID;
-                        Client_Case.IDClient = IDcl;
                         Case.Type = Tybe_case.Text;
                         cases = Case;
                         Close();
                     }
                     else if (Action=="Case")
                     {
-                        Case.ID = Convert.ToInt64(Number_Case.Text);
+                        Case.Case_Namber =Number_Case.Text;
                         Case.Circle = circle.Text;
                         Case.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
+                        Case.Type = Tybe_case.Text;
+                        Context.Cases.Add(Case);
+                        Context.SaveChanges();
                         Client_Case.IDCase = Case.ID;
                         Client_Case.IDClient = clients[index].ID;
-                        Case.Type = Tybe_case.Text;
                         Case.Client_Case.Add(Client_Case);
-                        Context.Cases.Add(Case);
                         Context.SaveChanges();
                         Close();
                         MainWindow parent = (MainWindow)App.Current.MainWindow;

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lawyer", "Lawyer\Lawyer.csproj", "{491C9B66-3FF2-438E-965C-31B52E1B11DC}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{8685971D-6C1E-40E2-8A12-F65EBF59AE0E}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "finishSetup", "finishSetup\finishSetup.vdproj", "{8424B2EB-31C6-4124-877B-993772DA93A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{491C9B66-3FF2-438E-965C-31B52E1B11DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{491C9B66-3FF2-438E-965C-31B52E1B11DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{491C9B66-3FF2-438E-965C-31B52E1B11DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8685971D-6C1E-40E2-8A12-F65EBF59AE0E}.Debug|Any CPU.ActiveCfg = Debug
-		{8685971D-6C1E-40E2-8A12-F65EBF59AE0E}.Release|Any CPU.ActiveCfg = Release
+		{8424B2EB-31C6-4124-877B-993772DA93A6}.Debug|Any CPU.ActiveCfg = Debug
+		{8424B2EB-31C6-4124-877B-993772DA93A6}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

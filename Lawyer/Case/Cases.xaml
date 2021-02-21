@@ -60,7 +60,7 @@
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding ID_Case}">
+                <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding Case_Number}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center"/>

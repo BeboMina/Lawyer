@@ -25,7 +25,8 @@ namespace Lawyer.Case
     public partial class AddSession : Window
     {
         testEntities Context = new testEntities();
-        List<long> Num_Cases;
+        List<string> Num_Cases;
+        List<long> ID_Cases;
         long ID_Case;
         List<byte[]> data=new List<byte[]>();
         
@@ -37,11 +38,14 @@ namespace Lawyer.Case
 
         string type;
         long degree;
+        long Case_ID;
         
-        public AddSession(string typ)
+        public AddSession(string typ,long ID=-1)
         {
             InitializeComponent();
-            Num_Cases = Context.Cases.Select(C => C.ID).ToList();
+            Case_ID = ID;
+            ID_Cases = Context.Cases.Select(C => C.ID).ToList();
+            Num_Cases = Context.Cases.Select(C => C.Case_Namber).ToList();
             Com_Num_Case.ItemsSource = Num_Cases;
 
             type = typ;
@@ -74,7 +78,8 @@ namespace Lawyer.Case
 
         private void Com_Num_Case_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ID_Case =Convert.ToInt64(Com_Num_Case.SelectedItem);
+            int index = Com_Num_Case.SelectedIndex;
+            ID_Case =Convert.ToInt64(ID_Cases[index]);
             var IDCli = Context.Client_Case.FirstOrDefault(C=>C.IDCase==ID_Case);
             string ID = IDCli.IDClient;
             Models.Client nameClient = Context.Clients.FirstOrDefault(C => C.ID == ID);
@@ -110,7 +115,7 @@ namespace Lawyer.Case
                         session.NextDate = Convert.ToDateTime(NextData_Session.SelectedDate.Value);
                     }
                     session.Jadge = jadge.Text;
-                    session.IDCase = (type == "case")? ID_Case : int.Parse(Num_Veto.Text);
+                    session.IDCase = (type == "case")? ID_Case : Case_ID;
                     session.Case_Degree = degree;
                     session.Notes = new TextRange(Notes_Session.Document.ContentStart, Notes_Session.Document.ContentEnd).Text;
                     Context.Sessions.Add(session);
