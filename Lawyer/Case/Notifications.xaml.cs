@@ -96,7 +96,7 @@ namespace Lawyer.Case
                 }
             }
             SessionsList.ItemsSource = sessionNotifications;
-            AnnouncesList.ItemsSource = announceNotifications;
+            ExecutionList.ItemsSource = announceNotifications;
 
         }
 
@@ -142,7 +142,7 @@ namespace Lawyer.Case
             Close();
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void Inform_Client_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             int judgement_id = int.Parse(((CheckBox)sender).Tag.ToString());
             string message = "تاكيد البدء فى اجراءات الاعلان ";
@@ -184,10 +184,10 @@ namespace Lawyer.Case
             public int Judgement_ID { get; set; }
         }
 
-        private void AllAnnouncesBtn_Click(object sender, RoutedEventArgs e)
+        private void Start_Execute_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            Case.DisplayAllJudgements displayAllJudgements = new DisplayAllJudgements();
-            displayAllJudgements.ShowDialog();
+            Case.ExecuteJudgement executeJudgement = new ExecuteJudgement();
+            executeJudgement.ShowDialog();
         }
     }
 }

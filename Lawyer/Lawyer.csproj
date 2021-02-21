@@ -89,6 +89,9 @@
     <Compile Include="Case\DisplayFiles.xaml.cs">
       <DependentUpon>DisplayFiles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Case\ExecuteJudgement.xaml.cs">
+      <DependentUpon>ExecuteJudgement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Case\Judgement.xaml.cs">
       <DependentUpon>Judgement.xaml</DependentUpon>
     </Compile>
@@ -240,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Case\DisplayFiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Case\ExecuteJudgement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
