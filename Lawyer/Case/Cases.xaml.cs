@@ -28,8 +28,6 @@ namespace Lawyer.Case
             InitializeComponent();
             try
             {
-
-
                 view_1s = Context.View_1.ToList();
                 FillData();
             }
@@ -61,7 +59,7 @@ namespace Lawyer.Case
             Case.DisplayCase displayCase = new DisplayCase(@case.ID_Case);
             displayCase.CloseCaseBtn.Content= (case1.Lock == true) ? "الدعوى مغلقة" : " اغلاق الدعوى";
             displayCase.CLient_Name.Text = @case.Client_Name;
-            displayCase.Case_Number.Text = @case.ID_Case.ToString();
+            displayCase.Case_Number.Text = @case.Case_Number;
             displayCase.Case_Type.Text= @case.Type_Case;
             displayCase.C_Case.Text = case1.Circle;
             new TextRange(displayCase.Notes.Document.ContentStart, displayCase.Notes.Document.ContentEnd).Text = case1.Notes==null ? "": case1.Notes;
@@ -105,11 +103,13 @@ namespace Lawyer.Case
             {
                 Case_Model case_Model = new Case_Model();
                 case_Model.ID_Case = item.ID;
+                
                 case_Model.Client_Name = item.Name;
                 case_Model.Type_Case = item.Type;
                 Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == item.ID);
                 if (@case != null)
                 {
+                    case_Model.Case_Number = @case.Case_Namber;
                     case_Model.Notes = @case.Notes;
                     case_Model.Lock = (@case.Lock == true) ? "الدعوى مغلقة" : " الدعوى مفتوحة";
                     Case_Models.Add(case_Model);

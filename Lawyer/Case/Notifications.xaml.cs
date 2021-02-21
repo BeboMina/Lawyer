@@ -53,15 +53,15 @@ namespace Lawyer.Case
                         Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Resumption == item.IDCase);
                         if (@case != null)
                         {
-                            FillListSession(item, @case.Circle, @case.ID);
+                            FillListSession(item, @case.Circle, @case.ID,@case.Case_Namber);
                         }
                         else if (veto != null)
                         {
-                            FillListSession(item, veto.Circle, (long)veto.ID_Case);
+                            FillListSession(item, veto.Circle, (long)veto.ID_Case,veto.Veto_Number);
                         }
                         else if (resumption != null)
                         {
-                            FillListSession(item, resumption.Circle, (long)resumption.ID_Case);
+                            FillListSession(item, resumption.Circle, (long)resumption.ID_Case,resumption.Resumption_Number);
                         }
                     }
                 }
@@ -100,15 +100,15 @@ namespace Lawyer.Case
 
         }
 
-        private void FillListSession(Models.Session sess,string circle,long num_Case)
+        private void FillListSession(Models.Session sess,string circle,long Case_ID,string Case_Num)
         {
             SessionNotification sessionNotification = new SessionNotification();
-            Models.Client_Case client_Case = Context.Client_Case.FirstOrDefault(C => C.IDCase == num_Case);
+            Models.Client_Case client_Case = Context.Client_Case.FirstOrDefault(C => C.IDCase == Case_ID);
             if (client_Case != null)
             {
                 Models.Client client;
                 client = Context.Clients.FirstOrDefault(C => C.ID == client_Case.IDClient);
-                sessionNotification.Case_Number = sess.IDCase;
+                sessionNotification.Case_Number = Case_Num;
                 sessionNotification.Circle = circle;
                 sessionNotification.Client_Name = client.Name;
                 sessionNotification.Court = sess.Jadge;
@@ -166,7 +166,7 @@ namespace Lawyer.Case
         public class SessionNotification
         {
             public string Client_Name { get; set; }
-            public long Case_Number { get; set; }
+            public string Case_Number { get; set; }
             public string Circle { get; set; }
             public string Court { get; set; }
             public DateTime Next_Date { get; set; }

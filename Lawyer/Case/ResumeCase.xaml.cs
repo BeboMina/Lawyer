@@ -21,38 +21,43 @@ namespace Lawyer.Case
     public partial class ResumeCase : Window
     {
         string type;
-        long case_num;
+        long case_num=-1;
         testEntities Context = new testEntities();
+        Models.Case @case = new Models.Case();
+        int degree = 0;
 
-        public ResumeCase(string t, string num)
+        public ResumeCase(string t, Models.Case Case)
         {
             InitializeComponent();
-
+            @case = Case;
             type = t;
-            case_num = long.Parse(num);
-            Case_Number.Text = num;
+            Case_Number.Text = Case.Case_Namber;
 
             if (type == "نقض")
             {
-                Models.Resumption resumption = Context.Resumptions.FirstOrDefault(C => C.ID_Case == case_num);
+               
+                Models.Resumption resumption = Context.Resumptions.FirstOrDefault(C => C.ID_Case == Case.ID);
                 if(resumption != null)
-                    caseHasVeto(resumption.ID_Resumption, resumption.Circle, resumption.Notes);
+                    caseHasVeto(resumption.ID_Resumption, resumption.Circle, resumption.Notes,resumption.Resumption_Number);
 
                 GboxHeader.Text = "نقض";
                 Veto_Number_TxtBlock.Text = "رقم النقض";
                 Add_Veto.Content = "اضافة نقض";
+                degree = 3;
+                
             }
             else
             {
-                Models.veto veto = Context.vetoes.FirstOrDefault(C => C.ID_Case == case_num);
+                degree = 2;
+                Models.veto veto = Context.vetoes.FirstOrDefault(C => C.ID_Case == Case.ID);
                 if (veto != null)
-                    caseHasVeto(veto.ID_veto, veto.Circle, veto.Notes);
+                    caseHasVeto(veto.ID_veto, veto.Circle, veto.Notes,veto.Veto_Number);
             }
 
             load_gridview();
         }
 
-        private void caseHasVeto(long num, string circle, string notes)
+        private void caseHasVeto(long num, string circle, string notes,string Case_Num)
         {
             Add_Veto.Visibility = Visibility.Collapsed;
             Add_SessionBtn.Visibility = Visibility.Visible;
@@ -61,9 +66,10 @@ namespace Lawyer.Case
             Notes.IsReadOnly = true;
             Notes.Background = (Brush)(new BrushConverter().ConvertFrom("#FFC5CBF9"));
 
-            Res_Num.Text = num.ToString();
+            Res_Num.Text = Case_Num;
             Veto_Re_Circle.Text = circle;
             new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text = notes;
+            case_num = num;
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -80,8 +86,8 @@ namespace Lawyer.Case
             if (result == MessageBoxResult.Yes)
             {
 
-                long res_veto_num;
-                if (!long.TryParse(Res_Num.Text, out res_veto_num))
+                string res_veto_num= Res_Num.Text;
+                if (res_veto_num==null)
                 {
                     MessageBox.Show("يجب اضافة رقم ال" + GboxHeader.Text);
                     return;
@@ -90,8 +96,8 @@ namespace Lawyer.Case
                 if (((Button)sender).Content.ToString() == "اضافة استئناف")
                 {
                     Models.veto veto = new veto();
-                    veto.ID_Case = case_num;
-                    veto.ID_veto = res_veto_num;
+                    veto.ID_Case = @case.ID;
+                    veto.Veto_Number = res_veto_num;
                     veto.Circle = Veto_Re_Circle.Text;
                     veto.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
                     Context.vetoes.Add(veto);
@@ -99,15 +105,15 @@ namespace Lawyer.Case
                 else
                 {
                     Models.Resumption resumption = new Resumption();
-                    resumption.ID_Case = case_num;
-                    resumption.ID_Resumption = res_veto_num;
+                    resumption.ID_Case = @case.ID;
+                    resumption.Resumption_Number = res_veto_num;
                     resumption.Circle = Veto_Re_Circle.Text;
                     resumption.Notes = new TextRange(Notes.Document.ContentStart, Notes.Document.ContentEnd).Text;
                     Context.Resumptions.Add(resumption);
                 }
                 Context.SaveChanges();
 
-                Case.ResumeCase resumeCase = new ResumeCase(type, case_num.ToString());
+                Case.ResumeCase resumeCase = new ResumeCase(type, @case);
                 Close();
                 resumeCase.ShowDialog();
             }
@@ -115,7 +121,7 @@ namespace Lawyer.Case
 
         private void Add_SessionBtn_Click(object sender, RoutedEventArgs e)
         {
-            Case.AddSession addSession = new AddSession(type);
+            Case.AddSession addSession = new AddSession(type, case_num);
             addSession.Num_Case.Text = Case_Number.Text;
             addSession.Num_Veto.Text = Res_Num.Text;
             addSession.ShowDialog();
@@ -135,10 +141,9 @@ namespace Lawyer.Case
 
         void load_gridview()
         {
-            int veto_res_id = 0;
-            if (int.TryParse(Res_Num.Text, out veto_res_id))
+            if (case_num != -1)
             {
-                List<Models.Session> sessions = Context.Sessions.Where(S => S.IDCase == veto_res_id).ToList();
+                List<Models.Session> sessions = Context.Sessions.Where(S => S.IDCase == case_num && S.Case_Degree == degree).ToList();
                 if (sessions.Count != 0)
                 {
                     GridView_Session.ItemsSource = sessions;

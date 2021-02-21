@@ -9,13 +9,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
           <Property Name="Notes" Type="nvarchar(max)" />
           <Property Name="Number_of_Session" Type="bigint" />
           <Property Name="Circle" Type="nvarchar(max)" />
           <Property Name="ID_jadge" Type="bigint" />
           <Property Name="Lock" Type="bit" />
+          <Property Name="Case_Namber" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -156,13 +157,14 @@
           <Key>
             <PropertyRef Name="ID_Resumption" />
           </Key>
-          <Property Name="ID_Resumption" Type="bigint" Nullable="false" />
+          <Property Name="ID_Resumption" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tybe" Type="nvarchar(max)" />
           <Property Name="Notes" Type="nvarchar(max)" />
           <Property Name="Number_Of_Session" Type="bigint" />
           <Property Name="Circle" Type="nvarchar(max)" />
           <Property Name="ID_Case" Type="bigint" />
           <Property Name="ID_Jadge" Type="bigint" />
+          <Property Name="Resumption_Number" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Sessions">
           <Key>
@@ -203,13 +205,14 @@
           <Key>
             <PropertyRef Name="ID_veto" />
           </Key>
-          <Property Name="ID_veto" Type="bigint" Nullable="false" />
+          <Property Name="ID_veto" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tybe" Type="nvarchar(max)" />
           <Property Name="Notes" Type="nvarchar(max)" />
           <Property Name="Number_Of_Session" Type="bigint" />
           <Property Name="Circle" Type="nvarchar(max)" />
           <Property Name="ID_Case" Type="bigint" />
           <Property Name="ID_Jadge" Type="bigint" />
+          <Property Name="Veto_Number" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'test.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -455,13 +458,14 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Number_of_Session" Type="Int64" />
           <Property Name="Circle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID_jadge" Type="Int64" />
           <Property Name="Lock" Type="Boolean" />
+          <Property Name="Case_Namber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client_Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Cases" ToRole="Client_Case" />
           <NavigationProperty Name="Resumptions" Relationship="Self.FK_Resumption_Resumption" FromRole="Cases" ToRole="Resumption" />
           <NavigationProperty Name="vetoes" Relationship="Self.FK_veto_Cases" FromRole="Cases" ToRole="veto" />
@@ -616,13 +620,14 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Key>
             <PropertyRef Name="ID_Resumption" />
           </Key>
-          <Property Name="ID_Resumption" Type="Int64" Nullable="false" />
+          <Property Name="ID_Resumption" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tybe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Number_Of_Session" Type="Int64" />
           <Property Name="Circle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID_Case" Type="Int64" />
           <Property Name="ID_Jadge" Type="Int64" />
+          <Property Name="Resumption_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Case" Relationship="Self.FK_Resumption_Resumption" FromRole="Resumption" ToRole="Cases" />
         </EntityType>
         <EntityType Name="Session">
@@ -670,13 +675,14 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Key>
             <PropertyRef Name="ID_veto" />
           </Key>
-          <Property Name="ID_veto" Type="Int64" Nullable="false" />
+          <Property Name="ID_veto" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tybe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Number_Of_Session" Type="Int64" />
           <Property Name="Circle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID_Case" Type="Int64" />
           <Property Name="ID_Jadge" Type="Int64" />
+          <Property Name="Veto_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Case" Relationship="Self.FK_veto_Cases" FromRole="veto" ToRole="Cases" />
         </EntityType>
         <EntityType Name="View_1">
@@ -912,6 +918,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Circle" ColumnName="Circle" />
                 <ScalarProperty Name="ID_jadge" ColumnName="ID_jadge" />
                 <ScalarProperty Name="Lock" ColumnName="Lock" />
+                <ScalarProperty Name="Case_Namber" ColumnName="Case_Namber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1073,6 +1080,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Circle" ColumnName="Circle" />
                 <ScalarProperty Name="ID_Case" ColumnName="ID_Case" />
                 <ScalarProperty Name="ID_Jadge" ColumnName="ID_Jadge" />
+                <ScalarProperty Name="Resumption_Number" ColumnName="Resumption_Number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1124,6 +1132,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Circle" ColumnName="Circle" />
                 <ScalarProperty Name="ID_Case" ColumnName="ID_Case" />
                 <ScalarProperty Name="ID_Jadge" ColumnName="ID_Jadge" />
+                <ScalarProperty Name="Veto_Number" ColumnName="Veto_Number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

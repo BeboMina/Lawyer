@@ -86,6 +86,7 @@ namespace Lawyer
                     Case_Model case_Model = new Case_Model();
                     case1 = Context.Cases.FirstOrDefault(C => C.ID == item.IDCase);
                     case_Model.ID_Case = case1.ID;
+                    case_Model.Case_Number = case1.Case_Namber;
                     case_Model.Type_Case = case1.Type;
                     case_Model.Lock = (case1.Lock == true) ? "الدعوى مغلقة" : " الدعوى مفتوحة";
                     cases.Add(case_Model);

@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="885907389ea1483c84a1ed538f42e81c" Name="Diagram1">
-        <EntityTypeShape EntityType="testModel.Case" Width="1.5" PointX="5.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Client" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Client_Case" Width="1.5" PointX="8" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="b5cc35a2e05b4629a819cb3f044ccee2" Name="Diagram1">
+        <EntityTypeShape EntityType="testModel.Case" Width="1.5" PointX="5.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Client" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Client_Case" Width="1.5" PointX="8" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.EXpert" Width="1.5" PointX="10.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Fee" Width="1.5" PointX="10.75" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Files_Saved" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
@@ -23,7 +23,7 @@
         <EntityTypeShape EntityType="testModel.Session" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Stuff" Width="1.5" PointX="10.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Task" Width="1.5" PointX="13" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.veto" Width="1.5" PointX="8" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.veto" Width="1.5" PointX="8" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.View_1" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.ViewClient_Pro" Width="1.5" PointX="12.75" PointY="6" IsExpanded="true" />
         <AssociationConnector Association="testModel.FK_Client_Case_Cases" ManuallyRouted="false" />

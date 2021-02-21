@@ -22,9 +22,11 @@ namespace Lawyer.Case
     {
         testEntities Context = new testEntities();
         long ID_Case;
+        Models.Case Case;
         public DisplayCase(long ID)
         {
             InitializeComponent();
+            Case = Context.Cases.FirstOrDefault(C => C.ID == ID);
             ID_Case = ID;
         }
 
@@ -35,19 +37,19 @@ namespace Lawyer.Case
 
         private void JudgementBtn_Click(object sender, RoutedEventArgs e)
         {
-            Case.Judgement judgement = new Judgement(Case_Number.Text);
+            Case.Judgement judgement = new Judgement(Case_Number.Text,ID_Case);
             judgement.ShowDialog();
         }
 
         private void ResumeBtn_Click(object sender, RoutedEventArgs e)
         {
-            Case.ResumeCase resumeCase = new ResumeCase("استئناف", Case_Number.Text);
+            Case.ResumeCase resumeCase = new ResumeCase("استئناف", Case);
             resumeCase.ShowDialog();
         }
 
         private void VetoBtn_Click(object sender, RoutedEventArgs e)
         {
-            Case.ResumeCase resumeCase = new ResumeCase("نقض", Case_Number.Text);
+            Case.ResumeCase resumeCase = new ResumeCase("نقض",Case);
             resumeCase.ShowDialog();
         }
 

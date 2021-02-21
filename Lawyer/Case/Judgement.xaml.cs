@@ -20,24 +20,29 @@ namespace Lawyer.Case
     /// </summary>
     public partial class Judgement : Window
     {
-        List<long> Number_of_Cases = new List<long>();
+        List<string> Number_of_Cases = new List<string>();
+        List<long> ID_of_Cases = new List<long>();
         testEntities Context = new testEntities();
         int index = -1;
         long NumOFCase=0;
-        public Judgement(string Number_of_case)
+        
+        public Judgement(string Number_of_case,long ID)
         {
             InitializeComponent();
-            long numberofcase = Convert.ToInt64(Number_of_case);
-            Number_of_Cases.Add(numberofcase);
+            long numberofcase = ID;
+            ID_of_Cases.Add(numberofcase);
+            Number_of_Cases.Add(Number_of_case);
             Models.veto veto = Context.vetoes.FirstOrDefault(V => V.ID_Case == numberofcase);
             Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Case == numberofcase);
             if(veto!=null)
             {
-                Number_of_Cases.Add(veto.ID_veto);
+                Number_of_Cases.Add(veto.Veto_Number);
+                ID_of_Cases.Add(veto.ID_veto);
             }
             if(resumption!=null)
             {
-                Number_of_Cases.Add(resumption.ID_Resumption);
+                Number_of_Cases.Add(resumption.Resumption_Number);
+                ID_of_Cases.Add(resumption.ID_Resumption);
             }
             Number_Case.ItemsSource = Number_of_Cases;
         }
@@ -79,10 +84,11 @@ namespace Lawyer.Case
                         {
                             jadge.Done = true;
                         }
-                        else
+                        else 
                         {
                             jadge.Done = false;
                         }
+                       
                         Context.Jadges.Add(jadge);
                         Context.SaveChanges();
                         Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == NumOFCase);
@@ -120,7 +126,7 @@ namespace Lawyer.Case
         private void Number_Case_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             index = Number_Case.SelectedIndex;
-            NumOFCase = Number_of_Cases[index];
+            NumOFCase = ID_of_Cases[index];
         }
     }
 }

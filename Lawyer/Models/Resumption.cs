@@ -21,6 +21,7 @@ namespace Lawyer.Models
         public string Circle { get; set; }
         public Nullable<long> ID_Case { get; set; }
         public Nullable<long> ID_Jadge { get; set; }
+        public string Resumption_Number { get; set; }
     
         public virtual Case Case { get; set; }
     }

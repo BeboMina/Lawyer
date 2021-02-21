@@ -9,9 +9,11 @@ namespace Lawyer.Models
     class Case_Model
     {
         public long ID_Case { get; set; }
+        public string Case_Number { get; set; }
         public string Client_Name { get; set; }
         public string Type_Case { get; set; }
         public string Notes { get; set; }
         public string Lock { get; set; }
+
     }
 }

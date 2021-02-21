@@ -29,24 +29,25 @@ namespace Lawyer.Case
             jadges = Context.Jadges.ToList();
             foreach(var item in jadges)
             {
-                long Num=0,ID=0;
+                string Num = "";
+                long ID=0;
                 Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID_jadge == item.ID);
                 Models.veto veto = Context.vetoes.FirstOrDefault(V => V.ID_Jadge == item.ID);
                 Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Jadge == item.ID);
                 if(@case!=null)
                 {
-                    Num = @case.ID;
+                    Num = @case.Case_Namber;
                     ID = @case.ID;
                 }
                 else if(veto != null)
                 {
-                    Num = veto.ID_veto;
+                    Num = veto.Veto_Number;
                     Models.Case @case1 = Context.Cases.FirstOrDefault(C => C.ID == veto.ID_Case);
                     ID = @case1.ID;
                 }
                 else if(resumption!=null)
                 {
-                    Num = resumption.ID_Resumption;
+                    Num = resumption.Resumption_Number;
                     Models.Case @case1 = Context.Cases.FirstOrDefault(C => C.ID == resumption.ID_Case);
                     ID = @case1.ID;
                 }
@@ -78,7 +79,7 @@ namespace Lawyer.Case
     {
         public long ID { get; set; }
         public string NameClient { get; set; }
-        public long NumberCase { get; set; }
+        public string NumberCase { get; set; }
         public string Judgement { get; set; }
         public string Excute { get; set; }
         public string Date { get; set; }
