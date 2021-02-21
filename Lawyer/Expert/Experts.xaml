@@ -51,7 +51,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding Case_ID}">
+                <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding Case_Number}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />

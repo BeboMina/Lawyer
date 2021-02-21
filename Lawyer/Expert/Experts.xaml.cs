@@ -23,11 +23,44 @@ namespace Lawyer.Expert
     {
         testEntities Context = new testEntities();
         List<Models.EXpert> eXperts = new List<EXpert>();
+        List<dbExpert> dbExperts = new List<dbExpert>();
         public Experts()
         {
             InitializeComponent();
             eXperts = Context.EXperts.ToList();
-            GridView_Expert.ItemsSource = eXperts;
+            foreach(var e in eXperts)
+            {
+                dbExpert dbExpert = new dbExpert();
+                dbExpert.Address =e.Address ;
+                dbExpert.Case_Degree = e.Case_Degree;
+                dbExpert.Case_ID = e.Case_ID;
+                dbExpert.Date1 = e.Date1;
+                dbExpert.Date2 = e.Date2;
+                dbExpert.Date3 = e.Date3;
+                dbExpert.Email = e.Email;
+                dbExpert.ID = e.ID;
+                dbExpert.Name = e.Name;
+                dbExpert.Notes=e.Notes;
+                dbExpert.Phone = e.Phone;
+
+                if(e.Case_Degree== "ابتدائية")
+                {
+                    Models.Case @case= Context.Cases.FirstOrDefault(C => C.ID==e.Case_ID);
+                    dbExpert.Case_Number = @case.Case_Namber;
+                }
+                else if(e.Case_Degree == "استئناف")
+                {
+                    Models.veto veto  = Context.vetoes.FirstOrDefault(V => V.ID_veto==e.Case_ID);
+                    dbExpert.Case_Number =veto.Veto_Number;
+                }
+                else if (e.Case_Degree == "استئناف")
+                {
+                    Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Resumption == e.Case_ID);
+                    dbExpert.Case_Number = resumption.Resumption_Number;
+                }
+                dbExperts.Add(dbExpert);
+            }
+            GridView_Expert.ItemsSource = dbExperts;
         }
 
         private void AddExpertBtn_Click(object sender, RoutedEventArgs e)
@@ -39,14 +72,14 @@ namespace Lawyer.Expert
         private void GridView_Expert_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
-            Models.EXpert eXpert = (Models.EXpert)GridView_Expert.SelectedItem;
+            dbExpert eXpert = (dbExpert)GridView_Expert.SelectedItem;
             if(eXpert==null)
             {
                 return;
             }
             Expert.AddExpert addExpert = new AddExpert("update",eXpert.ID);
             addExpert.Name_Expert.Text = eXpert.Name;
-            addExpert.Case_Number.Text = eXpert.Case_ID.ToString();
+            addExpert.Case_Number.Text = eXpert.Case_Number;
             addExpert.Case_Type.Text = eXpert.Case_Degree.ToString();
             addExpert.Phone_Expert.Text = eXpert.Phone;
             addExpert.Email_Expert.Text = eXpert.Email;
@@ -66,5 +99,9 @@ namespace Lawyer.Expert
             }
             addExpert.ShowDialog();
         }
+    }
+    public class dbExpert : Models.EXpert
+    {
+        public string Case_Number { get; set; }
     }
 }
