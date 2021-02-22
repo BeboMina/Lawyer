@@ -27,6 +27,8 @@ namespace Lawyer.Models
         public Nullable<bool> Done { get; set; }
         public Nullable<System.DateTime> Done_Date { get; set; }
         public Nullable<bool> Execute1 { get; set; }
+        public string Case_Type { get; set; }
+        public string Notes { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Case> Cases { get; set; }

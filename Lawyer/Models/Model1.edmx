@@ -52,6 +52,8 @@
           <Property Name="Done" Type="bit" />
           <Property Name="Done_Date" Type="date" />
           <Property Name="Execute" Type="bit" />
+          <Property Name="Case_Type" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="EXpert">
           <Key>
@@ -542,6 +544,8 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="Done" Type="Boolean" />
           <Property Name="Done_Date" Type="DateTime" Precision="0" />
           <Property Name="Execute1" Type="Boolean" />
+          <Property Name="Case_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cases" Relationship="Self.FK_Cases_Execute" FromRole="Execute" ToRole="Cases" />
         </EntityType>
         <EntityType Name="EXpert">
@@ -1026,6 +1030,8 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="Done" ColumnName="Done" />
                 <ScalarProperty Name="Done_Date" ColumnName="Done_Date" />
                 <ScalarProperty Name="Execute1" ColumnName="Execute" />
+                <ScalarProperty Name="Case_Type" ColumnName="Case_Type" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
