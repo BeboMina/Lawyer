@@ -23,6 +23,7 @@ namespace Lawyer.Expert
         testEntities Context = new testEntities();
         Models.EXpert eXpert = new EXpert();
         List<long> Case_IDs = new List<long>();
+        
         List<Models.Resumption> resumptions = new List<Resumption>();
         long ID=-1;
         string act;
@@ -44,9 +45,15 @@ namespace Lawyer.Expert
             }
             else
             {
+                List<string> Case_Num = new List<string>();
                 Case_Type_combo.SelectedIndex = index;
                 Case_IDs = Context.Cases.Select(C => C.ID).ToList();
-                Case_Number_combo.ItemsSource = Case_IDs;
+                foreach(var item in Case_IDs)
+                {
+                    Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == item);
+                    Case_Num.Add(@case.Case_Namber);
+                }
+                Case_Number_combo.ItemsSource = Case_Num;
             }
         }
 
@@ -59,8 +66,8 @@ namespace Lawyer.Expert
         {
             if (Case_Number_combo.SelectedItem == null)
                 return;
-
-            ID =(long) Case_Number_combo.SelectedItem;
+            int index1 = Case_Number_combo.SelectedIndex;
+            ID =Case_IDs[index1];
         }
 
         private void Save_Expert(object sender, RoutedEventArgs e)
@@ -160,18 +167,36 @@ namespace Lawyer.Expert
             index = Case_Type_combo.SelectedIndex;
             if (Case_Type_combo.SelectedIndex==0)
             {
+                List<string> Case_Num = new List<string>();
                 Case_IDs = Context.Cases.Select(C => C.ID).ToList();
-                Case_Number_combo.ItemsSource = Case_IDs;
+                foreach (var item in Case_IDs)
+                {
+                    Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == item);
+                    Case_Num.Add(@case.Case_Namber);
+                }
+                Case_Number_combo.ItemsSource = Case_Num;
             }
             else if(Case_Type_combo.SelectedIndex == 1)
             {
+                List<string> Case_Num = new List<string>();
                 Case_IDs = Context.vetoes.Select(C => C.ID_veto).ToList();
-                Case_Number_combo.ItemsSource = Case_IDs;
+                foreach (var item in Case_IDs)
+                {
+                    Models.veto veto = Context.vetoes.FirstOrDefault(C => C.ID_veto == item);
+                    Case_Num.Add(veto.Veto_Number);
+                }
+                Case_Number_combo.ItemsSource = Case_Num;
             }
             else if(Case_Type_combo.SelectedIndex == 2)
             {
+                List<string> Case_Num = new List<string>();
                 Case_IDs = Context.Resumptions.Select(C => C.ID_Resumption).ToList();
-                Case_Number_combo.ItemsSource = Case_IDs;
+                foreach (var item in Case_IDs)
+                {
+                    Models.Resumption resumption = Context.Resumptions.FirstOrDefault(C => C.ID_Resumption == item);
+                    Case_Num.Add(resumption.Resumption_Number);
+                }
+                Case_Number_combo.ItemsSource = Case_Num;
             }
         }
     }
