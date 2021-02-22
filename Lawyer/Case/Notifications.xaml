@@ -131,8 +131,8 @@
                                         <TextBlock Text="تاريخ اعلان الحكم:" FontSize="10" Foreground="LightSlateGray"/>
                                         <TextBlock x:Name="JudgeDateTxt" Text="{Binding Date, StringFormat= 'dd/MM/yyyy'}" Margin="0 0 0 10"/>
                                         <TextBlock Text="تنفيذ:" FontSize="10" Foreground="LightSlateGray"/>
-                                        <CheckBox Tag="{Binding Judgement_ID}" IsChecked="False"
-                                            Foreground="White" Checked="Start_Execute_CheckBox_Checked">
+                                        <CheckBox Tag="{Binding Case_Judgement}" IsChecked="False" HorizontalAlignment="Left"
+                                            Foreground="White" FlowDirection="LeftToRight" Checked="Start_Execute_CheckBox_Checked">
 
                                             <CheckBox.LayoutTransform>
                                                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
@@ -181,18 +181,18 @@
                                         <TextBlock Text="رقم القضية:" FontSize="10" Foreground="LightSlateGray"/>
                                         <TextBlock x:Name="ExecutionCaseNumTxt" Text="{Binding Case_Number}" Margin="0 0 0 10"/>
                                         <TextBlock Text="رقم التنفيذ:" FontSize="10" Foreground="LightSlateGray"/>
-                                        <TextBlock x:Name="ExecutionNumTxt" Text="{Binding Case_Number}" Margin="0 0 0 10"/>
+                                        <TextBlock x:Name="ExecutionNumTxt" Text="{Binding Execute_Number}" Margin="0 0 0 10"/>
                                     </StackPanel>
                                     <StackPanel Grid.Column="1" Margin="5 5 0 0">
                                         <TextBlock Text="تاريخ التنفيذ:" FontSize="10" Foreground="LightSlateGray"/>
                                         <TextBlock x:Name="ExecutionDateTxt" Text="{Binding Date, StringFormat= 'dd/MM/yyyy'}" Margin="0 0 0 10"/>
                                         <TextBlock Text="التنفيذ:" FontSize="10" Foreground="LightSlateGray"/>
                                         <ScrollViewer Height="40" Width="160" Margin="0 0 0 10">
-                                            <TextBlock x:Name="ExecutionTxt" Text="{Binding Judgement}" TextWrapping="Wrap"/>
+                                            <TextBlock x:Name="ExecutionTxt" Text="{Binding Execution}" TextWrapping="Wrap"/>
                                         </ScrollViewer>
                                         <TextBlock Text="إعلام العميل:" FontSize="10" Foreground="LightSlateGray"/>
-                                        <CheckBox Tag="{Binding Judgement_ID}" IsChecked="False"
-                                            Foreground="White" Checked="Inform_Client_CheckBox_Checked">
+                                        <CheckBox Tag="{Binding Execute_ID}" IsChecked="False" HorizontalAlignment="Left"
+                                            Foreground="White" FlowDirection="LeftToRight" Checked="Inform_Client_CheckBox_Checked">
 
                                             <CheckBox.LayoutTransform>
                                                 <ScaleTransform ScaleX="1.5" ScaleY="1.5" />

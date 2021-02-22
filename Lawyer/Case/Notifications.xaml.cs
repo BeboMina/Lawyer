@@ -23,7 +23,9 @@ namespace Lawyer.Case
     {
         public ObservableCollection<SessionNotification> sessionNotifications;
         
-        public ObservableCollection<AnnounceNotification> announceNotifications;
+        public ObservableCollection<JudgementNotification> judgementNotifications;
+        
+        public ObservableCollection<ExecutionNotification> executionNotifications;
 
         testEntities Context = new testEntities();
         List<Models.Session> sessions = new List<Models.Session>();
@@ -34,8 +36,8 @@ namespace Lawyer.Case
             InitializeComponent();
 
             sessionNotifications = new ObservableCollection<SessionNotification>();
-            announceNotifications = new ObservableCollection<AnnounceNotification>();
-
+            judgementNotifications = new ObservableCollection<JudgementNotification>();
+            executionNotifications = new ObservableCollection<ExecutionNotification>();
 
             sessions = Context.Sessions.Where(S=>S.NextDate.Value.Year==DateTime.Now.Year).ToList();
             foreach(var item in sessions)
@@ -79,24 +81,24 @@ namespace Lawyer.Case
                     Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Jadge == item.ID);
                     if (@case != null)
                     {
-                        FillData(@case.ID, item);
+                        FillJudgementData(@case.ID, "ابتدائية", item);
                     }
                     else if (veto != null)
                     {
 
                         @case = Context.Cases.FirstOrDefault(C => C.ID == veto.ID_Case);
-                        FillData(@case.ID, item, veto.ID_veto);
+                        FillJudgementData(@case.ID, "استئناف", item, veto.ID_veto);
 
                     }
                     else if (resumption != null)
                     {
                         @case = Context.Cases.FirstOrDefault(C => C.ID == resumption.ID_Case);
-                        FillData(@case.ID, item, resumption.ID_Resumption);
+                        FillJudgementData(@case.ID, "نقض", item, resumption.ID_Resumption);
                     }
                 }
             }
             SessionsList.ItemsSource = sessionNotifications;
-            ExecutionList.ItemsSource = announceNotifications;
+            JudgementList.ItemsSource = judgementNotifications;
 
         }
 
@@ -118,21 +120,29 @@ namespace Lawyer.Case
             }
         }
 
-        private void FillData(long Num_Case,Models.Jadge item,long Num=-1)
+        private void FillJudgementData(long Num_Case, string Type_Case ,Models.Jadge item,long Num=-1)
         {
-            AnnounceNotification announceNotification = new AnnounceNotification();
+            JudgementNotification judgementNotification = new JudgementNotification();
             Models.Client_Case client_Case = Context.Client_Case.FirstOrDefault(C => C.IDCase == Num_Case);
             Models.Client client;
             if (client_Case != null)
             {
                 client = Context.Clients.FirstOrDefault(C => C.ID == client_Case.IDClient);
-                announceNotification.Client_Name = client.Name;
-                announceNotification.Case_Number = Num == -1 ? Num_Case : Num;
-                announceNotification.Date = item.Date.Value;
-                announceNotification.Is_Done = item.Done.Value;
-                announceNotification.Judgement = item.Notes;
-                announceNotification.Judgement_ID = Convert.ToInt32( item.ID);
-                announceNotifications.Add(announceNotification);
+                judgementNotification.Client_Name = client.Name;
+                //judgementNotification.Case_Number = Num == -1 ? Num_Case : Num;
+                //judgementNotification.Case_ID = Num == -1 ? Num_Case : Num;
+                judgementNotification.Date = item.Date.Value;
+                judgementNotification.Is_Done = item.Done.Value;
+                judgementNotification.Judgement = item.Notes;
+                //judgementNotification.Judgement_ID = Convert.ToInt32( item.ID);
+
+                // string contain all strrings
+                judgementNotification.Case_Judgement = Num_Case.ToString();
+
+                judgementNotification.Case_Judgement += ' ' + Type_Case;
+                judgementNotification.Case_Judgement += ' ' + item.ID.ToString();
+
+                judgementNotifications.Add(judgementNotification);
             }
 
         }
@@ -144,23 +154,9 @@ namespace Lawyer.Case
 
         private void Inform_Client_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            int judgement_id = int.Parse(((CheckBox)sender).Tag.ToString());
-            string message = "تاكيد البدء فى اجراءات الاعلان ";
-            string title = "حفظ";
-            MessageBoxButton buttons = MessageBoxButton.YesNo;
-            MessageBoxResult result = MessageBox.Show(message, title, buttons);
-            if (result == MessageBoxResult.Yes)
-            {
-                Models.Jadge jadge = Context.Jadges.FirstOrDefault(J => J.ID == judgement_id);
-                jadge.Execute = true;
-                Context.SaveChanges();
+            long execute_id = long.Parse(((CheckBox)sender).Tag.ToString());
 
-                ((CheckBox)sender).IsEnabled = false;
-            }
-            else
-            {
-                ((CheckBox)sender).IsChecked = false;
-            }
+
         }
 
         public class SessionNotification
@@ -173,21 +169,57 @@ namespace Lawyer.Case
             public string Time { get; set; }
         }
 
-        public class AnnounceNotification
+        public class JudgementNotification
         {
             public string Client_Name { get; set; }
-            public long Case_Number { get; set; }
+            public string Case_Number { get; set; }
+            public string Case_Judgement { get; set; }
             public DateTime Date { get; set; }
             public string Judgement { get; set; }
-            public int Remain_Days { get; set; }
             public bool Is_Done { get; set; }
-            public int Judgement_ID { get; set; }
+        }
+
+        public class ExecutionNotification
+        {
+            public string Client_Name { get; set; }
+            public string Case_Number { get; set; }
+            //public long Case_ID { get; set; }
+            public string Execute_Number { get; set; }
+            public DateTime Date { get; set; }
+            public string Execution { get; set; }
+            public long Execute_ID { get; set; }
+            public bool Is_Done { get; set; }
         }
 
         private void Start_Execute_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            Case.ExecuteJudgement executeJudgement = new ExecuteJudgement();
-            executeJudgement.ShowDialog();
+            string Case_Judgement = ((CheckBox)sender).Tag.ToString();
+
+            string[] case_judgement = Case_Judgement.Split();
+            long case_id = long.Parse(case_judgement[0]);
+            string type = case_judgement[1];
+            long judgement_id = long.Parse(case_judgement[2]);
+
+            //string message = "تاكيد البدء فى اجراءات الاعلان ";
+            //string title = "حفظ";
+            //MessageBoxButton buttons = MessageBoxButton.YesNo;
+            //MessageBoxResult result = MessageBox.Show(message, title, buttons);
+            //if (result == MessageBoxResult.Yes)
+            //{
+            //    Models.Jadge jadge = Context.Jadges.FirstOrDefault(J => J.ID == judgement_id);
+            //    jadge.Execute = true;
+
+            //Case.ExecuteJudgement executeJudgement = new ExecuteJudgement();
+            //executeJudgement.ShowDialog();
+
+            //    Context.SaveChanges();
+
+            //    ((CheckBox)sender).IsEnabled = false;
+            //}
+            //else
+            //{
+            //    ((CheckBox)sender).IsChecked = false;
+            //}
         }
     }
 }
