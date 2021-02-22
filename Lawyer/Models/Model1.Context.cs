@@ -28,6 +28,7 @@ namespace Lawyer.Models
         public virtual DbSet<Case> Cases { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Client_Case> Client_Case { get; set; }
+        public virtual DbSet<Execute> Executes { get; set; }
         public virtual DbSet<EXpert> EXperts { get; set; }
         public virtual DbSet<Fee> Fees { get; set; }
         public virtual DbSet<Files_Saved> Files_Saved { get; set; }

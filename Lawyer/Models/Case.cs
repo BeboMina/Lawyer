@@ -30,7 +30,9 @@ namespace Lawyer.Models
         public Nullable<long> ID_jadge { get; set; }
         public Nullable<bool> Lock { get; set; }
         public string Case_Namber { get; set; }
+        public Nullable<long> ID_Execute { get; set; }
     
+        public virtual Execute Execute { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client_Case> Client_Case { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
