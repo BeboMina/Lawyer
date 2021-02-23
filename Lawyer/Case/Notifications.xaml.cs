@@ -213,6 +213,7 @@ namespace Lawyer.Case
             {
                 Models.Execute execute = Context.Executes.FirstOrDefault(J => J.ID == execute_id);
                 execute.Execute1 = true;
+                ((CheckBox)sender).IsEnabled = false;
                 Context.SaveChanges();
 
             }
@@ -275,7 +276,7 @@ namespace Lawyer.Case
                 Context.SaveChanges();
 
                 ((CheckBox)sender).IsEnabled = false;
-                Case.ExecuteJudgement executeJudgement = new ExecuteJudgement(case_id, type);
+                Case.ExecuteJudgement executeJudgement = new ExecuteJudgement(case_id, type,-1);
                 executeJudgement.ShowDialog();
             }
             else
