@@ -58,7 +58,7 @@
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Judgement">
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="رقم القضية" Binding="{Binding NumberCase}">
+                        <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding NumberCase}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -135,7 +135,7 @@
                   Foreground="White" ColumnWidth="*" ColumnHeaderHeight="30" Name="GridView_Execution">
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="رقم القضية" Binding="{Binding NumberCase}">
+                        <DataGridTextColumn Header="رقم الدعوى" Binding="{Binding NumberCase}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -149,7 +149,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="رقم التنفيذ" Binding="{Binding NumberExecute}">
+                        <DataGridTextColumn Header="رقم التنفيذ" Binding="{Binding Execut_Number}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -157,7 +157,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="نوع التنفيذ" Binding="{Binding TypeExecute}">
+                        <DataGridTextColumn Header="نوع الدعوى" Binding="{Binding Case_Type}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />

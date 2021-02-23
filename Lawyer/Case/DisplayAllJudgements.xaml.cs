@@ -75,13 +75,5 @@ namespace Lawyer.Case
             Close();
         }
     }
-    public class ViewJadge
-    {
-        public long ID { get; set; }
-        public string NameClient { get; set; }
-        public string NumberCase { get; set; }
-        public string Judgement { get; set; }
-        public string Excute { get; set; }
-        public string Date { get; set; }
-    }
+    
 }

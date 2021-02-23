@@ -276,7 +276,7 @@ namespace Lawyer.Case
                 Context.SaveChanges();
 
                 ((CheckBox)sender).IsEnabled = false;
-                Case.ExecuteJudgement executeJudgement = new ExecuteJudgement(case_id, type);
+                Case.ExecuteJudgement executeJudgement = new ExecuteJudgement(case_id, type,-1);
                 executeJudgement.ShowDialog();
             }
             else

@@ -26,7 +26,10 @@ namespace Lawyer.Case
         Models.Case @case;
         Models.veto veto;
         Models.Resumption resumption;
-        public ExecuteJudgement(long id,string type)
+        bool donExexcute = false;
+        bool update = false;
+        long Id_exe;
+        public ExecuteJudgement(long id,string type,long ID_Exe)
         {
             InitializeComponent();
             Type = type;
@@ -51,6 +54,35 @@ namespace Lawyer.Case
                 Number_Case.Text = resumption.Resumption_Number;
                 GetClientName(case2);
             }
+            if(ID_Exe!=-1)
+            {
+                Id_exe = ID_Exe;
+                update = true;
+                Models.Execute execute = Context.Executes.FirstOrDefault(E => E.ID == ID_Exe);
+                if(execute!=null)
+                {
+                    Number_Execute.Text = execute.Execute_Number;
+                    Text_Execute.Text = execute.Notes;
+                    Type_Execute.Text = execute.Execute_Type;
+                    if(execute.Done_Date!=null)
+                    {
+                        date_Execute.SelectedDate = execute.Execut_Date.Value;
+                    }
+                    if(execute.Execut_Date!=null)
+                    {
+                        date_Inform.SelectedDate= execute.Done_Date.Value;
+                    }
+                    if(execute.Done==true)
+                    {
+                        Done.IsChecked = true;
+                    }
+                    else
+                    {
+                        Dont_Done.IsChecked = true;
+                    }
+                    donExexcute = execute.Execute1.Value;
+                }
+            }
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -68,49 +100,87 @@ namespace Lawyer.Case
                 MessageBoxResult result = MessageBox.Show(message, title, buttons);
                 if (result == MessageBoxResult.Yes)
                 {
-                    Models.Execute execute = new Execute();
-                    execute.Execute1 = false;
-                    execute.Case_Type = Type;
-                    execute.Execute_Number = Number_Execute.Text;
-                    execute.Execute_Type = Type_Execute.Text;
-                    execute.Notes = Text_Execute.Text;
-                    if (date_Execute.SelectedDate!=null)
+                    if (update == false)
                     {
-                        execute.Execut_Date = date_Execute.SelectedDate.Value;
-                    }
-                    if(Done.IsChecked==true)
-                    {
-                        execute.Done = true;
-                        if(date_Inform.SelectedDate==null)
+                        Models.Execute execute = new Execute();
+                        execute.Execute1 = donExexcute;
+                        execute.Case_Type = Type;
+                        execute.Execute_Number = Number_Execute.Text;
+                        execute.Execute_Type = Type_Execute.Text;
+                        execute.Notes = Text_Execute.Text;
+                        if (date_Execute.SelectedDate != null)
                         {
-                            MessageBox.Show("يجب ادخال تاريخ الاعلان");
-                            return;
+                            execute.Execut_Date = date_Execute.SelectedDate.Value;
+                        }
+                        if (Done.IsChecked == true)
+                        {
+                            execute.Done = true;
+                            if (date_Inform.SelectedDate == null)
+                            {
+                                MessageBox.Show("يجب ادخال تاريخ الاعلان");
+                                return;
+                            }
+                            else
+                            {
+                                execute.Done_Date = date_Inform.SelectedDate.Value;
+                            }
                         }
                         else
                         {
-                            execute.Done_Date = date_Inform.SelectedDate.Value;
+                            execute.Done = false;
                         }
+                        Context.Executes.Add(execute);
+                        Context.SaveChanges();
+                        if (Type == "ابتدائية")
+                        {
+                            @case.ID_Execute = execute.ID;
+                        }
+                        else if (Type == "استئناف")
+                        {
+                            veto.ID_Execute = execute.ID;
+                        }
+                        else if (Type == "نقض")
+                        {
+                            resumption.ID_Execute = execute.ID;
+                        }
+                        Context.SaveChanges();
+                        Close();
                     }
                     else
                     {
-                        execute.Done = false;
+                        Models.Execute execute = Context.Executes.FirstOrDefault(E => E.ID == Id_exe);
+                        if (execute != null)
+                        {
+                            execute.Execute1 = donExexcute;
+                            execute.Case_Type = Type;
+                            execute.Execute_Number = Number_Execute.Text;
+                            execute.Execute_Type = Type_Execute.Text;
+                            execute.Notes = Text_Execute.Text;
+                            if (date_Execute.SelectedDate != null)
+                            {
+                                execute.Execut_Date = date_Execute.SelectedDate.Value;
+                            }
+                            if (Done.IsChecked == true)
+                            {
+                                execute.Done = true;
+                                if (date_Inform.SelectedDate == null)
+                                {
+                                    MessageBox.Show("يجب ادخال تاريخ الاعلان");
+                                    return;
+                                }
+                                else
+                                {
+                                    execute.Done_Date = date_Inform.SelectedDate.Value;
+                                }
+                            }
+                            else
+                            {
+                                execute.Done = false;
+                            }
+                            Context.SaveChanges();
+                            Close();
+                        }
                     }
-                    Context.Executes.Add(execute);
-                    Context.SaveChanges();
-                    if (Type == "ابتدائية")
-                    {
-                        @case.ID_Execute = execute.ID;
-                    }
-                    else if (Type == "استئناف")
-                    {
-                        veto.ID_Execute= execute.ID;
-                    }
-                    else if (Type == "نقض")
-                    {
-                        resumption.ID_Execute= execute.ID;
-                    }
-                    Context.SaveChanges();
-                    Close();
                 }
             }
             catch(Exception ex)
