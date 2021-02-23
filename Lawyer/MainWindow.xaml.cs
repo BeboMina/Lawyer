@@ -50,7 +50,8 @@ namespace Lawyer
                 tt_Lawyers.Visibility = Visibility.Collapsed;
                 tt_experts.Visibility = Visibility.Collapsed;
                 tt_archive.Visibility = Visibility.Collapsed;
-                tt_signout.Visibility = Visibility.Collapsed;
+                tt_JudgeExecute.Visibility = Visibility.Collapsed;
+                //tt_signout.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -61,8 +62,9 @@ namespace Lawyer
                 tt_experts.Visibility = Visibility.Visible;
                 tt_Lawyers.Visibility = Visibility.Visible;
                 tt_bills.Visibility = Visibility.Visible;
-                tt_archive.Visibility = Visibility.Visible;
-                tt_signout.Visibility = Visibility.Visible;
+                tt_archive.Visibility = Visibility.Collapsed;
+                tt_JudgeExecute.Visibility = Visibility.Visible;
+                //tt_signout.Visibility = Visibility.Visible;
             }
         }
 
@@ -113,6 +115,11 @@ namespace Lawyer
                 case "ItemCases":
                     main.Navigate(new Case.Cases());
                     TitleTxt.Text = "الدعاوي";
+                    break;
+
+                case "ItemJudgeExecute":
+                    main.Navigate(new Case.JudgeExecute());
+                    TitleTxt.Text = "الاحكام والتنفيذات";
                     break;
 
                 case "ItemProxies":
