@@ -213,6 +213,7 @@ namespace Lawyer.Case
             {
                 Models.Execute execute = Context.Executes.FirstOrDefault(J => J.ID == execute_id);
                 execute.Execute1 = true;
+                ((CheckBox)sender).IsEnabled = false;
                 Context.SaveChanges();
 
             }
