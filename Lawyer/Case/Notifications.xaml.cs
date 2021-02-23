@@ -54,15 +54,15 @@ namespace Lawyer.Case
                         Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == item.IDCase);
                         Models.veto veto = Context.vetoes.FirstOrDefault(V => V.ID_veto == item.IDCase);
                         Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Resumption == item.IDCase);
-                        if (@case != null)
+                        if (@case != null&&item.Case_Degree==1)
                         {
                             FillListSession(item, @case.Circle, @case.ID,@case.Case_Namber);
                         }
-                        else if (veto != null)
+                        else if (veto != null && item.Case_Degree == 2)
                         {
                             FillListSession(item, veto.Circle, (long)veto.ID_Case,veto.Veto_Number);
                         }
-                        else if (resumption != null)
+                        else if (resumption != null && item.Case_Degree == 3)
                         {
                             FillListSession(item, resumption.Circle, (long)resumption.ID_Case,resumption.Resumption_Number);
                         }
