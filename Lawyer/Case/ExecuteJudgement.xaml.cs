@@ -92,6 +92,12 @@ namespace Lawyer.Case
 
         private void Button_Save(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(Number_Execute.Text))
+            {
+                MessageBox.Show("يجب ادخال رقم التنفيذ");
+                return;
+            }
+
             try
             {
                 string message = "تاكيد حفظ بيانات التنفيذ ";
