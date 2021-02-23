@@ -69,7 +69,7 @@
                         <TextBox Width="200"  Height="35" IsReadOnly="True" HorizontalAlignment="Left" Name="ID_Client"/>
                     </StackPanel>
                     <StackPanel x:Name="Veto_Panel" Visibility="Collapsed">
-                        <TextBlock Text="رقم الاستئناف/النقض" FontSize="12" Margin="0 10 0 0"/>
+                        <TextBlock x:Name="Num_Veto_header_Txt" Text="رقم الاستئناف/النقض" FontSize="12" Margin="0 10 0 0"/>
                         <TextBox Width="200"  Height="35" IsReadOnly="True" HorizontalAlignment="Left" Name="Num_Veto"/>
                     </StackPanel>
                     <TextBlock Text="ملفات الجلسة" FontSize="12" Margin="0 15 0 0"/>

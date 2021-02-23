@@ -87,7 +87,7 @@ namespace Lawyer.Case
             {
 
                 string res_veto_num= Res_Num.Text;
-                if (res_veto_num==null)
+                if (string.IsNullOrWhiteSpace(res_veto_num))
                 {
                     MessageBox.Show("يجب اضافة رقم ال" + GboxHeader.Text);
                     return;

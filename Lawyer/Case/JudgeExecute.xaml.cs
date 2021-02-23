@@ -92,7 +92,7 @@ namespace Lawyer.Case
             if (GridView_Execution.SelectedItem == null)
                 return;
 
-            Case.ExecuteJudgement executeJudgement = new ExecuteJudgement();
+            Case.ExecuteJudgement executeJudgement = new ExecuteJudgement(0, null);
             executeJudgement.ShowDialog();
         }
 
