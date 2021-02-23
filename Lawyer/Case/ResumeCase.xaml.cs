@@ -135,7 +135,7 @@ namespace Lawyer.Case
                 return;
             Models.Session session = (Models.Session)GridView_Session.SelectedItem;
             Case.DisplayFiles displayFiles = new DisplayFiles(session.ID);
-            new TextRange(displayFiles.Notes_Session.Document.ContentStart, displayFiles.Notes_Session.Document.ContentEnd).Text = session.Notes;
+            //new TextRange(displayFiles.Notes_Session.Document.ContentStart, displayFiles.Notes_Session.Document.ContentEnd).Text = session.Notes;
             displayFiles.ShowDialog();
         }
 
