@@ -22,6 +22,7 @@ namespace Lawyer.Models
         public Nullable<long> ID_Case { get; set; }
         public Nullable<long> ID_Jadge { get; set; }
         public string Veto_Number { get; set; }
+        public Nullable<long> ID_Execute { get; set; }
     
         public virtual Case Case { get; set; }
     }

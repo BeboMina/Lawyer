@@ -84,8 +84,8 @@ namespace Lawyer.Case
                 }
                 else
                 {
-                    long id = Convert.ToInt64(SearchTxt.Text);
-                    view_1s = Context.View_1.Where(V => V.ID == id).ToList();
+                    string Num = SearchTxt.Text;
+                    view_1s = Context.View_1.Where(V => V.Case_Namber.Contains(Num)).ToList();
                     FillData();
                 }
 

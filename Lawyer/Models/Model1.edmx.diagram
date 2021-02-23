@@ -4,28 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b5cc35a2e05b4629a819cb3f044ccee2" Name="Diagram1">
-        <EntityTypeShape EntityType="testModel.Case" Width="1.5" PointX="5.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Client" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Client_Case" Width="1.5" PointX="8" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.EXpert" Width="1.5" PointX="10.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Fee" Width="1.5" PointX="10.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Files_Saved" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+      <Diagram DiagramId="2bfc7efe64a649f5be42b3300994349d" Name="Diagram1">
+        <EntityTypeShape EntityType="testModel.Case" Width="1.5" PointX="8" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Client" Width="1.5" PointX="8" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Client_Case" Width="1.5" PointX="10.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Execute" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.EXpert" Width="1.5" PointX="5.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Fee" Width="1.5" PointX="12.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Files_Saved" Width="1.5" PointX="12.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.FilesCas" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.FilesProcuration" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Fils_Fees" Width="1.5" PointX="2.75" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Jadge" Width="1.5" PointX="4.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Fils_Fees" Width="1.5" PointX="12.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Jadge" Width="1.5" PointX="12.75" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Lawery" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Lawery_Session" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Procuration" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Register" Width="1.5" PointX="10.75" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Resumption" Width="1.5" PointX="8" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Register" Width="1.5" PointX="12.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Resumption" Width="1.5" PointX="10.25" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Session" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Stuff" Width="1.5" PointX="10.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.Task" Width="1.5" PointX="13" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.veto" Width="1.5" PointX="8" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.View_1" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.ViewClient_Pro" Width="1.5" PointX="12.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Stuff" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Task" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.veto" Width="1.5" PointX="10.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.View_1" Width="1.5" PointX="7.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.ViewClient_Pro" Width="1.5" PointX="9.75" PointY="15" IsExpanded="true" />
+        <AssociationConnector Association="testModel.FK_Cases_Execute" ManuallyRouted="false" />
         <AssociationConnector Association="testModel.FK_Client_Case_Cases" ManuallyRouted="false" />
         <AssociationConnector Association="testModel.FK_Resumption_Resumption" ManuallyRouted="false" />
         <AssociationConnector Association="testModel.FK_veto_Cases" ManuallyRouted="false" />

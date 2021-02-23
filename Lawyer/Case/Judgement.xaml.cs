@@ -127,6 +127,48 @@ namespace Lawyer.Case
         {
             index = Number_Case.SelectedIndex;
             NumOFCase = ID_of_Cases[index];
+            if(index==0)
+            {
+                Models.Case @case = Context.Cases.FirstOrDefault(C => C.ID == NumOFCase);
+                if(@case!=null&&@case.ID_jadge!=null)
+                {
+                    Models.Jadge jadge = Context.Jadges.FirstOrDefault(J => J.ID == @case.ID_jadge);
+                    CheckData(jadge);
+                }
+            }
+            else if(index==1)
+            {
+                Models.veto veto = Context.vetoes.FirstOrDefault(V => V.ID_veto == NumOFCase);
+                if(veto!=null&&veto.ID_Jadge!=null)
+                {
+                    Models.Jadge jadge = Context.Jadges.FirstOrDefault(J => J.ID == veto.ID_Jadge);
+                    CheckData(jadge);
+                }
+            }
+            else if(index==2)
+            {
+                Models.Resumption resumption = Context.Resumptions.FirstOrDefault(R => R.ID_Resumption == NumOFCase);
+                if (resumption != null && resumption.ID_Jadge != null)
+                {
+                    Models.Jadge jadge = Context.Jadges.FirstOrDefault(J => J.ID == resumption.ID_Jadge);
+                    CheckData(jadge);
+                }
+            }
+        }
+        public void CheckData(Models.Jadge jadge)
+        {
+            JadgNots.Text = jadge.Notes;
+            JadgNots.IsReadOnly = true;
+            data_Case.SelectedDate = jadge.Date;
+            if (jadge.Done == true)
+            {
+                Done.IsChecked = true;
+            }
+            else
+            {
+                Dont_Done.IsChecked = true;
+            }
+            MessageBox.Show("هذه الدعوى لها حكم ");
         }
     }
 }

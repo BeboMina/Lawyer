@@ -17,6 +17,7 @@
           <Property Name="ID_jadge" Type="bigint" />
           <Property Name="Lock" Type="bit" />
           <Property Name="Case_Namber" Type="nvarchar(max)" />
+          <Property Name="ID_Execute" Type="bigint" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -39,6 +40,20 @@
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDClient" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IDCase" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Execute">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Execute_Number" Type="nvarchar(max)" />
+          <Property Name="Execut_Date" Type="date" />
+          <Property Name="Execute_Type" Type="nvarchar(max)" />
+          <Property Name="Done" Type="bit" />
+          <Property Name="Done_Date" Type="date" />
+          <Property Name="Execute" Type="bit" />
+          <Property Name="Case_Type" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="EXpert">
           <Key>
@@ -165,6 +180,7 @@
           <Property Name="ID_Case" Type="bigint" />
           <Property Name="ID_Jadge" Type="bigint" />
           <Property Name="Resumption_Number" Type="nvarchar(max)" />
+          <Property Name="ID_Execute" Type="bigint" />
         </EntityType>
         <EntityType Name="Sessions">
           <Key>
@@ -213,6 +229,7 @@
           <Property Name="ID_Case" Type="bigint" />
           <Property Name="ID_Jadge" Type="bigint" />
           <Property Name="Veto_Number" Type="nvarchar(max)" />
+          <Property Name="ID_Execute" Type="bigint" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'test.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -223,6 +240,7 @@ warning 6002: The table/view 'test.dbo.View_1' does not have a primary key defin
           <Property Name="ID" Type="bigint" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Case_Namber" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -236,6 +254,18 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="certified" Type="bit" />
           <Property Name="EndDate" Type="date" />
         </EntityType>
+        <Association Name="FK_Cases_Execute">
+          <End Role="Execute" Type="Self.Execute" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Execute">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="ID_Execute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Client_Case_Cases">
           <End Role="Cases" Type="Self.Cases" Multiplicity="1" />
           <End Role="Client_Case" Type="Self.Client_Case" Multiplicity="*" />
@@ -372,6 +402,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client_Case" EntityType="Self.Client_Case" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Execute" EntityType="Self.Execute" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EXpert" EntityType="Self.EXpert" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fees" EntityType="Self.Fees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Files_Saved" EntityType="Self.Files_Saved" Schema="dbo" store:Type="Tables" />
@@ -392,7 +423,8 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
             <DefiningQuery>SELECT 
     [View_1].[ID] AS [ID], 
     [View_1].[Type] AS [Type], 
-    [View_1].[Name] AS [Name]
+    [View_1].[Name] AS [Name], 
+    [View_1].[Case_Namber] AS [Case_Namber]
     FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewClient_Pro" EntityType="Self.ViewClient_Pro" store:Type="Views" store:Schema="dbo">
@@ -404,6 +436,10 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
     [ViewClient_Pro].[EndDate] AS [EndDate]
     FROM [dbo].[ViewClient_Pro] AS [ViewClient_Pro]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Cases_Execute" Association="Self.FK_Cases_Execute">
+            <End Role="Execute" EntitySet="Execute" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
           <AssociationSet Name="FK_Client_Case_Cases" Association="Self.FK_Client_Case_Cases">
             <End Role="Cases" EntitySet="Cases" />
             <End Role="Client_Case" EntitySet="Client_Case" />
@@ -466,6 +502,8 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="ID_jadge" Type="Int64" />
           <Property Name="Lock" Type="Boolean" />
           <Property Name="Case_Namber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Execute" Type="Int64" />
+          <NavigationProperty Name="Execute" Relationship="Self.FK_Cases_Execute" FromRole="Cases" ToRole="Execute" />
           <NavigationProperty Name="Client_Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Cases" ToRole="Client_Case" />
           <NavigationProperty Name="Resumptions" Relationship="Self.FK_Resumption_Resumption" FromRole="Cases" ToRole="Resumption" />
           <NavigationProperty Name="vetoes" Relationship="Self.FK_veto_Cases" FromRole="Cases" ToRole="veto" />
@@ -494,6 +532,21 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="IDCase" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Case" Relationship="Self.FK_Client_Case_Cases" FromRole="Client_Case" ToRole="Cases" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Client_Case_Client1" FromRole="Client_Case" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Execute">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Execute_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Execut_Date" Type="DateTime" Precision="0" />
+          <Property Name="Execute_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Done" Type="Boolean" />
+          <Property Name="Done_Date" Type="DateTime" Precision="0" />
+          <Property Name="Execute1" Type="Boolean" />
+          <Property Name="Case_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Cases_Execute" FromRole="Execute" ToRole="Cases" />
         </EntityType>
         <EntityType Name="EXpert">
           <Key>
@@ -628,6 +681,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="ID_Case" Type="Int64" />
           <Property Name="ID_Jadge" Type="Int64" />
           <Property Name="Resumption_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Execute" Type="Int64" />
           <NavigationProperty Name="Case" Relationship="Self.FK_Resumption_Resumption" FromRole="Resumption" ToRole="Cases" />
         </EntityType>
         <EntityType Name="Session">
@@ -683,6 +737,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="ID_Case" Type="Int64" />
           <Property Name="ID_Jadge" Type="Int64" />
           <Property Name="Veto_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Execute" Type="Int64" />
           <NavigationProperty Name="Case" Relationship="Self.FK_veto_Cases" FromRole="veto" ToRole="Cases" />
         </EntityType>
         <EntityType Name="View_1">
@@ -692,6 +747,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="ID" Type="Int64" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Case_Namber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ViewClient_Pro">
           <Key>
@@ -703,6 +759,18 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <Property Name="certified" Type="Boolean" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
         </EntityType>
+        <Association Name="FK_Cases_Execute">
+          <End Role="Execute" Type="Self.Execute" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Execute">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="ID_Execute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Client_Case_Cases">
           <End Role="Cases" Type="Self.Case" Multiplicity="1" />
           <End Role="Client_Case" Type="Self.Client_Case" Multiplicity="*" />
@@ -839,6 +907,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="Cases" EntityType="Self.Case" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="Client_Case" EntityType="Self.Client_Case" />
+          <EntitySet Name="Executes" EntityType="Self.Execute" />
           <EntitySet Name="EXperts" EntityType="Self.EXpert" />
           <EntitySet Name="Fees" EntityType="Self.Fee" />
           <EntitySet Name="Files_Saved" EntityType="Self.Files_Saved" />
@@ -857,6 +926,10 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
           <EntitySet Name="vetoes" EntityType="Self.veto" />
           <EntitySet Name="View_1" EntityType="Self.View_1" />
           <EntitySet Name="ViewClient_Pro" EntityType="Self.ViewClient_Pro" />
+          <AssociationSet Name="FK_Cases_Execute" Association="Self.FK_Cases_Execute">
+            <End Role="Execute" EntitySet="Executes" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
           <AssociationSet Name="FK_Client_Case_Cases" Association="Self.FK_Client_Case_Cases">
             <End Role="Cases" EntitySet="Cases" />
             <End Role="Client_Case" EntitySet="Client_Case" />
@@ -919,6 +992,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="ID_jadge" ColumnName="ID_jadge" />
                 <ScalarProperty Name="Lock" ColumnName="Lock" />
                 <ScalarProperty Name="Case_Namber" ColumnName="Case_Namber" />
+                <ScalarProperty Name="ID_Execute" ColumnName="ID_Execute" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -943,6 +1017,21 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IDClient" ColumnName="IDClient" />
                 <ScalarProperty Name="IDCase" ColumnName="IDCase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Executes">
+            <EntityTypeMapping TypeName="testModel.Execute">
+              <MappingFragment StoreEntitySet="Execute">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Execute_Number" ColumnName="Execute_Number" />
+                <ScalarProperty Name="Execut_Date" ColumnName="Execut_Date" />
+                <ScalarProperty Name="Execute_Type" ColumnName="Execute_Type" />
+                <ScalarProperty Name="Done" ColumnName="Done" />
+                <ScalarProperty Name="Done_Date" ColumnName="Done_Date" />
+                <ScalarProperty Name="Execute1" ColumnName="Execute" />
+                <ScalarProperty Name="Case_Type" ColumnName="Case_Type" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1081,6 +1170,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="ID_Case" ColumnName="ID_Case" />
                 <ScalarProperty Name="ID_Jadge" ColumnName="ID_Jadge" />
                 <ScalarProperty Name="Resumption_Number" ColumnName="Resumption_Number" />
+                <ScalarProperty Name="ID_Execute" ColumnName="ID_Execute" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1133,6 +1223,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="ID_Case" ColumnName="ID_Case" />
                 <ScalarProperty Name="ID_Jadge" ColumnName="ID_Jadge" />
                 <ScalarProperty Name="Veto_Number" ColumnName="Veto_Number" />
+                <ScalarProperty Name="ID_Execute" ColumnName="ID_Execute" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1142,6 +1233,7 @@ warning 6002: The table/view 'test.dbo.ViewClient_Pro' does not have a primary k
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Case_Namber" ColumnName="Case_Namber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

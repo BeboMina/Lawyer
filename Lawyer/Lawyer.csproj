@@ -132,6 +132,9 @@
     <Compile Include="Models\Client_Case.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Execute.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EXpert.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
