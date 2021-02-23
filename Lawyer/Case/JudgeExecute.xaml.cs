@@ -75,7 +75,7 @@ namespace Lawyer.Case
                         viewJadge.Judgement = item.Notes;
                         viewJadge.NameClient = client.Name;
                         viewJadge.NumberCase = Num;
-                        viewJadge.Excute = item.Execute.Value ? "تم الاعلان" : " لم يتم الاعلان";
+                        viewJadge.Excute = item.Execute.Value ? "تم التنفيذ" : " لم يتم التنفيذ";
                         viewJadge.Date = (item.Date.Value != null) ? DateTime.Parse(item.Date.ToString()).ToString("dd/MM/yyyy") : "";
                         viewJadges.Add(viewJadge);
                     }
@@ -158,6 +158,8 @@ namespace Lawyer.Case
             ViewExecute viewExecute1 = (ViewExecute)GridView_Execution.SelectedItem;
             Case.ExecuteJudgement executeJudgement = new ExecuteJudgement(viewExecute1.Case_ID, viewExecute1.Case_Type, viewExecute1.ID);
             executeJudgement.ShowDialog();
+
+            FillGridExecute();
         }
 
         private void SearchExecuteTxt_TextChanged(object sender, TextChangedEventArgs e)

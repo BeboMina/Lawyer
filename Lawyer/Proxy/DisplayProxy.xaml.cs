@@ -28,14 +28,15 @@ namespace Lawyer.Proxy
         byte[] data;
         string Name;
         string Ex;
-        List<NameEx> NameExt = new List<NameEx>();
+        //List<NameEx> NameExt = new List<NameEx>();
+        List<Models.FilesProcuration> NameExt1 = new List<Models.FilesProcuration>();
         long id;
         public DisplayProxy(Models.Procuration procuration)
         {
             InitializeComponent();
             id = procuration.ID;
             Models.Client client = Context.Clients.FirstOrDefault(C => C.IDProcuration == procuration.ID);
-            Models.FilesProcuration filesProcuration = Context.FilesProcurations.FirstOrDefault(F => F.IDProcuration == procuration.ID);
+            NameExt1 = Context.FilesProcurations.Where(F => F.IDProcuration == procuration.ID).ToList();
             Client_Name.Text = client.Name;
             Client_Code.Text = client.ID;
             if(procuration.StardDate==null)
@@ -62,13 +63,9 @@ namespace Lawyer.Proxy
             {
                 Button2.IsChecked = true;
             }
-            if(filesProcuration!=null)
+            if(NameExt1.Count!=0)
             {
-                List<Name_File> name_Files = new List<Name_File>();
-                Name_File Name_File = new Name_File();
-                Name_File.Name = filesProcuration.Title + filesProcuration.Extantion;
-                name_Files.Add(Name_File);
-                Grid_Files.ItemsSource = name_Files;
+                Grid_Files.ItemsSource = NameExt1;
             }
         }
 
@@ -83,14 +80,16 @@ namespace Lawyer.Proxy
             {
 
                 Add = true;
-                NameExt.Clear();
-                NameEx nameEx = new NameEx();
-                nameEx.Name = System.IO.Path.GetFileName(open.FileName);
-                NameExt.Add(nameEx);
+                NameExt1.Clear();
+                Models.FilesProcuration nameEx = new FilesProcuration();
+                nameEx.Title = System.IO.Path.GetFileNameWithoutExtension(open.FileName);
+                nameEx.Extantion = System.IO.Path.GetExtension(open.FileName);
+                nameEx.Date = File.ReadAllBytes(open.FileName);
+                NameExt1.Add(nameEx);
                 Name = System.IO.Path.GetFileNameWithoutExtension(open.FileName);
                 Ex = System.IO.Path.GetExtension(open.FileName);
                 data = File.ReadAllBytes(open.FileName);
-                Grid_Files.ItemsSource = NameExt;
+                Grid_Files.ItemsSource = NameExt1;
                 Grid_Files.Items.Refresh();
             }
         }
@@ -192,9 +191,5 @@ namespace Lawyer.Proxy
                 System.Windows.MessageBox.Show(ex.Message);
             }
         }
-    }
-    public class Name_File
-    {
-        public string Name { get; set; }
     }
 }

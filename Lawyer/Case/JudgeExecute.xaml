@@ -87,7 +87,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="تم الاعلان" Binding="{Binding Excute}">
+                        <DataGridTextColumn Header="تم التنفيذ" Binding="{Binding Excute}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -165,7 +165,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="تم الاعلام" Binding="{Binding IsInformed}">
+                        <DataGridTextColumn Header="تم الاعلان" Binding="{Binding IsInformed}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />

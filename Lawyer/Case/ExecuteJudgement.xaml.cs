@@ -64,11 +64,11 @@ namespace Lawyer.Case
                     Number_Execute.Text = execute.Execute_Number;
                     Text_Execute.Text = execute.Notes;
                     Type_Execute.Text = execute.Execute_Type;
-                    if(execute.Done_Date!=null)
+                    if(execute.Execut_Date!=null)
                     {
                         date_Execute.SelectedDate = execute.Execut_Date.Value;
                     }
-                    if(execute.Execut_Date!=null)
+                    if(execute.Done_Date!=null)
                     {
                         date_Inform.SelectedDate= execute.Done_Date.Value;
                     }
@@ -185,6 +185,8 @@ namespace Lawyer.Case
                             }
                             Context.SaveChanges();
                             Close();
+                            MainWindow parent = (MainWindow)App.Current.MainWindow;
+                            parent.main.Navigate(new JudgeExecute());
                         }
                     }
                 }

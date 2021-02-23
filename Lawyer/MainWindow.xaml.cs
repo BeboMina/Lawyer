@@ -62,7 +62,7 @@ namespace Lawyer
                 tt_experts.Visibility = Visibility.Visible;
                 tt_Lawyers.Visibility = Visibility.Visible;
                 tt_bills.Visibility = Visibility.Visible;
-                tt_archive.Visibility = Visibility.Collapsed;
+                tt_archive.Visibility = Visibility.Visible;
                 tt_JudgeExecute.Visibility = Visibility.Visible;
                 //tt_signout.Visibility = Visibility.Visible;
             }
