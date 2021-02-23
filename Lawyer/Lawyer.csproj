@@ -92,6 +92,9 @@
     <Compile Include="Case\ExecuteJudgement.xaml.cs">
       <DependentUpon>ExecuteJudgement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Case\JudgeExecute.xaml.cs">
+      <DependentUpon>JudgeExecute.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Case\Judgement.xaml.cs">
       <DependentUpon>Judgement.xaml</DependentUpon>
     </Compile>
@@ -250,6 +253,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Case\ExecuteJudgement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Case\JudgeExecute.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -472,6 +479,7 @@
     <Resource Include="WhatsApp Image 2020-12-31 at 9.01.45 AM %282%29.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\judgement.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

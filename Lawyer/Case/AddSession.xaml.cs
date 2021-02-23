@@ -49,6 +49,8 @@ namespace Lawyer.Case
             Com_Num_Case.ItemsSource = Num_Cases;
 
             type = typ;
+            Num_Veto_header_Txt.Text = "رقم ال" + type;
+
             if (type != "case")
             {
                 if(type== "استئناف")
@@ -91,7 +93,7 @@ namespace Lawyer.Case
         {
             if((ID_Case == 0 && type == "case") || (string.IsNullOrWhiteSpace(Num_Veto.Text) && type != "case"))
             {
-                System.Windows.MessageBox.Show("يجب ادخال رقم الدعوى / الاستئناف / النقض");
+                System.Windows.MessageBox.Show("يجب ادخال رقم ال" + type);
                 return;
             }
 
