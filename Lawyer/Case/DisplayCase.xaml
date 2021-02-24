@@ -44,7 +44,7 @@
                     <TextBox x:Name="Case_Announce" Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>
                     <TextBlock Text="التاريخ" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True"/>-->
-                    <TextBlock Text="الدايرة" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBlock Text="الدايرة / المحكمة" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox Width="200"  Height="35" HorizontalAlignment="Left" IsReadOnly="True" Name="C_Case"/>
                     <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />
                     <StackPanel Orientation="Horizontal">

@@ -44,7 +44,7 @@
                         <Button Content="اضافة استئناف" Height="40" Width="120" x:Name="Add_Veto" Click="Add_Veto_Click"
                                 Margin="10 0" Style="{StaticResource btnColored}"/>
                     </StackPanel>
-                    <TextBlock Text="الدايرة" FontSize="12" Margin="0 10 0 0"/>
+                    <TextBlock Text="الدايرة / المحكمة" FontSize="12" Margin="0 10 0 0"/>
                     <TextBox x:Name="Veto_Re_Circle" Width="200" Height="35" HorizontalAlignment="Left"/>
                     <TextBlock Text="ملاحظات" FontSize="12" Margin="0 10 0 0" />
                     <RichTextBox Height="70" Width="300" 
