@@ -67,7 +67,7 @@
                                         <StackPanel Grid.Column="0">
                                             <TextBlock Text="اسم العميل:" FontSize="10" Foreground="LightSlateGray"/>
                                             <TextBlock x:Name="ClientTxt" Text="{Binding Client_Name}"  Margin="0 0 0 10"/>
-                                            <TextBlock Text="رقم القضية:" FontSize="10" Foreground="LightSlateGray"/>
+                                            <TextBlock Text="رقم الدعوى:" FontSize="10" Foreground="LightSlateGray"/>
                                             <TextBlock x:Name="CaseNumTxt" Text="{Binding Case_Number}" Margin="0 0 0 10"/>
                                             <TextBlock Text="المحكمة:" FontSize="10" Foreground="LightSlateGray"/>
                                             <TextBlock x:Name="CourtTxt" Text="{Binding Court}" Margin="0 0 0 10"/>
@@ -120,7 +120,7 @@
                                     <StackPanel Grid.Column="0" Margin="5 5 0 0">
                                         <TextBlock Text="اسم العميل:" FontSize="10" Foreground="LightSlateGray"/>
                                         <TextBlock x:Name="JudgeClientTxt" Text="{Binding Client_Name}"  Margin="0 0 0 10"/>
-                                        <TextBlock Text="رقم القضية:" FontSize="10" Foreground="LightSlateGray"/>
+                                        <TextBlock Text="رقم الدعوى:" FontSize="10" Foreground="LightSlateGray"/>
                                         <TextBlock x:Name="JudgeCaseNumTxt" Text="{Binding Case_Number}" Margin="0 0 0 10"/>
                                         <TextBlock Text="الحكم:" FontSize="10" Foreground="LightSlateGray"/>
                                         <ScrollViewer Height="40" Width="160" Margin="0 0 0 10">
@@ -178,7 +178,7 @@
                                     <StackPanel Grid.Column="0" Margin="5 5 0 0">
                                         <TextBlock Text="اسم العميل:" FontSize="10" Foreground="LightSlateGray"/>
                                         <TextBlock x:Name="ExecutionClientTxt" Text="{Binding Client_Name}"  Margin="0 0 0 10"/>
-                                        <TextBlock Text="رقم القضية:" FontSize="10" Foreground="LightSlateGray"/>
+                                        <TextBlock Text="رقم الدعوى:" FontSize="10" Foreground="LightSlateGray"/>
                                         <TextBlock x:Name="ExecutionCaseNumTxt" Text="{Binding Case_Number}" Margin="0 0 0 10"/>
                                         <TextBlock Text="رقم التنفيذ:" FontSize="10" Foreground="LightSlateGray"/>
                                         <TextBlock x:Name="ExecutionNumTxt" Text="{Binding Execute_Number}" Margin="0 0 0 10"/>

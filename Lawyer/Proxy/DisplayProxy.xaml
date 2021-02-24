@@ -64,7 +64,7 @@
                                   Width="340" Height="200" Name="Grid_Files" MouseDoubleClick="Grid_Files_MouseDoubleClick">
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="اسم الملف" Binding="{Binding Name}">
+                                <DataGridTextColumn Header="اسم الملف" Binding="{Binding Title}">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="HorizontalAlignment" Value="Center"/>

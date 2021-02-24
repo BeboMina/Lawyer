@@ -32,7 +32,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Grid>
+                <!--<Grid>
                     <TextBox x:Name="SearchCaseTxt"  FontSize="18"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center" Width="200" Height="35"
@@ -50,7 +50,7 @@
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
-                </Grid>
+                </Grid>-->
 
                 <DataGrid Grid.Row="1" Style="{StaticResource CustomDataGrid}" 
                   ItemsSource="{Binding}" AutoGenerateColumns="False"
@@ -87,13 +87,13 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <!--<DataGridTextColumn Header="بدء التنفيذ" Binding="{Binding Excute}">
+                        <DataGridTextColumn Header="تم التنفيذ" Binding="{Binding Excute}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>-->
+                        </DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -165,7 +165,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="تم الاعلام" Binding="{Binding IsInformed}">
+                        <DataGridTextColumn Header="تم الاعلان" Binding="{Binding IsInformed}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />
